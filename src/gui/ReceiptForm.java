@@ -32,7 +32,7 @@ import model.Payment;
  *
  * @author Jordan
  */
-public class OfficialReceiptForm extends javax.swing.JDialog {
+public class ReceiptForm extends javax.swing.JDialog {
 
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private final SchoolYearDaoImpl schoolYearDaoImpl = new SchoolYearDaoImpl();
@@ -43,7 +43,7 @@ public class OfficialReceiptForm extends javax.swing.JDialog {
     private final SchoolYear schoolYear;
     private final Particulars particulars;
     
-    public OfficialReceiptForm(OfficialReceipt officialReceipt) {
+    public ReceiptForm(OfficialReceipt officialReceipt) {
         super(null, ModalityType.APPLICATION_MODAL);
         initComponents();
         schoolLogo = new ImageGUIUtil().getResourceAsImage("assets/logo.jpg", 200, 200);
@@ -173,7 +173,6 @@ public class OfficialReceiptForm extends javax.swing.JDialog {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(650, 650));
-    setPreferredSize(new java.awt.Dimension(650, 650));
     getContentPane().setLayout(new java.awt.GridBagLayout());
 
     jPanel1.setBackground(new java.awt.Color(255, 255, 255));

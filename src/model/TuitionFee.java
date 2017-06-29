@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class TuitionFee {
 
+    private Payment payment;
     private boolean hasDiscount;
     private double sum;
     private boolean exists;
@@ -23,6 +24,14 @@ public class TuitionFee {
     private List<BalanceBreakDownFee> balanceBreakDownFees;
     private SchoolYear schoolYear;
     private Student student;
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 
     public boolean hasDiscount() {
         return hasDiscount;

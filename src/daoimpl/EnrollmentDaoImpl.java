@@ -20,6 +20,8 @@ import model.Enrollment;
 import model.SchoolYear;
 import model.Student;
 import dao.IEnrollment;
+import java.io.IOException;
+import model.GradeLevel;
 
 /**
  *
@@ -27,6 +29,9 @@ import dao.IEnrollment;
  */
 public class EnrollmentDaoImpl implements IEnrollment{
 
+    private GradeLevelDaoImpl gradeLevelDaoImpl = new GradeLevelDaoImpl();
+    private StudentDaoImpl studentDaoImpl = new StudentDaoImpl();
+    
     @Override
     public boolean isEnrollmentClosedForSchoolYear(SchoolYear aSchoolYear) {
         String SQL = "{CALL isEnrollmentClosedForSchoolYear(?)}";
@@ -57,12 +62,13 @@ public class EnrollmentDaoImpl implements IEnrollment{
     public boolean enrollStudent(Student student) {
         boolean isSuccessfullyEnrolled;
         String SQL = "{CALL enrollStudent(?,?,?)}";
-
+        int recommendedGradeLevelId = studentDaoImpl.getRecommendedGradeLevel(student.getStudentId());
+        
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
                 CallableStatement cs = con.prepareCall(SQL);) {
             cs.setInt(1, student.getSchoolYearEnrolled().getSchoolYearId());
             cs.setInt(2, student.getStudentId());
-            cs.setInt(3, student.getRecommendedGradeLevelToEnroll().getId());
+            cs.setInt(3, recommendedGradeLevelId);
             JOptionPane.showMessageDialog(
                     null, "Enrolled SchoolYear Id: " + student.getSchoolYearEnrolled().getSchoolYearId()
                     + "\nStudent Id: " + student.getStudentId()
@@ -71,7 +77,7 @@ public class EnrollmentDaoImpl implements IEnrollment{
             isSuccessfullyEnrolled = true;
         } catch (SQLException e) {
             isSuccessfullyEnrolled = false;
-            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return isSuccessfullyEnrolled;
     }

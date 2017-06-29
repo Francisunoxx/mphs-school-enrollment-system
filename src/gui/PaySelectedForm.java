@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import model.GradeLevel;
 import model.SchoolYear;
 import model.Student;
 import model.BalanceBreakDownFee;
@@ -253,11 +252,11 @@ public class PaySelectedForm extends javax.swing.JDialog {
         int schoolYearId = tuitionFee.getSchoolYear().getSchoolYearId();
         SchoolYear schoolYear = tuitionFee.getSchoolYear();
         Student student = tuitionFee.getStudent();
-        
+
         if (!jtfAmountEntered.getText().isEmpty()) {
             boolean amountIsValid = InputUtil.isDouble(jtfAmountEntered.getText());
             if (amountIsValid) {
-                double amountTendered = Double.parseDouble(jtfAmountEntered.getText()) ;
+                double amountTendered = Double.parseDouble(jtfAmountEntered.getText());
                 if (amountTendered > 0) {
                     Payment payment = new Payment();
                     payment.setSchoolYear(schoolYear);
@@ -266,79 +265,54 @@ public class PaySelectedForm extends javax.swing.JDialog {
                     payment.setDateOfPayment(LocalDate.now().toDate());
                     PaymentProcessor paymentProcessor = new PaymentProcessor(payment);
                     payment.setChange(paymentProcessor.getChange());
-                    
+
                     double change = paymentProcessor.getChange();
                     jlblChangeText.setText("\u20B1 " + decimalFormatter.format(change));
-                    
+
                     int choice = JOptionPane.showConfirmDialog(null, "Proceed with payment?", "Payment Confirmation", JOptionPane.YES_NO_OPTION);
 
                     if (choice == JOptionPane.YES_OPTION) {
-                        boolean tuitionFeeIsAdded = tuitionFeeDaoImpl.add(tuitionFee);
-                        if (tuitionFeeIsAdded) {
-                            JOptionPane.showMessageDialog(null,"Successful");
-//                            PaymentForm.setBalanceBreakdownJTable(student, aSchoolYearId);
-//                            PaymentForm.setTransactionJTable(student, aSchoolYearId);
-                            PaymentForm.setFeeSummaryPanelFields(studentId, schoolYearId);
-                            JOptionPane.showMessageDialog(null, "Transaction complete.");
-                            this.dispose();
-                            
-                            OfficialReceipt officialReceipt = new OfficialReceipt();
-                            officialReceipt.setPayment(payment);
-                            officialReceipt.setStudent(student);
-                            
-                            OfficialReceiptForm officialReceiptForm = new OfficialReceiptForm(officialReceipt);
-                            officialReceiptForm.setVisible(true);
-                            officialReceiptForm.pack();
-                            officialReceiptForm.setLocationRelativeTo(null);
-                            
-                            
-                            //enroll student
-                            Integer studentPresentGradeLevel = student.getPresentGradeLevel().getLevel();
-                            boolean isNewStudent = student.getStudentType()==1;
-                            boolean isOldStudent = student.getStudentType()==0;
-                            boolean notEnrolledInSchoolYear = !studentDaoImpl.isEnrolledInSchoolYear(studentId, schoolYearId);
-                            
-                            if (isNewStudent && notEnrolledInSchoolYear) {
-                                if (studentPresentGradeLevel >= 0 && studentPresentGradeLevel <= 9) {
-                                    GradeLevel gradeLevel = new GradeLevel();
-                                    gradeLevel.setLevel(studentPresentGradeLevel);
-                                    Integer gradeLevelId = gradeLevelDaoImpl.getGradeLevelId(gradeLevel);
-                                    
-                                    SchoolYear schoolYearEnrolled = new SchoolYear();
-                                    schoolYearEnrolled.setSchoolYearId(schoolYearId);
-                                    GradeLevel recommendedGradeLevelToEnroll = new GradeLevel();
-                                    recommendedGradeLevelToEnroll.setId(gradeLevelId);
-                                    Student studentToEnroll = new Student();
-                                    
-                                    studentToEnroll.setStudentId(studentId);
-                                    studentToEnroll.setSchoolYearEnrolled(schoolYearEnrolled);
-                                    studentToEnroll.setRecommendedGradeLevelToEnroll(recommendedGradeLevelToEnroll);
-                                    boolean isSuccessfullyEnrolled = enrollmentDaoImpl.enrollStudent(studentToEnroll);
-                                    if(isSuccessfullyEnrolled){
-                                        JOptionPane.showMessageDialog(null,"Student is now active.");
-                                        PaymentForm.setStudentPanelFields();
-                                        OfficialReceiptForm officialReceiptFirstPayment = new OfficialReceiptForm(officialReceipt);
-                                        officialReceiptFirstPayment.setVisible(true);
-                                        officialReceiptFirstPayment.pack();
-                                        officialReceiptFirstPayment.setLocationRelativeTo(null);
-                                        
-                                    }else{
-                                        JOptionPane.showMessageDialog(null,"Failed to change status to active.");
-                                    }
-                                }
-                            }else if(isOldStudent){
-                                
+                        if (tuitionFee.exists()) {
+                            tuitionFee.setPayment(payment);
+                            boolean paid = tuitionFeeDaoImpl.pay(tuitionFee);
+                            if (paid) {
+                                JOptionPane.showMessageDialog(null, "Transaction complete.");
+                                this.dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error encountered while processing payment.");
+                            }
+                        } else {
+                            tuitionFee.setPayment(payment);
+                            boolean added = tuitionFeeDaoImpl.add(tuitionFee);
+                            boolean paid = tuitionFeeDaoImpl.pay(tuitionFee);
+                            if (added & paid) {
+                                JOptionPane.showMessageDialog(null, "Transaction complete.");
+                                this.dispose();
+                                //schoolyear enrolled
+                                //present gradelevel
+                                //recommended gradelevel to enroll
+                                //studentId
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error encountered while processing payment.");
                             }
                         }
+                        OfficialReceipt officialReceipt = new OfficialReceipt();
+                        officialReceipt.setPayment(payment);
+                        officialReceipt.setStudent(student);
+
+                        ReceiptForm receiptForm = new ReceiptForm(officialReceipt);
+                        receiptForm.setVisible(true);
+                        receiptForm.pack();
+                        receiptForm.setLocationRelativeTo(null);
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null,"Payment must be greater than 0.00");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Payment must be greater than 0.00");
                 }
-            }else{
-                JOptionPane.showMessageDialog(null,"Invalid amount format.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid amount format.");
             }
         }
-
     }
 
     private void jtfAmountEnteredKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAmountEnteredKeyPressed

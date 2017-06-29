@@ -25,7 +25,7 @@ import dao.IStudent;
 public class StudentDaoImpl implements IStudent {
 
     @Override
-    public List<Student> getAllStudentsByKeyword(String aKeyword) {
+    public List<Student> get(String aKeyword) {
         List<Student> studentList = new ArrayList<>();
         String SQL = "{CALL getAllStudentsByWildCard(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -283,6 +283,7 @@ public class StudentDaoImpl implements IStudent {
         PresentGradeLevel presentGradeLevel = new PresentGradeLevel();
         PromotedGradeLevel promotedGradeLevel = new PromotedGradeLevel();
         SchoolYear schoolYear = new SchoolYear();
+        
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
                 CallableStatement cs = con.prepareCall(SQL);) {
             cs.setInt(1, aStudentId);
@@ -365,12 +366,7 @@ public class StudentDaoImpl implements IStudent {
     }
 
     @Override
-    public boolean isAlreadyStudent(Student aStudent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Student> getAllActiveStudentsOfCurrentSchoolYear() {
+    public List<Student> getActiveOfCurrentSchoolYear() {
         List<Student> list = new ArrayList<>();
         String SQL = "{CALL getAllActiveStudentsOfCurrentSchoolYear()}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -441,7 +437,7 @@ public class StudentDaoImpl implements IStudent {
     }
 
     @Override
-    public List<Student> getAllInactiveStudents() {
+    public List<Student> getInactive() {
         List<Student> list = new ArrayList<>();
         String SQL = "{CALL getAllInactiveStudents()}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -513,7 +509,7 @@ public class StudentDaoImpl implements IStudent {
     }
 
     @Override
-    public List<Student> getAllInactiveStudentsBySchoolYear(SchoolYear aSchoolYear) {
+    public List<Student> getInactive(SchoolYear aSchoolYear) {
         List<Student> list = new ArrayList<>();
         String SQL = "{CALL getAllInactiveStudentsBySchoolYear(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -595,7 +591,7 @@ public class StudentDaoImpl implements IStudent {
     }
 
     @Override
-    public List<Student> getStudentsBySchoolYear(SchoolYear aSchoolYear) {
+    public List<Student> get(SchoolYear aSchoolYear) {
         String SQL = "{CALL getStudentsBySchoolYear(?)}";
         List<Student> list = new ArrayList<>();
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -667,7 +663,7 @@ public class StudentDaoImpl implements IStudent {
     }
 
     @Override
-    public List<Student> getAllStudents() {
+    public List<Student> get() {
         String SQL = "{CALL getAllStudents()}";
         List<Student> list = new ArrayList<>();
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -796,7 +792,7 @@ public class StudentDaoImpl implements IStudent {
     }
 
     @Override
-    public Integer getRegistrationIdByStudentId(Integer aStudentId) {
+    public Integer getRegistrationId(Integer aStudentId) {
         Integer aRegistrationId = null;
         String SQL = "{CALL getRegistrationIdByStudentId(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);

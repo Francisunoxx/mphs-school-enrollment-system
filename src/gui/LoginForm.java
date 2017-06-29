@@ -2,19 +2,13 @@ package gui;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import component_model_loader.ImageGUIUtil;
 import utility.PasswordUtil;
-import gui.TopContainer;
 import daoimpl.LoginDaoImpl;
+import database_utility.DBUtil;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public class LoginForm extends javax.swing.JFrame {
 //ImageIcon is used for JLABELs
@@ -398,7 +392,7 @@ public class LoginForm extends javax.swing.JFrame {
             } else {
                 loginAttemptCount++;
                 System.out.println(loginAttemptCount);
-                JOptionPane.showMessageDialog(rootPane, "Username or Password incorrect.");
+                JOptionPane.showMessageDialog(null, "Username or Password incorrect.");
                 if (loginAttemptCount >= 3) {
                     JOptionPane.showMessageDialog(null, "Maximum login attempt reached.");
                     LoginDaoImpl.lockUser(usernameStr);
@@ -410,6 +404,7 @@ public class LoginForm extends javax.swing.JFrame {
     }
     
     private void jbtnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSignInActionPerformed
+        DBUtil.verifySettings();
         validateLogin();
     }//GEN-LAST:event_jbtnSignInActionPerformed
 
@@ -427,6 +422,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jtfUserNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfUserNameKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            DBUtil.verifySettings();
             validateLogin();
         }
         
@@ -434,6 +430,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jpfPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpfPasswordFieldKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            DBUtil.verifySettings();
             validateLogin();
         }
     }//GEN-LAST:event_jpfPasswordFieldKeyPressed
@@ -447,28 +444,28 @@ public class LoginForm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JButton jbtnExitProgram;
-    private javax.swing.JButton jbtnSignIn;
-    private javax.swing.JLabel jlblForgotPassword;
-    private javax.swing.JLabel jlblPassword;
-    private javax.swing.JLabel jlblUserLogin;
-    private javax.swing.JLabel jlblUserName;
+    private static javax.swing.JLabel jLabel1;
+    private static javax.swing.JPanel jPanel1;
+    private static javax.swing.JPanel jPanel2;
+    private static javax.swing.JPanel jPanel4;
+    private static javax.swing.JPanel jPanel5;
+    private static javax.swing.JButton jbtnExitProgram;
+    private static javax.swing.JButton jbtnSignIn;
+    private static javax.swing.JLabel jlblForgotPassword;
+    private static javax.swing.JLabel jlblPassword;
+    private static javax.swing.JLabel jlblUserLogin;
+    private static javax.swing.JLabel jlblUserName;
     private javax.swing.JPasswordField jpfPasswordField;
-    private javax.swing.JPanel jpnlBody;
-    private javax.swing.JPanel jpnlHeader;
-    private javax.swing.JPanel jpnlPasswordIconContainer;
-    private javax.swing.JPanel jpnlPasswordLabel;
-    private javax.swing.JPanel jpnlSubBody;
-    private javax.swing.JPanel jpnlUserLogin;
-    private javax.swing.JPanel jpnlUserLoginHeader;
-    private javax.swing.JPanel jpnlUserNameField;
-    private javax.swing.JPanel jpnlUserNameIconContainer;
-    private javax.swing.JPanel jpnlUserNameLabel;
+    private static javax.swing.JPanel jpnlBody;
+    private static javax.swing.JPanel jpnlHeader;
+    private static javax.swing.JPanel jpnlPasswordIconContainer;
+    private static javax.swing.JPanel jpnlPasswordLabel;
+    private static javax.swing.JPanel jpnlSubBody;
+    private static javax.swing.JPanel jpnlUserLogin;
+    private static javax.swing.JPanel jpnlUserLoginHeader;
+    private static javax.swing.JPanel jpnlUserNameField;
+    private static javax.swing.JPanel jpnlUserNameIconContainer;
+    private static javax.swing.JPanel jpnlUserNameLabel;
     private javax.swing.JTextField jtfUserName;
     // End of variables declaration//GEN-END:variables
 }

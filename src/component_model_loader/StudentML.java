@@ -24,7 +24,7 @@ public class StudentML {
     public DefaultTableModel getAllStudentByKeyword(JTable aJtable,String aKeyword){
         DefaultTableModel aJtableModel = (DefaultTableModel) aJtable.getModel();
         aJtableModel.setRowCount(0);
-        Object[] studentList = STUDENT_DAO_IMPL.getAllStudentsByKeyword(aKeyword).toArray();
+        Object[] studentList = STUDENT_DAO_IMPL.get(aKeyword).toArray();
         
         String[] columnNames = {
             "Student ID",
@@ -49,7 +49,7 @@ public class StudentML {
         for (Object o : studentList) {
             Student s = (Student) o;
             Integer aStudentId = s.getStudentId();
-            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationIdByStudentId(aStudentId);
+            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationId(aStudentId);
             Integer admissionGradeLevel = STUDENT_DAO_IMPL.getAdmissionGradeLevelByRegistrationId(aRegistrationId);
             Integer aPresentGradeLevel = STUDENT_DAO_IMPL.getPresentGradeLevelByStudentId(aStudentId);
             
@@ -73,7 +73,7 @@ public class StudentML {
     public DefaultTableModel getAllStudents(JTable aJtable){
         DefaultTableModel aJtableModel = (DefaultTableModel) aJtable.getModel();
         aJtableModel.setRowCount(0);
-        Object[] studentList = STUDENT_DAO_IMPL.getAllStudents().toArray();
+        Object[] studentList = STUDENT_DAO_IMPL.get().toArray();
         
         String[] columnNames = {
             "Student ID",
@@ -98,7 +98,7 @@ public class StudentML {
         for (Object o : studentList) {
             Student s = (Student) o;
             Integer aStudentId = s.getStudentId();
-            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationIdByStudentId(aStudentId);
+            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationId(aStudentId);
             Integer admissionGradeLevel = STUDENT_DAO_IMPL.getAdmissionGradeLevelByRegistrationId(aRegistrationId);
             Integer aPresentGradeLevel = STUDENT_DAO_IMPL.getPresentGradeLevelByStudentId(aStudentId);
             
@@ -122,7 +122,7 @@ public class StudentML {
     public DefaultTableModel getAllInactiveStudents(JTable aJtable){
         DefaultTableModel aJtableModel = (DefaultTableModel) aJtable.getModel();
         aJtableModel.setRowCount(0);
-        Object[] studentList = STUDENT_DAO_IMPL.getAllInactiveStudents().toArray();
+        Object[] studentList = STUDENT_DAO_IMPL.getInactive().toArray();
         
         String[] columnNames = {
             "Student ID",
@@ -147,7 +147,7 @@ public class StudentML {
         for (Object o : studentList) {
             Student s = (Student) o;
             Integer aStudentId = s.getStudentId();
-            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationIdByStudentId(aStudentId);
+            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationId(aStudentId);
             Integer admissionGradeLevel = STUDENT_DAO_IMPL.getAdmissionGradeLevelByRegistrationId(aRegistrationId);
             Integer aPresentGradeLevel = STUDENT_DAO_IMPL.getPresentGradeLevelByStudentId(aStudentId);
             
@@ -171,7 +171,7 @@ public class StudentML {
     public DefaultTableModel getAllActiveStudentsOfCurrentSchoolYear(JTable aJtable){
         DefaultTableModel aJtableModel = (DefaultTableModel) aJtable.getModel();
         aJtableModel.setRowCount(0);
-        Object[] studentList = STUDENT_DAO_IMPL.getAllActiveStudentsOfCurrentSchoolYear().toArray();
+        Object[] studentList = STUDENT_DAO_IMPL.getActiveOfCurrentSchoolYear().toArray();
         
         String[] columnNames = {
             "Student ID",
@@ -196,7 +196,7 @@ public class StudentML {
         for (Object o : studentList) {
             Student s = (Student) o;
             Integer aStudentId = s.getStudentId();
-            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationIdByStudentId(aStudentId);
+            Integer aRegistrationId = STUDENT_DAO_IMPL.getRegistrationId(aStudentId);
             Integer admissionGradeLevel = STUDENT_DAO_IMPL.getAdmissionGradeLevelByRegistrationId(aRegistrationId);
             Integer aPresentGradeLevel = STUDENT_DAO_IMPL.getPresentGradeLevelByStudentId(aStudentId);
             

@@ -510,6 +510,11 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jpnlSortFeeList.add(jlblYearCreated, new java.awt.GridBagConstraints());
 
         jcmbYearCreated.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearStart());
+        jcmbYearCreated.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbYearCreatedItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jpnlSortFeeList.add(jcmbYearCreated, gridBagConstraints);
@@ -1518,6 +1523,10 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private void jcmbActionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbActionItemStateChanged
         enableUpdateDiscountFields();
     }//GEN-LAST:event_jcmbActionItemStateChanged
+
+    private void jcmbYearCreatedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbYearCreatedItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbYearCreatedItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

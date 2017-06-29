@@ -7,14 +7,14 @@ import model.Student;
 
 
 public interface IStudent {
-    List<Student> getAllActiveStudentsOfCurrentSchoolYear (); //Always Current School Year
-    List<Student> getAllInactiveStudents(); //applies to all school year
-    List<Student> getAllInactiveStudentsBySchoolYear(SchoolYear aSchoolYear);
-    List<Student> getStudentsBySchoolYear(SchoolYear aSchoolYear);
-    List<Student> getAllStudents();
-    List<Student> getAllStudentsByKeyword(String aKeyword);
+    List<Student> getActiveOfCurrentSchoolYear (); //Always Current School Year
+    List<Student> getInactive(); //applies to all school year
+    List<Student> getInactive(SchoolYear aSchoolYear);
+    List<Student> get(SchoolYear aSchoolYear);
+    List<Student> get();
+    List<Student> get(String aKeyword);
     
-    Integer getRegistrationIdByStudentId(Integer aStudentId);
+    Integer getRegistrationId(Integer aStudentId);
     Integer getAdmissionGradeLevelByRegistrationId(Integer aRegistrationId);
     Integer getPresentGradeLevelByStudentId(Integer aStudentId);
     Integer getRecommendedGradeLevel(Integer aStudentId);
@@ -23,6 +23,5 @@ public interface IStudent {
     Student getStudentRecordById(Student aStudent);
     Student getStudentById(int aStudentId);
     
-    boolean isAlreadyStudent(Student aStudent);
     boolean isEnrolledInSchoolYear(Integer aStudentId, Integer aSchoolYearId);
 }

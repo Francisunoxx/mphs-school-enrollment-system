@@ -1054,7 +1054,7 @@ public class StudentInformationJDialog extends javax.swing.JDialog {
 
     public void setStudentDetails(){
             Student s = studentDaoImpl.getStudentById(studentId);
-            Integer aRegistrationId = studentDaoImpl.getRegistrationIdByStudentId(studentId);
+            Integer aRegistrationId = studentDaoImpl.getRegistrationId(studentId);
         String aAdmissionGradeLevel = studentDaoImpl.getAdmissionGradeLevelByRegistrationId(aRegistrationId)==0?
                 "Kindergarten":studentDaoImpl.getAdmissionGradeLevelByRegistrationId(aRegistrationId)+"";
         String aPresentGradeLevel = studentDaoImpl.getPresentGradeLevelByStudentId(studentId)==0?
@@ -1125,7 +1125,7 @@ public class StudentInformationJDialog extends javax.swing.JDialog {
     
     private void setFormDetails(){
         Student student =studentDaoImpl.getStudentById(studentId);
-        Integer aRegistrationId = studentDaoImpl.getRegistrationIdByStudentId(studentId);
+        Integer aRegistrationId = studentDaoImpl.getRegistrationId(studentId);
         String aAdmissionGradeLevel = studentDaoImpl.getAdmissionGradeLevelByRegistrationId(aRegistrationId)==0?
                 "Kindergarten":studentDaoImpl.getAdmissionGradeLevelByRegistrationId(aRegistrationId)+"";
         String aPresentGradeLevel = studentDaoImpl.getPresentGradeLevelByStudentId(studentId)==0?

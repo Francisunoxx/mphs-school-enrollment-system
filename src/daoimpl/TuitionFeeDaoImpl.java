@@ -8,6 +8,7 @@ package daoimpl;
 import dao.ITuitionFee;
 import database_utility.DBType;
 import database_utility.DBUtil;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -213,12 +214,27 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
         String SQLa = "{CALL addTransaction(?)}";
         String SQLb = "{CALL payTuitionFee()}";
         String SQLc = "{CALL addTransactionPayment()}";
-        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQLb);){
-            
-            cs.executeUpdate();
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);) {
+            try (CallableStatement csA = con.prepareCall(SQLa);
+                    CallableStatement csB = con.prepareCall(SQLb);
+                    CallableStatement csC = con.prepareCall(SQLc);) {
+                con.setAutoCommit(false);
+
+                csA.setInt(1, tuitionFee.getStudent().getStudentId());
+                csA.registerOutParameter(2, Types.INTEGER);
+                csA.executeUpdate();
+                int aTransactionId = csA.getInt(2);
+                
+                
+                
+                con.commit();
+                isSuccessfullyPaid = true;
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return isSuccessfullyPaid;
     }
