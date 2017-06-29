@@ -211,9 +211,9 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
     @Override
     public boolean pay(TuitionFee tuitionFee) {
         boolean isSuccessfullyPaid = false;
-        String SQLa = "{CALL addTransaction(?)}";
-        String SQLb = "{CALL payTuitionFee()}";
-        String SQLc = "{CALL addTransactionPayment()}";
+        String SQLa = "{CALL addTransaction(?,?)}";
+        String SQLb = "{CALL payTuitionFee(?,?,?)}";
+        String SQLc = "{CALL addTransactionPayment(?,?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);) {
             try (CallableStatement csA = con.prepareCall(SQLa);
                     CallableStatement csB = con.prepareCall(SQLb);
@@ -225,7 +225,18 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
                 csA.executeUpdate();
                 int aTransactionId = csA.getInt(2);
                 
-                
+                for(BalanceBreakDownFee b: tuitionFee.getPayment().getParticulars().getBalanceBreakDownFees()){
+                    JOptionPane.showMessageDialog(null,"Balance BreakDown Id: "+b.getBalanceBreakDownFeeId());
+                    csB.setInt(1, b.getBalanceBreakDownFeeId());
+                    csB.setDouble(2,tuitionFee.getPayment().getAmountTendered());
+                    csB.registerOutParameter(3, Types.INTEGER);
+                    csB.executeUpdate();
+                    int aPaymentId = csB.getInt(3);
+                    
+                    csC.setInt(1, aTransactionId);
+                    csC.setInt(2, aPaymentId);
+                    csC.executeUpdate();
+                }
                 
                 con.commit();
                 isSuccessfullyPaid = true;

@@ -53,6 +53,11 @@ public class DBConnectionForm extends javax.swing.JDialog {
         jpnlConnectionConfiguration.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("IP Address :");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -150,6 +155,10 @@ public class DBConnectionForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Error creating configuration file.");
         }
     }//GEN-LAST:event_jbtnSaveSettingsActionPerformed
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        
+    }//GEN-LAST:event_jLabel1MouseEntered
 
     /**
      * @param args the command line arguments

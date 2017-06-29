@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.SchoolYear;
@@ -285,14 +286,13 @@ public class PaySelectedForm extends javax.swing.JDialog {
                             tuitionFee.setPayment(payment);
                             boolean added = tuitionFeeDaoImpl.add(tuitionFee);
                             boolean paid = tuitionFeeDaoImpl.pay(tuitionFee);
-                            if (added & paid) {
+                            if (added && paid) {
                                 JOptionPane.showMessageDialog(null, "Transaction complete.");
                                 this.dispose();
                                 //schoolyear enrolled
                                 //present gradelevel
                                 //recommended gradelevel to enroll
                                 //studentId
-
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error encountered while processing payment.");
                             }

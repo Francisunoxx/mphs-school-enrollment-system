@@ -1586,6 +1586,7 @@ public class PaymentForm extends javax.swing.JPanel {
             Student aStudent = studentDaoImpl.getStudentById(aStudentId);
             
             if (aStudent.getRegistration().exists()) {
+                System.out.println("Exists @ jtfStudentIDKeyPressed");
                 PresentGradeLevel presentGradeLevel = aStudent.getPresentGradeLevel();
                 int aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(presentGradeLevel);
                 
