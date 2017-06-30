@@ -58,11 +58,19 @@ public class JPanelGUIUtil {
         return compList;
     }
 
+    public static void clearJTextFields(Container container){
+        Component[] comp = container.getComponents();
+        for(Component c : comp){
+            if(c instanceof JTextField){
+                ((JTextField)c).setText("");
+            }
+        }
+    }
+    
     public static void clearFields(final Container aContainer) {
         Component[] myComponents = aContainer.getComponents();
         for (Component aComp : myComponents) {
-            
-             if (aComp instanceof JTextField) {
+            if (aComp instanceof JTextField) {
                 ((JTextField) aComp).setText("");
             } else if (aComp instanceof JComboBox) {
                 ((JComboBox) aComp).setSelectedIndex(-1);
@@ -75,17 +83,14 @@ public class JPanelGUIUtil {
         }
     }
 
-    
-    
-    public static void resetComboBoxIndexZero(List<Component> JComponents) {
-
+    public static void resetJComboIndex(List<Component> JComponents) {
         for (Component c : JComponents) // for every component
         {
             if (c instanceof JComboBox) {
                 ((JComboBox) c).setSelectedIndex(0);
             }
-        }//--end of for each loop
-    }// --end of method
+        }
+    }
 
     public static void setJCheckBoxSelected(List<Component> comp) {
         for (Component c : comp) {
@@ -95,7 +100,7 @@ public class JPanelGUIUtil {
         }
     }
 
-    public static void clearAllJPanelCheckBox(Container aContainer) {
+    public static void clearJCheckBox(Container aContainer) {
         Component[] components = aContainer.getComponents();
         for (Component c : components) {
             if (c instanceof JCheckBox) {
@@ -103,8 +108,8 @@ public class JPanelGUIUtil {
             }
         }
     }
-    
-    public static void enableAllJPanelCheckBox(Container aContainer) {
+
+    public static void enableJCheckBox(Container aContainer) {
         Component[] components = aContainer.getComponents();
         for (Component c : components) {
             if (c instanceof JCheckBox) {
@@ -129,35 +134,20 @@ public class JPanelGUIUtil {
             if (c instanceof JComboBox) {
                 jComboIndex = ((JComboBox) c).getSelectedIndex();
                 hasNull = jComboIndex < 0;
-            } 
+            }
         }
         return hasNull;
     }
-    
+
     public static boolean areFieldsEmpty(List<Component> comp) {
         Boolean bool = false;
         for (Component c : comp) {
             if (c instanceof JTextField) {
                 bool = ((JTextField) c).getText().isEmpty();
             }
-        }// --end of for each loop
-        return bool;
-    }// -- end of areFieldsEmpty(0 method
-
-    public static boolean isValid(List<Component> aComponent) {
-        boolean isValid = false;
-        for (Component c : aComponent) {
-            if (c instanceof JComboBox) {
-                isValid = (((JComboBox) c).getSelectedIndex() > -1);
-                //JOptionPane.showMessageDialog(null,"ComboBox returned: "+isValid);
-            } else if (c instanceof JCheckBox) {
-                isValid = (((JCheckBox) c).isSelected());
-                //JOptionPane.showMessageDialog(null,"Checkbox returned: "+isValid);
-            } else if (c instanceof JTextField) {
-                isValid = ((JTextField) c).getText().isEmpty();
-                //JOptionPane.showMessageDialog(null,"TextField returned: "+isValid);
-            }
         }
-        return isValid;
+        return bool;
     }
+
+    
 }

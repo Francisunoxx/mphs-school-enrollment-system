@@ -532,7 +532,7 @@ public class ManagementPanel extends javax.swing.JPanel {
 
     private void jcbKindergartenCtgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbKindergartenCtgItemStateChanged
         if(jcbKindergartenCtg.isSelected()){
-            JPanelGUIUtil.clearAllJPanelCheckBox(jpnlGradeLevelSelection);
+            JPanelGUIUtil.clearJCheckBox(jpnlGradeLevelSelection);
             jcbKindergarten.setSelected(true);
         }else{
             jcbKindergarten.setSelected(false);
@@ -572,7 +572,7 @@ public class ManagementPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jcbJuniorHighCtgItemStateChanged
 
     private void resetCreateCredentialFormPanel(){
-        JPanelGUIUtil.clearAllJPanelCheckBox(jpnlGradeLevelSelection);
+        JPanelGUIUtil.clearJCheckBox(jpnlGradeLevelSelection);
         JPanelGUIUtil.disableAllJCheckBox(jpnlGradeLevelSelection);
         jtfCredentialName.setText("");
         jtaCredentialDescription.setText(null);
@@ -679,7 +679,7 @@ public class ManagementPanel extends javax.swing.JPanel {
             jcbElementaryCtg.setEnabled(true);
             jcbJuniorHighCtg.setEnabled(true);
             jcbKindergartenCtg.setEnabled(true);
-            JPanelGUIUtil.enableAllJPanelCheckBox(jpnlGradeLevelSelection);
+            JPanelGUIUtil.enableJCheckBox(jpnlGradeLevelSelection);
         }
     }//GEN-LAST:event_jtfCredentialNameKeyPressed
 

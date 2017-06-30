@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -111,17 +112,6 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jlblFeeName = new javax.swing.JLabel();
         jtfFeeName = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jpnlFeeRecordTab = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtblAllFees = new javax.swing.JTable();
-        jpnlFilterControl = new javax.swing.JPanel();
-        jlblFilterGradeLevel = new javax.swing.JLabel();
-        jlblFilterSearch = new javax.swing.JLabel();
-        jtfFilterEnterSearch = new javax.swing.JTextField();
-        jlblFilterFeeCategory = new javax.swing.JLabel();
-        jcmbFilterByFeeCategory = new javax.swing.JComboBox<>();
-        jcmbFilterGradeLevel = new javax.swing.JComboBox<>();
         jPanel14 = new javax.swing.JPanel();
         jpnlSortFeeList = new javax.swing.JPanel();
         jlblYearCreated = new javax.swing.JLabel();
@@ -129,6 +119,15 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jspFeeList = new javax.swing.JScrollPane();
         jlstFeeNameList = new javax.swing.JList<>();
         jbtnDeleteFee = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlstFeeGradeLevels = new javax.swing.JList<>();
+        jpnlFeeInfo = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jtfFeeAmount = new javax.swing.JTextField();
+        jbtnEditFee = new javax.swing.JButton();
+        jcbFeeStatus = new javax.swing.JCheckBox();
+        jbtnSaveEdit = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -564,120 +563,9 @@ public class FeesManagementContainer extends javax.swing.JPanel {
 
         jtpFees.addTab("Fee Creation", jpnlFeeCreationTab);
 
-        jPanel10.setLayout(new java.awt.GridBagLayout());
-
-        jpnlFeeRecordTab.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Displaying All Fees", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jpnlFeeRecordTab.setLayout(new java.awt.GridBagLayout());
-
-        jtblAllFees.setAutoCreateRowSorter(true);
-        jtblAllFees.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Name", "Amount", "Description", "Fee Category", "Grade Level", "Year Created", "Active Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtblAllFees.setShowVerticalLines(false);
-        jtblAllFees.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jtblAllFees);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFeeRecordTab.add(jScrollPane2, gridBagConstraints);
-
-        jpnlFilterControl.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
-        jpnlFilterControl.setLayout(new java.awt.GridBagLayout());
-
-        jlblFilterGradeLevel.setText("Grade Level");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFilterControl.add(jlblFilterGradeLevel, gridBagConstraints);
-
-        jlblFilterSearch.setText("Search");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFilterControl.add(jlblFilterSearch, gridBagConstraints);
-
-        jtfFilterEnterSearch.setColumns(12);
-        jtfFilterEnterSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtfFilterEnterSearchKeyPressed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFilterControl.add(jtfFilterEnterSearch, gridBagConstraints);
-
-        jlblFilterFeeCategory.setText("Fee Category");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFilterControl.add(jlblFilterFeeCategory, gridBagConstraints);
-
-        jcmbFilterByFeeCategory.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbFilterByFeeCategoryItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFilterControl.add(jcmbFilterByFeeCategory, gridBagConstraints);
-
-        jcmbFilterGradeLevel.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbFilterGradeLevelItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFilterControl.add(jcmbFilterGradeLevel, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlFeeRecordTab.add(jpnlFilterControl, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel10.add(jpnlFeeRecordTab, gridBagConstraints);
-
-        jtpFees.addTab("Fee Record", jPanel10);
-
         jPanel14.setLayout(new java.awt.GridBagLayout());
 
-        jpnlSortFeeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Sort List"));
+        jpnlSortFeeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Sort "));
         jpnlSortFeeList.setLayout(new java.awt.GridBagLayout());
 
         jlblYearCreated.setText("Year Created");
@@ -694,7 +582,7 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jpnlSortFeeList.add(jcmbYearCreated, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -704,10 +592,15 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jspFeeList.setPreferredSize(new java.awt.Dimension(200, 250));
 
         jlstFeeNameList.setModel(new component_model_loader.FeeML().getAllFeeNamesAsModel());
+        jlstFeeNameList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jlstFeeNameListValueChanged(evt);
+            }
+        });
         jspFeeList.setViewportView(jlstFeeNameList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -719,9 +612,91 @@ public class FeesManagementContainer extends javax.swing.JPanel {
                 jbtnDeleteFeeActionPerformed(evt);
             }
         });
-        jPanel14.add(jbtnDeleteFee, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel14.add(jbtnDeleteFee, gridBagConstraints);
 
-        jtpFees.addTab("New Fee Record", jPanel14);
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Grade Level Assignment"));
+        jPanel10.setPreferredSize(new java.awt.Dimension(180, 250));
+        jPanel10.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane2.setViewportView(jlstFeeGradeLevels);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel10.add(jScrollPane2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel14.add(jPanel10, gridBagConstraints);
+
+        jpnlFeeInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Info"));
+        jpnlFeeInfo.setPreferredSize(new java.awt.Dimension(260, 93));
+        jpnlFeeInfo.setLayout(new java.awt.GridBagLayout());
+
+        jLabel10.setText("Amount");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeInfo.add(jLabel10, gridBagConstraints);
+
+        jtfFeeAmount.setColumns(5);
+        jtfFeeAmount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeInfo.add(jtfFeeAmount, gridBagConstraints);
+
+        jbtnEditFee.setText("Edit");
+        jbtnEditFee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEditFeeActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeInfo.add(jbtnEditFee, gridBagConstraints);
+
+        jcbFeeStatus.setText("Active");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeInfo.add(jcbFeeStatus, gridBagConstraints);
+
+        jbtnSaveEdit.setText("Save");
+        jbtnSaveEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSaveEditActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeInfo.add(jbtnSaveEdit, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel14.add(jpnlFeeInfo, gridBagConstraints);
+
+        jtpFees.addTab("Fee Record", jPanel14);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -1079,7 +1054,8 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     }
     
     private void resetCreateFeeFormPanel(){
-        JPanelGUIUtil.clearAllJPanelCheckBox(jpnlFeeAmount);
+        JPanelGUIUtil.clearJCheckBox(jpnlFeeAmount);
+        JPanelGUIUtil.clearJTextFields(jpnlFeeAmount);
         jtfFeeName.setText("");
         jcmbFeeCategory.setSelectedIndex(-1);
         jtaFeeDescription.setText(null);
@@ -1188,66 +1164,6 @@ public class FeesManagementContainer extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_jbtnCreateFeeActionPerformed
-
-    private void jtfFilterEnterSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfFilterEnterSearchKeyPressed
-        //TODO add your handling code here:
-        if( (jtfFilterEnterSearch.getText().isEmpty())&&(evt.getKeyCode() == KeyEvent.VK_ENTER) ){
-            DefaultTableModel feeInfoModel = (DefaultTableModel) jtblAllFees.getModel();
-            feeInfoModel.setRowCount(0); // CLEAR THE RECORD ON VIEW BEFORE LOADING NEW DATA
-            Object[] rowData = fdi.getAll().toArray();
-            for (Object rd : rowData) {
-                //cast rd first to its object type which is Fee
-                Fee f = (Fee) rd;//rd contains a list of Fee objects not their attributes
-                Object[] o = {
-                    f.getId(), f.getName(),
-                    f.getAmount(),
-                    f.getDescription(),
-                    f.getFeeCategory().getCategory(),
-                    f.getGradeLevel().getLevel(),
-                    f.getSchoolYear().getYearFrom(),
-                    f.isActive() == true ? "Yes" : "No"
-                }; //end of object array declaration
-                feeInfoModel.addRow(o);
-            }
-
-            jtblAllFees.setModel(feeInfoModel);
-            jcmbFilterByFeeCategory.setSelectedIndex(-1);
-            jcmbFilterGradeLevel.setSelectedIndex(-1);
-        }else{
-
-        }
-    }//GEN-LAST:event_jtfFilterEnterSearchKeyPressed
-
-    private void jcmbFilterByFeeCategoryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbFilterByFeeCategoryItemStateChanged
-        
-    }//GEN-LAST:event_jcmbFilterByFeeCategoryItemStateChanged
-
-    private void jcmbFilterGradeLevelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbFilterGradeLevelItemStateChanged
-
-        if (jcmbFilterGradeLevel.getSelectedIndex() > -1) {
-            DefaultTableModel feeInfoModel = (DefaultTableModel) jtblAllFees.getModel();
-            feeInfoModel.setRowCount(0);
-            GradeLevel aGradeLevel = (GradeLevel)jcmbFilterGradeLevel.getSelectedItem();
-
-            Object[] rowData = fdi.getByGradeLevel(aGradeLevel).toArray();
-            for (Object rd : rowData) {
-                //cast rd first to its object type which is Fee
-                Fee f = (Fee) rd;//rd contains a list of Fee objects not their attributes
-                Object[] o = {
-                    f.getId(), f.getName(),
-                    f.getAmount(),
-                    f.getDescription(),
-                    f.getFeeCategory().getCategory(),
-                    f.getGradeLevel().getLevel(),
-                    f.getSchoolYear().getYearFrom(),
-                    f.isActive() == true ? "Yes" : "No"
-                }; //end of object array declaration
-                feeInfoModel.addRow(o);
-            }
-            jtblAllFees.setModel(feeInfoModel);
-        }
-
-    }//GEN-LAST:event_jcmbFilterGradeLevelItemStateChanged
 
     private void jbtnDeleteFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeleteFeeActionPerformed
         
@@ -1415,10 +1331,31 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jcbGrade10ItemStateChanged
 
+    private void jbtnEditFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditFeeActionPerformed
+        jtfFeeAmount.setEnabled(true);
+    }//GEN-LAST:event_jbtnEditFeeActionPerformed
+
+    private void jbtnSaveEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveEditActionPerformed
+        jtfFeeAmount.setEnabled(false);
+    }//GEN-LAST:event_jbtnSaveEditActionPerformed
+
+    private void jlstFeeNameListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlstFeeNameListValueChanged
+        String feeName = jlstFeeNameList.getSelectedValue().trim();
+        int aFeeId = fdi.getId(feeName);
+        Object[] obj = fdi.getGradeLevelAssignment(aFeeId).toArray();
+        DefaultListModel dlm = new DefaultListModel();
+        for(Object o : obj){
+            GradeLevel g = (GradeLevel)o;
+            dlm.addElement(g.getLevel()==0? "Kindergarten": "Grade "+g.getLevel());
+        }
+        jlstFeeGradeLevels.setModel(dlm);
+    }//GEN-LAST:event_jlstFeeNameListValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel feesCardContainer;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1448,8 +1385,11 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private javax.swing.JButton jbtnClear;
     private javax.swing.JButton jbtnCreateFee;
     private javax.swing.JButton jbtnDeleteFee;
+    private javax.swing.JButton jbtnEditFee;
     private javax.swing.JButton jbtnSaveDiscountCreate;
+    private javax.swing.JButton jbtnSaveEdit;
     private javax.swing.JButton jbtnUpdateDiscountInfo;
+    private javax.swing.JCheckBox jcbFeeStatus;
     private javax.swing.JCheckBox jcbGrade1;
     private javax.swing.JCheckBox jcbGrade10;
     private javax.swing.JCheckBox jcbGrade2;
@@ -1464,19 +1404,15 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcmbAction;
     private javax.swing.JComboBox<String> jcmbDiscountStatusUpdate;
     private javax.swing.JComboBox<String> jcmbFeeCategory;
-    private javax.swing.JComboBox<String> jcmbFilterByFeeCategory;
-    private javax.swing.JComboBox<String> jcmbFilterGradeLevel;
     private javax.swing.JComboBox<String> jcmbYearCreated;
     private javax.swing.JLabel jlblDateCreateText;
     private javax.swing.JLabel jlblDiscountNameUpdate;
     private javax.swing.JLabel jlblFeeCategory;
     private javax.swing.JLabel jlblFeeName;
-    private javax.swing.JLabel jlblFilterFeeCategory;
-    private javax.swing.JLabel jlblFilterGradeLevel;
-    private javax.swing.JLabel jlblFilterSearch;
     private javax.swing.JLabel jlblStatus;
     private javax.swing.JLabel jlblYearCreated;
     private javax.swing.JList<String> jlstDiscountsList;
+    private javax.swing.JList<String> jlstFeeGradeLevels;
     private javax.swing.JList<String> jlstFeeNameList;
     private javax.swing.JPanel jpnlCreateFee;
     private javax.swing.JPanel jpnlCreateFeeControls;
@@ -1484,8 +1420,7 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private javax.swing.JPanel jpnlCreateNewFeeFields;
     private javax.swing.JPanel jpnlFeeAmount;
     private javax.swing.JPanel jpnlFeeCreationTab;
-    private javax.swing.JPanel jpnlFeeRecordTab;
-    private javax.swing.JPanel jpnlFilterControl;
+    private javax.swing.JPanel jpnlFeeInfo;
     private javax.swing.JPanel jpnlSortFeeList;
     private javax.swing.JScrollPane jspFeeCreation;
     private javax.swing.JScrollPane jspFeeDescription;
@@ -1495,11 +1430,10 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private javax.swing.JTextArea jtaDiscountDescriptionCreate;
     private javax.swing.JTextArea jtaDiscountDescriptionUpdate;
     private javax.swing.JTextArea jtaFeeDescription;
-    private javax.swing.JTable jtblAllFees;
     private javax.swing.JTextField jtfDiscountNameCreate;
     private javax.swing.JTextField jtfDiscountNameUpdate;
+    private javax.swing.JTextField jtfFeeAmount;
     private javax.swing.JTextField jtfFeeName;
-    private javax.swing.JTextField jtfFilterEnterSearch;
     private javax.swing.JTextField jtfGrade10Amount;
     private javax.swing.JTextField jtfGrade1Amount;
     private javax.swing.JTextField jtfGrade2Amount;

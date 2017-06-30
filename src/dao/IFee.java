@@ -38,6 +38,7 @@ public interface IFee {
 
     double getDownpaymentFeeByGradeLevel(GradeLevel aGradeLevel);
 
+    List<GradeLevel> getGradeLevelAssignment(int aFeeId);
     
     Fee getById(int feeId);
     int getId(String feeName);

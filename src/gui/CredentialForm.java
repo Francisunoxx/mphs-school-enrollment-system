@@ -370,7 +370,7 @@ public class CredentialForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void resetCreateCredentialFormPanel(){
-        JPanelGUIUtil.clearAllJPanelCheckBox(jpnlGradeLevelSelection);
+        JPanelGUIUtil.clearJCheckBox(jpnlGradeLevelSelection);
         JPanelGUIUtil.disableAllJCheckBox(jpnlGradeLevelSelection);
         jTextField1.setText("");
         jtaCredentialDescription.setText(null);
@@ -480,7 +480,7 @@ public class CredentialForm extends javax.swing.JPanel {
 
     private void jcbKindergartenCtgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbKindergartenCtgItemStateChanged
         if(jcbKindergartenCtg.isSelected()){
-            JPanelGUIUtil.clearAllJPanelCheckBox(jpnlGradeLevelSelection);
+            JPanelGUIUtil.clearJCheckBox(jpnlGradeLevelSelection);
             jcbKindergarten.setSelected(true);
         }else{
             jcbKindergarten.setSelected(false);

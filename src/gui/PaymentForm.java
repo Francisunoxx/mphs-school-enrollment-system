@@ -751,7 +751,7 @@ public class PaymentForm extends javax.swing.JPanel {
     jpnlBreakdownOfFees.add(jspOtherFees, gridBagConstraints);
 
     jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-    jLabel2.setText("Basic");
+    jLabel2.setText("Tuition");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 2;

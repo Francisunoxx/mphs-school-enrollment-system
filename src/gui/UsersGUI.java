@@ -1741,13 +1741,13 @@ public class UsersGUI extends javax.swing.JPanel {
        List reports          = fm.getComponentsAsList(reportsPermissionsCheckBoxPanel);
        List sections         = fm.getComponentsAsList(sectionsPermissionsCheckBoxPanel);  
        
-//       fm.clearAllJPanelCheckBox(home);               fm.clearAllJPanelCheckBox(adminPermissions);  
-//       fm.clearAllJPanelCheckBox(adminCurriculum);    fm.clearAllJPanelCheckBox(adminDiscounts);
-//       fm.clearAllJPanelCheckBox(adminSections);      fm.clearAllJPanelCheckBox(adminUsers);
-//       fm.clearAllJPanelCheckBox(adminSchedule);      fm.clearAllJPanelCheckBox(adminYrLevel);
-//       fm.clearAllJPanelCheckBox(payment);            fm.clearAllJPanelCheckBox(registration);
-//       fm.clearAllJPanelCheckBox(students);           fm.clearAllJPanelCheckBox(faculty);
-//       fm.clearAllJPanelCheckBox(reports);            fm.clearAllJPanelCheckBox(sections);
+//       fm.clearJCheckBox(home);               fm.clearJCheckBox(adminPermissions);  
+//       fm.clearJCheckBox(adminCurriculum);    fm.clearJCheckBox(adminDiscounts);
+//       fm.clearJCheckBox(adminSections);      fm.clearJCheckBox(adminUsers);
+//       fm.clearJCheckBox(adminSchedule);      fm.clearJCheckBox(adminYrLevel);
+//       fm.clearJCheckBox(payment);            fm.clearJCheckBox(registration);
+//       fm.clearJCheckBox(students);           fm.clearJCheckBox(faculty);
+//       fm.clearJCheckBox(reports);            fm.clearJCheckBox(sections);
     }
     
     private void enableAllPermissionsCheckBoxes(){
