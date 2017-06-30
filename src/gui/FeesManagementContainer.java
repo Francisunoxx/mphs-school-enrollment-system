@@ -1080,7 +1080,6 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     
     private void resetCreateFeeFormPanel(){
         JPanelGUIUtil.clearAllJPanelCheckBox(jpnlFeeAmount);
-        JPanelGUIUtil.disableAllJCheckBox(jpnlFeeAmount);
         jtfFeeName.setText("");
         jcmbFeeCategory.setSelectedIndex(-1);
         jtaFeeDescription.setText(null);

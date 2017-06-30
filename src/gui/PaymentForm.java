@@ -133,7 +133,6 @@ public class PaymentForm extends javax.swing.JPanel {
         jtfMiscellaneousFee = new javax.swing.JTextField();
         jlblTotalFeesWithDiscount = new javax.swing.JLabel();
         jtfTotalFeesWithDiscount = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -538,9 +537,6 @@ public class PaymentForm extends javax.swing.JPanel {
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     jpnlFeeSummary.add(jtfTotalFeesWithDiscount, gridBagConstraints);
-
-    jLabel11.setText("Adjustments");
-    jpnlFeeSummary.add(jLabel11, new java.awt.GridBagConstraints());
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
@@ -1368,7 +1364,8 @@ public class PaymentForm extends javax.swing.JPanel {
         private final Student student;
         private final SchoolFees schoolFees;
         private final TuitionFee tuitionFee;
-        private final DecimalFormat decimalFormatter = new DecimalFormat("#0.00");
+//        private final DecimalFormat decimalFormatter = new DecimalFormat("#0.00");
+        private final DecimalFormat decimalFormatter = new DecimalFormat("#,#00.00");
         
         public FeeCollectionLoader(Student student,SchoolFees schoolFees,TuitionFee tuitionFee){
             this.student = student;
@@ -1899,7 +1896,6 @@ public class PaymentForm extends javax.swing.JPanel {
     private javax.swing.ButtonGroup btnGrpStudentType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
