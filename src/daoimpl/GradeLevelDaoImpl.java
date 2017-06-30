@@ -17,6 +17,26 @@ import dao.IGradeLevel;
 public class GradeLevelDaoImpl implements IGradeLevel{
 
     @Override
+    public int getId(int level) {
+        int gradeLevelId = 0;
+        String SQL = "{CALL getGradeLevelId(?)}";
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(SQL);){
+            cs.setInt(1, level);
+            try(ResultSet rs = cs.executeQuery();){
+                while(rs.next()){
+                    gradeLevelId = rs.getInt("gradelevel_id");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"getGradeLevelId()\n"+e.getMessage());
+        }
+        return gradeLevelId;
+    }
+
+    
+    
+    @Override
     public List<GradeLevel> getAllGradeLevelsInfo() {
         List<GradeLevel> list = new ArrayList();
         String SQL = "{CALL getAllGradeLevelsInfo()}";
@@ -80,7 +100,7 @@ public class GradeLevelDaoImpl implements IGradeLevel{
     }
 
     @Override
-    public int getGradeLevelId(GradeLevel gradelevel) {
+    public int getId(GradeLevel gradelevel) {
         int gradeLevelId = 0;
         String SQL = "{CALL getGradeLevelId(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -98,7 +118,7 @@ public class GradeLevelDaoImpl implements IGradeLevel{
     }
 
     @Override
-    public GradeLevel getGradeLevelById(int gradeLevelId) {
+    public GradeLevel getById(int gradeLevelId) {
         GradeLevel gradeLevel = new GradeLevel();
         String SQL = "{CALL getGradeLevelById(?)}";
         try(Connection con = DBUtil.getConnection(DBType.MYSQL);

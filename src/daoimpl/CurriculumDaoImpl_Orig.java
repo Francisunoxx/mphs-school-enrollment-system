@@ -40,7 +40,7 @@ public class CurriculumDaoImpl_Orig implements ICurriculum {
     public int getCurriculumId(Curriculum aCurriculum) {
         int curriculumId = 0; //initial value
         int schoolYearId = sydi.getSchoolYearId(aCurriculum.getSchoolYear().getYearFrom());
-        int gradelevelId = gldi.getGradeLevelId(aCurriculum.getGradeLevel());
+        int gradelevelId = gldi.getId(aCurriculum.getGradeLevel());
 
         String SQL = "{CALL getCurriculumId(?,?)}";
 
@@ -114,7 +114,7 @@ public class CurriculumDaoImpl_Orig implements ICurriculum {
     public boolean curriculumExists(Curriculum aCurriculum) {
         boolean exists = false;
         int schoolYearId = sydi.getSchoolYearId(aCurriculum.getSchoolYear().getYearFrom());
-        int gradelevelId = gldi.getGradeLevelId(aCurriculum.getGradeLevel());
+        int gradelevelId = gldi.getId(aCurriculum.getGradeLevel());
 
         JOptionPane.showMessageDialog(null, "test: " + schoolYearId + " " + gradelevelId);
         String SQL = "{CALL curriculumExists(?,?)}";

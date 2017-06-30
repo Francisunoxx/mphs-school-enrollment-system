@@ -1485,7 +1485,7 @@ public class PaymentForm extends javax.swing.JPanel {
         
         private void setSchoolFees() {
             PresentGradeLevel presentGradeLevel = student.getPresentGradeLevel();
-            int gradeLevelId = gradeLevelDaoImpl.getGradeLevelId(presentGradeLevel);
+            int gradeLevelId = gradeLevelDaoImpl.getId(presentGradeLevel);
             
             DefaultTableModel downPaymentModel = (DefaultTableModel) schoolFeesML.getDownPayment(jtblDownPaymentFee, gradeLevelId);
             for (int i = 0; i < jtblDownPaymentFee.getColumnCount(); i++) {
@@ -1588,7 +1588,7 @@ public class PaymentForm extends javax.swing.JPanel {
             if (aStudent.getRegistration().exists()) {
                 System.out.println("Exists @ jtfStudentIDKeyPressed");
                 PresentGradeLevel presentGradeLevel = aStudent.getPresentGradeLevel();
-                int aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(presentGradeLevel);
+                int aGradeLevelId = gradeLevelDaoImpl.getId(presentGradeLevel);
                 
                 SchoolFees aSchoolFee = schoolFeesDaoImpl.get(aGradeLevelId);
                 TuitionFee tf = tuitionFeeDaoImpl.get(studentId, aSchoolYearId);
@@ -1641,7 +1641,7 @@ public class PaymentForm extends javax.swing.JPanel {
             
             if (aStudent.getRegistration().exists()) {
                 PresentGradeLevel presentGradeLevel = aStudent.getPresentGradeLevel();
-                int aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(presentGradeLevel);
+                int aGradeLevelId = gradeLevelDaoImpl.getId(presentGradeLevel);
                 
                 SchoolFees aSchoolFee = schoolFeesDaoImpl.get(aGradeLevelId);
                 TuitionFee tf = tuitionFeeDaoImpl.get(studentId, aSchoolYearId);
@@ -1696,7 +1696,7 @@ public class PaymentForm extends javax.swing.JPanel {
             Particulars particulars = new Particulars();
             List<BalanceBreakDownFee> balanceBreakDownFees = new ArrayList<>();
             Student student = studentDaoImpl.getStudentById(aStudentId);
-            int gradeLevelId = gradeLevelDaoImpl.getGradeLevelId(student.getPresentGradeLevel());
+            int gradeLevelId = gradeLevelDaoImpl.getId(student.getPresentGradeLevel());
             SchoolFees schoolFees = schoolFeesDaoImpl.get(gradeLevelId);
             
             int[] selectedRows = jtblBalanceBreakdown.getSelectedRows();
@@ -1782,7 +1782,7 @@ public class PaymentForm extends javax.swing.JPanel {
 
             if (aStudent.getRegistration().exists()) {
                 PresentGradeLevel presentGradeLevel = aStudent.getPresentGradeLevel();
-                int aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(presentGradeLevel);
+                int aGradeLevelId = gradeLevelDaoImpl.getId(presentGradeLevel);
 
                 SchoolFees aSchoolFee = schoolFeesDaoImpl.get(aGradeLevelId);
                 TuitionFee tf = tuitionFeeDaoImpl.get(studentId, aSchoolYearId);
@@ -1827,7 +1827,7 @@ public class PaymentForm extends javax.swing.JPanel {
             
             if (aStudent.getRegistration().exists()) {
                 PresentGradeLevel presentGradeLevel = aStudent.getPresentGradeLevel();
-                int aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(presentGradeLevel);
+                int aGradeLevelId = gradeLevelDaoImpl.getId(presentGradeLevel);
                 
                 SchoolFees aSchoolFee = schoolFeesDaoImpl.get(aGradeLevelId);
                 TuitionFee tf = tuitionFeeDaoImpl.get(studentId, aSchoolYearId);

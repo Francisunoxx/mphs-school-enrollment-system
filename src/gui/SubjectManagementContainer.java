@@ -78,7 +78,7 @@ public class SubjectManagementContainer extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addSubjectJbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSubjectJbtnActionPerformed
-        CardLayoutUtil.flipCardTo(subjectsCardContainer, new CreateSubjectForm());
+        CardLayoutUtil.flipCardTo(subjectsCardContainer, new CreateSubject());
     }//GEN-LAST:event_addSubjectJbtnActionPerformed
 
     public static void flipToSubjectsList(){

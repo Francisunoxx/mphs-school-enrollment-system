@@ -374,7 +374,7 @@ public class RegistrationDaoImpl implements IRegistration{
             
             GradeLevel gradeLevel = new GradeLevel();
             gradeLevel.setLevel(aRegistration.getGradeLevel());
-            int gradeLevelId = new GradeLevelDaoImpl().getGradeLevelId(gradeLevel);
+            int gradeLevelId = new GradeLevelDaoImpl().getId(gradeLevel);
 //            JOptionPane.showMessageDialog(null,"grade level id: "+gradeLevelId);
             
             cs.setInt(39, gradeLevelId );

@@ -9,10 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.Faculty;
+import org.apache.derby.client.am.Types;
 
 public class FacultyDaoImpl implements IFaculty  {  
 
@@ -35,10 +34,6 @@ public class FacultyDaoImpl implements IFaculty  {
         }
         return facultyId;
     }
-    
-    
-
-    
     
     @Override
     public Faculty getFacultyByID(int aFacultyID) {
@@ -198,7 +193,8 @@ public class FacultyDaoImpl implements IFaculty  {
     public boolean addFaculty(Faculty aFaculty) {
         
         boolean isAdded;
-        String SQl = "{CALL addFaculty(?,?,?,?,?,?,?,?)}";
+        String SQl = "{CALL addFaculty(?,?,?,?,?,?,?,?,?)}";
+        
         
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
                 CallableStatement cs = con.prepareCall(SQl);){
@@ -211,6 +207,11 @@ public class FacultyDaoImpl implements IFaculty  {
             cs.setString(6, aFaculty.getContact());
             cs.setString(7, aFaculty.getCivilStatus());
             cs.setString(8, aFaculty.getDegree());
+            cs.registerOutParameter(9, Types.INTEGER);
+            
+            int aFacultyId = cs.getInt(9);
+            
+            
             
             cs.executeUpdate();
             isAdded = true;

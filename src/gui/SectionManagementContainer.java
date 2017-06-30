@@ -633,7 +633,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
         Integer level = Integer.parseInt(jcmbGradeLevelCreate.getSelectedItem().toString());
         GradeLevel aGradeLevel = new GradeLevel();
         aGradeLevel.setLevel(level);
-        aGradeLevel.setId(gradeLevelDaoImpl.getGradeLevelId(aGradeLevel));
+        aGradeLevel.setId(gradeLevelDaoImpl.getId(aGradeLevel));
 
         Section section = new Section();
         section.setSectionName(aSectionName);
@@ -698,7 +698,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
 //            Integer aGradeLevel = Integer.parseInt(jcmbGradeLevelFilter.getSelectedItem().toString());
 //            GradeLevel gradeLevel = new GradeLevel();
 //            gradeLevel.setLevel(aGradeLevel);
-//            Integer aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(gradeLevel);
+//            Integer aGradeLevelId = gradeLevelDaoImpl.getId(gradeLevel);
 //            JOptionPane.showMessageDialog(null,"GradeLevelId: "+aGradeLevelId);
 //            jlstSectionList.setModel(sectionGUIUtil.getSectionByGradeLevelForJList(aGradeLevelId));
 //        }
@@ -708,7 +708,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
             Integer aGradeLevel = Integer.parseInt(jcmbGradeLevelFilter.getSelectedItem().toString());
             GradeLevel gradeLevel = new GradeLevel();
             gradeLevel.setLevel(aGradeLevel);
-            Integer aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(gradeLevel);
+            Integer aGradeLevelId = gradeLevelDaoImpl.getId(gradeLevel);
             jlstSectionList.setModel(sectionGUIUtil.getSectionBySchoolYearAndGradeLevelForJList(aSchoolYearId, aGradeLevelId));
         }
     }//GEN-LAST:event_jcmbGradeLevelFilterItemStateChanged

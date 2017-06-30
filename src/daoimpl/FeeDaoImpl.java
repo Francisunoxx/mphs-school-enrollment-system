@@ -15,6 +15,7 @@ import model.FeeCategory;
 import model.GradeLevel;
 import model.SchoolYear;
 import dao.IFee;
+import java.util.Map;
 
 
 
@@ -22,6 +23,7 @@ public class FeeDaoImpl implements IFee{
 
     //HAS 
     GradeLevelDaoImpl gldi = new GradeLevelDaoImpl();
+    FeeCategoryDaoImpl fcdi = new FeeCategoryDaoImpl();
 
     @Override
     public double getSumOfTuitionFeesByGradeLevelId(Integer aGradeLevelId) {
@@ -273,7 +275,7 @@ public class FeeDaoImpl implements IFee{
 
     @Override
     public double getSumByGradeLevel(GradeLevel aGradeLevel) {
-        int gradeLevelId = gldi.getGradeLevelId(aGradeLevel);
+        int gradeLevelId = gldi.getId(aGradeLevel);
         double sumOfFees = 0;
         String SQL = "{CALL getSumOfFeeByGradeLevel(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -368,7 +370,7 @@ public class FeeDaoImpl implements IFee{
                 con.setAutoCommit(false);
                 
                 FeeCategory feeCategory = fee.getFeeCategory();
-                int feeCategoryId = new FeeCategoryDaoImpl().getFeeCategoryId(feeCategory);
+                int feeCategoryId = fcdi.getFeeCategoryId(feeCategory);
                 csa.setString(1, fee.getName());
                 csa.setString(2, fee.getDescription());
                 csa.setInt(3, feeCategoryId);
@@ -377,15 +379,28 @@ public class FeeDaoImpl implements IFee{
                 
                 int feeId = csa.getInt(4);
                 
-                for(int i = 0; i<fee.getAssignedGradeLevels().size(); i++){
-                    GradeLevel g = fee.getAssignedGradeLevels().get(i);
-                    int gradeLevelId = gldi.getGradeLevelId(g);
+                for(Map.Entry<Integer,Double> entry: fee.getGradeLevelAmountPair().entrySet()){
+                    Integer level = entry.getKey();
+                    Double feeAmount = entry.getValue();
+                    
+                    int aGradeLevelId = gldi.getId(level);
+                    System.out.println(aGradeLevelId+","+feeAmount);
                     csb.setInt(1,feeId);
-                    csb.setDouble(2,fee.getAmount());
-                    csb.setInt(3,gradeLevelId);
+                    csb.setDouble(2,feeAmount);
+                    csb.setInt(3,aGradeLevelId);
                     csb.setInt(4, fee.getSchoolYear().getSchoolYearId());
                     csb.executeUpdate();
                 }
+                
+//                for(int i = 0; i<fee.getGradeLevelAmount().size(); i++){
+//                    GradeLevel g = fee.getAssignedGradeLevels().get(i);
+//                    int gradeLevelId = gldi.getId(g);
+//                    csb.setInt(1,feeId);
+//                    csb.setDouble(2,fee.getAmount());
+//                    csb.setInt(3,gradeLevelId);
+//                    csb.setInt(4, fee.getSchoolYear().getSchoolYearId());
+//                    csb.executeUpdate();
+//                }
                 
                 con.commit();
             } catch (SQLException e) {

@@ -5,28 +5,27 @@
  */
 package gui;
 
-import calendar_utility.CalendarUtil;
 import daoimpl.DiscountDaoImpl;
 import daoimpl.FeeDaoImpl;
 import daoimpl.GradeLevelDaoImpl;
 import component_model_loader.DiscountML;
 import component_model_loader.FeeML;
 import component_model_loader.JPanelGUIUtil;
-import component_model_loader.SchoolYearML;
 import daoimpl.SchoolYearDaoImpl;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import model.Discount;
-import model.Fee;
-import model.FeeCategory;
 import model.GradeLevel;
 import model.SchoolYear;
 import model.Discount;
@@ -35,10 +34,10 @@ import model.FeeCategory;
 import utility.InputUtil;
 
 public class FeesManagementContainer extends javax.swing.JPanel {
-
-    FeeDaoImpl feeDaoImpl = new FeeDaoImpl();
-    FeeML feeGUIUtil = new FeeML();
-    DiscountDaoImpl discountDaoImpl = new DiscountDaoImpl();
+    DiscountDaoImpl ddi = new DiscountDaoImpl();
+    SchoolYearDaoImpl sdi = new SchoolYearDaoImpl();
+    FeeDaoImpl fdi = new FeeDaoImpl();
+    FeeML feeML = new FeeML();
     DiscountML discountGUIUtil = new DiscountML();
     GradeLevelDaoImpl gldi = new GradeLevelDaoImpl();
     
@@ -77,70 +76,41 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jspFeeCreation = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         jpnlCreateFee = new javax.swing.JPanel();
-        jlblFeeName = new javax.swing.JLabel();
-        jlblFeeCategory = new javax.swing.JLabel();
-        jcmbFeeCategory = new javax.swing.JComboBox<>();
-        jtfFeeName = new javax.swing.JTextField();
         jpnlCreateNewFeeDescription = new javax.swing.JPanel();
         jspFeeDescription = new javax.swing.JScrollPane();
         jtaFeeDescription = new javax.swing.JTextArea();
-        jlblGradeLevel = new javax.swing.JLabel();
-        jlblAmount = new javax.swing.JLabel();
-        jtfFeeAmount = new javax.swing.JTextField();
-        jpnlGradeLevelSelection = new javax.swing.JPanel();
-        jcbKindergarten = new javax.swing.JCheckBox();
-        jcbGradeOne = new javax.swing.JCheckBox();
-        jcbGradeTwo = new javax.swing.JCheckBox();
-        jcbGradeThree = new javax.swing.JCheckBox();
-        jcbGradeFour = new javax.swing.JCheckBox();
-        jcbGradeFive = new javax.swing.JCheckBox();
-        jcbGradeSix = new javax.swing.JCheckBox();
-        jcbGradeSeven = new javax.swing.JCheckBox();
-        jcbGradeEight = new javax.swing.JCheckBox();
-        jcbGradeNine = new javax.swing.JCheckBox();
-        jcbGradeTen = new javax.swing.JCheckBox();
-        jcbKindergartenCtg = new javax.swing.JCheckBox();
-        jcbElementaryCtg = new javax.swing.JCheckBox();
-        jcbJuniorHighCtg = new javax.swing.JCheckBox();
         jpnlCreateFeeControls = new javax.swing.JPanel();
         jbtnClear = new javax.swing.JButton();
         jbtnCreateFee = new javax.swing.JButton();
-        jspFeeList = new javax.swing.JScrollPane();
-        jlstFeeNameList = new javax.swing.JList<>();
-        jpnlSortFeeList = new javax.swing.JPanel();
-        jlblYearCreated = new javax.swing.JLabel();
-        jcmbYearCreated = new javax.swing.JComboBox<>();
-        jpnlUpdateFee = new javax.swing.JPanel();
-        jlblFeeName2 = new javax.swing.JLabel();
-        jlblFeeCategory1 = new javax.swing.JLabel();
-        jcmbFeeCategory1 = new javax.swing.JComboBox<>();
-        jtfFeeName1 = new javax.swing.JTextField();
-        jpnlCreateNewFeeDescription1 = new javax.swing.JPanel();
-        jspFeeDescription2 = new javax.swing.JScrollPane();
-        jtaFeeDescription1 = new javax.swing.JTextArea();
-        jlblGradeLevel2 = new javax.swing.JLabel();
-        jlblAmount2 = new javax.swing.JLabel();
-        jtfFeeAmount1 = new javax.swing.JTextField();
-        jpnlGradeLevelSelection1 = new javax.swing.JPanel();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox18 = new javax.swing.JCheckBox();
-        jCheckBox19 = new javax.swing.JCheckBox();
-        jCheckBox20 = new javax.swing.JCheckBox();
-        jCheckBox21 = new javax.swing.JCheckBox();
-        jCheckBox22 = new javax.swing.JCheckBox();
-        jCheckBox23 = new javax.swing.JCheckBox();
-        jCheckBox24 = new javax.swing.JCheckBox();
-        jCheckBox25 = new javax.swing.JCheckBox();
-        jCheckBox26 = new javax.swing.JCheckBox();
-        jCheckBox27 = new javax.swing.JCheckBox();
-        jCheckBox28 = new javax.swing.JCheckBox();
-        jpnlUpdateFeeControls = new javax.swing.JPanel();
-        jbtnClearFeeInfoFields = new javax.swing.JButton();
-        jbtnUpdateFee = new javax.swing.JButton();
+        jpnlFeeAmount = new javax.swing.JPanel();
+        jtfKindergartenAmount = new javax.swing.JTextField();
+        jtfGrade1Amount = new javax.swing.JTextField();
+        jtfGrade2Amount = new javax.swing.JTextField();
+        jtfGrade3Amount = new javax.swing.JTextField();
+        jtfGrade4Amount = new javax.swing.JTextField();
+        jtfGrade5Amount = new javax.swing.JTextField();
+        jtfGrade6Amount = new javax.swing.JTextField();
+        jtfGrade7Amount = new javax.swing.JTextField();
+        jtfGrade8Amount = new javax.swing.JTextField();
+        jtfGrade9Amount = new javax.swing.JTextField();
+        jtfGrade10Amount = new javax.swing.JTextField();
+        jcbGrade1 = new javax.swing.JCheckBox();
+        jcbGrade2 = new javax.swing.JCheckBox();
+        jcbGrade3 = new javax.swing.JCheckBox();
+        jcbGrade4 = new javax.swing.JCheckBox();
+        jcbGrade5 = new javax.swing.JCheckBox();
+        jcbGrade6 = new javax.swing.JCheckBox();
+        jcbGrade7 = new javax.swing.JCheckBox();
+        jcbGrade8 = new javax.swing.JCheckBox();
+        jcbGrade9 = new javax.swing.JCheckBox();
+        jcbGrade10 = new javax.swing.JCheckBox();
+        jcbKindergarten = new javax.swing.JCheckBox();
+        jPanel16 = new javax.swing.JPanel();
+        jlblFeeCategory = new javax.swing.JLabel();
+        jcmbFeeCategory = new javax.swing.JComboBox<>();
+        jlblFeeName = new javax.swing.JLabel();
+        jtfFeeName = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jbtnDeleteFee = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jpnlFeeRecordTab = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -152,6 +122,13 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jlblFilterFeeCategory = new javax.swing.JLabel();
         jcmbFilterByFeeCategory = new javax.swing.JComboBox<>();
         jcmbFilterGradeLevel = new javax.swing.JComboBox<>();
+        jPanel14 = new javax.swing.JPanel();
+        jpnlSortFeeList = new javax.swing.JPanel();
+        jlblYearCreated = new javax.swing.JLabel();
+        jcmbYearCreated = new javax.swing.JComboBox<>();
+        jspFeeList = new javax.swing.JScrollPane();
+        jlstFeeNameList = new javax.swing.JList<>();
+        jbtnDeleteFee = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -207,47 +184,8 @@ public class FeesManagementContainer extends javax.swing.JPanel {
 
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
-        jpnlCreateFee.setBorder(javax.swing.BorderFactory.createTitledBorder("Create Fee"));
+        jpnlCreateFee.setBorder(javax.swing.BorderFactory.createTitledBorder("Fee Creation"));
         jpnlCreateFee.setLayout(new java.awt.GridBagLayout());
-
-        jlblFeeName.setText("Fee Name :");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jlblFeeName, gridBagConstraints);
-
-        jlblFeeCategory.setText("Fee Category");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jlblFeeCategory, gridBagConstraints);
-
-        jcmbFeeCategory.setModel(new component_model_loader.FeeML().getAllFeeCategoriesAsModel());
-        jcmbFeeCategory.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbFeeCategoryItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jcmbFeeCategory, gridBagConstraints);
-
-        jtfFeeName.setColumns(10);
-        jtfFeeName.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jtfFeeName, gridBagConstraints);
 
         jpnlCreateNewFeeDescription.setBorder(javax.swing.BorderFactory.createTitledBorder("Fee Description"));
         jpnlCreateNewFeeDescription.setLayout(new java.awt.GridBagLayout());
@@ -266,184 +204,13 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jpnlCreateFee.add(jpnlCreateNewFeeDescription, gridBagConstraints);
 
-        jlblGradeLevel.setText("Grade Level :");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jlblGradeLevel, gridBagConstraints);
-
-        jlblAmount.setText("Amount");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jlblAmount, gridBagConstraints);
-
-        jtfFeeAmount.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jtfFeeAmount, gridBagConstraints);
-
-        jpnlGradeLevelSelection.setLayout(new java.awt.GridBagLayout());
-
-        jcbKindergarten.setText("Kindergarten");
-        jcbKindergarten.setEnabled(false);
-        jpnlGradeLevelSelection.add(jcbKindergarten, new java.awt.GridBagConstraints());
-
-        jcbGradeOne.setText("Grade 1");
-        jcbGradeOne.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeOne, gridBagConstraints);
-
-        jcbGradeTwo.setText("Grade 2");
-        jcbGradeTwo.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeTwo, gridBagConstraints);
-
-        jcbGradeThree.setText("Grade 3");
-        jcbGradeThree.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeThree, gridBagConstraints);
-
-        jcbGradeFour.setText("Grade 4");
-        jcbGradeFour.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeFour, gridBagConstraints);
-
-        jcbGradeFive.setText("Grade 5");
-        jcbGradeFive.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeFive, gridBagConstraints);
-
-        jcbGradeSix.setText("Grade 6");
-        jcbGradeSix.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeSix, gridBagConstraints);
-
-        jcbGradeSeven.setText("Grade 7");
-        jcbGradeSeven.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeSeven, gridBagConstraints);
-
-        jcbGradeEight.setText("Grade 8");
-        jcbGradeEight.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeEight, gridBagConstraints);
-
-        jcbGradeNine.setText("Grade 9");
-        jcbGradeNine.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeNine, gridBagConstraints);
-
-        jcbGradeTen.setText("Grade 10");
-        jcbGradeTen.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection.add(jcbGradeTen, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jpnlGradeLevelSelection, gridBagConstraints);
-
-        jcbKindergartenCtg.setText("Kindergarten");
-        jcbKindergartenCtg.setEnabled(false);
-        jcbKindergartenCtg.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcbKindergartenCtgItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jcbKindergartenCtg, gridBagConstraints);
-
-        jcbElementaryCtg.setText("Elementary");
-        jcbElementaryCtg.setEnabled(false);
-        jcbElementaryCtg.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcbElementaryCtgItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jcbElementaryCtg, gridBagConstraints);
-
-        jcbJuniorHighCtg.setText("Junior HS");
-        jcbJuniorHighCtg.setEnabled(false);
-        jcbJuniorHighCtg.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcbJuniorHighCtgItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateFee.add(jcbJuniorHighCtg, gridBagConstraints);
-
+        jpnlCreateFeeControls.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpnlCreateFeeControls.setLayout(new java.awt.GridBagLayout());
 
         jbtnClear.setText("Clear");
@@ -461,7 +228,6 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jpnlCreateFeeControls.add(jbtnClear, gridBagConstraints);
 
         jbtnCreateFee.setText("Create");
-        jbtnCreateFee.setEnabled(false);
         jbtnCreateFee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCreateFeeActionPerformed(evt);
@@ -475,11 +241,298 @@ public class FeesManagementContainer extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jpnlCreateFee.add(jpnlCreateFeeControls, gridBagConstraints);
+
+        jpnlFeeAmount.setBorder(javax.swing.BorderFactory.createTitledBorder("Amount"));
+        jpnlFeeAmount.setLayout(new java.awt.GridBagLayout());
+
+        jtfKindergartenAmount.setColumns(5);
+        jtfKindergartenAmount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfKindergartenAmount, gridBagConstraints);
+
+        jtfGrade1Amount.setColumns(5);
+        jtfGrade1Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade1Amount, gridBagConstraints);
+
+        jtfGrade2Amount.setColumns(5);
+        jtfGrade2Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade2Amount, gridBagConstraints);
+
+        jtfGrade3Amount.setColumns(5);
+        jtfGrade3Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade3Amount, gridBagConstraints);
+
+        jtfGrade4Amount.setColumns(5);
+        jtfGrade4Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade4Amount, gridBagConstraints);
+
+        jtfGrade5Amount.setColumns(5);
+        jtfGrade5Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade5Amount, gridBagConstraints);
+
+        jtfGrade6Amount.setColumns(5);
+        jtfGrade6Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade6Amount, gridBagConstraints);
+
+        jtfGrade7Amount.setColumns(5);
+        jtfGrade7Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade7Amount, gridBagConstraints);
+
+        jtfGrade8Amount.setColumns(5);
+        jtfGrade8Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade8Amount, gridBagConstraints);
+
+        jtfGrade9Amount.setColumns(5);
+        jtfGrade9Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade9Amount, gridBagConstraints);
+
+        jtfGrade10Amount.setColumns(5);
+        jtfGrade10Amount.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jtfGrade10Amount, gridBagConstraints);
+
+        jcbGrade1.setText("Grade 1");
+        jcbGrade1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade1ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        jpnlFeeAmount.add(jcbGrade1, gridBagConstraints);
+
+        jcbGrade2.setText("Grade 2");
+        jcbGrade2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade2ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        jpnlFeeAmount.add(jcbGrade2, gridBagConstraints);
+
+        jcbGrade3.setText("Grade 3");
+        jcbGrade3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade3ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade3, gridBagConstraints);
+
+        jcbGrade4.setText("Grade 4");
+        jcbGrade4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade4ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade4, gridBagConstraints);
+
+        jcbGrade5.setText("Grade 5");
+        jcbGrade5.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade5ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade5, gridBagConstraints);
+
+        jcbGrade6.setText("Grade 6");
+        jcbGrade6.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade6ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade6, gridBagConstraints);
+
+        jcbGrade7.setText("Grade 7");
+        jcbGrade7.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade7ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade7, gridBagConstraints);
+
+        jcbGrade8.setText("Grade 8");
+        jcbGrade8.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade8ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade8, gridBagConstraints);
+
+        jcbGrade9.setText("Grade 9");
+        jcbGrade9.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade9ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade9, gridBagConstraints);
+
+        jcbGrade10.setText("Grade 10");
+        jcbGrade10.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbGrade10ItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbGrade10, gridBagConstraints);
+
+        jcbKindergarten.setText("Kindergarten");
+        jcbKindergarten.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbKindergartenItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlFeeAmount.add(jcbKindergarten, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlCreateFee.add(jpnlFeeAmount, gridBagConstraints);
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel16.setLayout(new java.awt.GridBagLayout());
+
+        jlblFeeCategory.setText("Fee Category");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel16.add(jlblFeeCategory, gridBagConstraints);
+
+        jcmbFeeCategory.setModel(new component_model_loader.FeeML().getAllFeeCategoriesAsModel());
+        jcmbFeeCategory.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbFeeCategoryItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel16.add(jcmbFeeCategory, gridBagConstraints);
+
+        jlblFeeName.setText("Fee Name :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel16.add(jlblFeeName, gridBagConstraints);
+
+        jtfFeeName.setColumns(10);
+        jtfFeeName.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel16.add(jtfFeeName, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlCreateFee.add(jPanel16, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -490,304 +543,7 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel8.add(jpnlCreateFee, gridBagConstraints);
 
-        jspFeeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Fees Created"));
-        jspFeeList.setPreferredSize(new java.awt.Dimension(200, 250));
-
-        jlstFeeNameList.setModel(new component_model_loader.FeeML().getAllFeeNamesAsModel());
-        jspFeeList.setViewportView(jlstFeeNameList);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel8.add(jspFeeList, gridBagConstraints);
-
-        jpnlSortFeeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Sort List"));
-        jpnlSortFeeList.setLayout(new java.awt.GridBagLayout());
-
-        jlblYearCreated.setText("Year Created");
-        jpnlSortFeeList.add(jlblYearCreated, new java.awt.GridBagConstraints());
-
-        jcmbYearCreated.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearStart());
-        jcmbYearCreated.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbYearCreatedItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSortFeeList.add(jcmbYearCreated, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel8.add(jpnlSortFeeList, gridBagConstraints);
-
-        jpnlUpdateFee.setBorder(javax.swing.BorderFactory.createTitledBorder("Update Fee"));
-        jpnlUpdateFee.setLayout(new java.awt.GridBagLayout());
-
-        jlblFeeName2.setText("Fee Name :");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jlblFeeName2, gridBagConstraints);
-
-        jlblFeeCategory1.setText("Fee Category");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jlblFeeCategory1, gridBagConstraints);
-
-        jcmbFeeCategory1.setModel(new component_model_loader.FeeML().getAllFeeCategoriesAsModel());
-        jcmbFeeCategory1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbFeeCategory1ItemStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jcmbFeeCategory1, gridBagConstraints);
-
-        jtfFeeName1.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jtfFeeName1, gridBagConstraints);
-
-        jpnlCreateNewFeeDescription1.setBorder(javax.swing.BorderFactory.createTitledBorder("Fee Description"));
-        jpnlCreateNewFeeDescription1.setLayout(new java.awt.GridBagLayout());
-
-        jtaFeeDescription1.setColumns(20);
-        jtaFeeDescription1.setRows(5);
-        jspFeeDescription2.setViewportView(jtaFeeDescription1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlCreateNewFeeDescription1.add(jspFeeDescription2, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jpnlCreateNewFeeDescription1, gridBagConstraints);
-
-        jlblGradeLevel2.setText("Grade Level :");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jlblGradeLevel2, gridBagConstraints);
-
-        jlblAmount2.setText("Amount");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jlblAmount2, gridBagConstraints);
-
-        jtfFeeAmount1.setColumns(10);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jtfFeeAmount1, gridBagConstraints);
-
-        jpnlGradeLevelSelection1.setLayout(new java.awt.GridBagLayout());
-
-        jCheckBox15.setText("Kindergarten");
-        jpnlGradeLevelSelection1.add(jCheckBox15, new java.awt.GridBagConstraints());
-
-        jCheckBox16.setText("Grade 1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox16, gridBagConstraints);
-
-        jCheckBox17.setText("Grade 2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox17, gridBagConstraints);
-
-        jCheckBox18.setText("Grade 3");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox18, gridBagConstraints);
-
-        jCheckBox19.setText("Grade 4");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox19, gridBagConstraints);
-
-        jCheckBox20.setText("Grade 5");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox20, gridBagConstraints);
-
-        jCheckBox21.setText("Grade 6");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox21, gridBagConstraints);
-
-        jCheckBox22.setText("Grade 7");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox22, gridBagConstraints);
-
-        jCheckBox23.setText("Grade 8");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox23, gridBagConstraints);
-
-        jCheckBox24.setText("Grade 9");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox24, gridBagConstraints);
-
-        jCheckBox25.setText("Grade 10");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlGradeLevelSelection1.add(jCheckBox25, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jpnlGradeLevelSelection1, gridBagConstraints);
-
-        jCheckBox26.setText("Kindergarten");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jCheckBox26, gridBagConstraints);
-
-        jCheckBox27.setText("Grade School");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jCheckBox27, gridBagConstraints);
-
-        jCheckBox28.setText("Junior HS");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jCheckBox28, gridBagConstraints);
-
-        jpnlUpdateFeeControls.setLayout(new java.awt.GridBagLayout());
-
-        jbtnClearFeeInfoFields.setText("Clear");
-        jbtnClearFeeInfoFields.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnClearFeeInfoFieldsActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFeeControls.add(jbtnClearFeeInfoFields, gridBagConstraints);
-
-        jbtnUpdateFee.setText("Update");
-        jbtnUpdateFee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnUpdateFeeActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFeeControls.add(jbtnUpdateFee, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlUpdateFee.add(jpnlUpdateFeeControls, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel8.add(jpnlUpdateFee, gridBagConstraints);
-
         jPanel4.setLayout(new java.awt.GridBagLayout());
-
-        jbtnDeleteFee.setText("Delete");
-        jbtnDeleteFee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnDeleteFeeActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jbtnDeleteFee, new java.awt.GridBagConstraints());
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -918,6 +674,54 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         jPanel10.add(jpnlFeeRecordTab, gridBagConstraints);
 
         jtpFees.addTab("Fee Record", jPanel10);
+
+        jPanel14.setLayout(new java.awt.GridBagLayout());
+
+        jpnlSortFeeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Sort List"));
+        jpnlSortFeeList.setLayout(new java.awt.GridBagLayout());
+
+        jlblYearCreated.setText("Year Created");
+        jpnlSortFeeList.add(jlblYearCreated, new java.awt.GridBagConstraints());
+
+        jcmbYearCreated.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearStart());
+        jcmbYearCreated.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbYearCreatedItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSortFeeList.add(jcmbYearCreated, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel14.add(jpnlSortFeeList, gridBagConstraints);
+
+        jspFeeList.setBorder(javax.swing.BorderFactory.createTitledBorder("Fees Created"));
+        jspFeeList.setPreferredSize(new java.awt.Dimension(200, 250));
+
+        jlstFeeNameList.setModel(new component_model_loader.FeeML().getAllFeeNamesAsModel());
+        jspFeeList.setViewportView(jlstFeeNameList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel14.add(jspFeeList, gridBagConstraints);
+
+        jbtnDeleteFee.setText("Delete");
+        jbtnDeleteFee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnDeleteFeeActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jbtnDeleteFee, new java.awt.GridBagConstraints());
+
+        jtpFees.addTab("New Fee Record", jPanel14);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -1214,8 +1018,8 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private void setDiscountInformation(){
         if(jlstDiscountsList.getSelectedIndex()>-1){
            String nameOfDiscount = jlstDiscountsList.getSelectedValue();
-           int discountId = discountDaoImpl.getId(nameOfDiscount);
-           Discount discount = discountDaoImpl.get(discountId);
+           int discountId = ddi.getId(nameOfDiscount);
+           Discount discount = ddi.get(discountId);
            jtfDiscountNameUpdate.setText(discount.getDiscountName());
            jsprPercentOfDiscountUpdate.setValue(discount.getPercentOfDiscount());
            jcmbDiscountStatusUpdate.setSelectedItem(discount.getIsActive()==true?"Active":"Inactive");
@@ -1232,20 +1036,17 @@ public class FeesManagementContainer extends javax.swing.JPanel {
             }else{
                 jtfFeeName.setEnabled(true);
             }
-            JPanelGUIUtil.enableAllJPanelCheckBox(jpnlGradeLevelSelection);
-            jcbKindergartenCtg.setEnabled(true);
-            jcbElementaryCtg.setEnabled(true);
-            jcbJuniorHighCtg.setEnabled(true);
             jbtnCreateFee.setEnabled(true);
         }else{
             jtfFeeName.setEnabled(false);
         }
     }//GEN-LAST:event_jcmbFeeCategoryItemStateChanged
 
+    
     private List<GradeLevel> getGradeLevelsSelected() {
         List<GradeLevel> gradeLevelList = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
-        Component[] comp = jpnlGradeLevelSelection.getComponents();
+        Component[] comp = jpnlFeeAmount.getComponents();
         for (Component c : comp) {
             if (c instanceof JCheckBox) {
                 if (((JCheckBox) c).isSelected() && !((JCheckBox) c).getText().equals("Kindergarten")) {
@@ -1264,7 +1065,7 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         for (int i = 0; i < list.size(); i++) {
             GradeLevel g = new GradeLevel();
             g.setLevel(list.get(i));
-            int gradeLevelId = gldi.getGradeLevelId(g);
+            int gradeLevelId = gldi.getId(g);
             g.setId(gradeLevelId);
             gradeLevelList.add(g);
             System.out.println("LevelId: " + gradeLevelId);
@@ -1272,19 +1073,15 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         return gradeLevelList;
     }
     
-    private void setFeeCategoryJComboModel(){
-        jcmbFeeCategory.setModel(feeGUIUtil.getAllFeeCategoriesAsModel());
-    }
     
     private void reloadFeeJList(){
         jlstFeeNameList.setModel(new FeeML().getAllFeeNamesAsModel());
     }
     
     private void resetCreateFeeFormPanel(){
-        JPanelGUIUtil.clearAllJPanelCheckBox(jpnlGradeLevelSelection);
-        JPanelGUIUtil.disableAllJCheckBox(jpnlGradeLevelSelection);
+        JPanelGUIUtil.clearAllJPanelCheckBox(jpnlFeeAmount);
+        JPanelGUIUtil.disableAllJCheckBox(jpnlFeeAmount);
         jtfFeeName.setText("");
-        jtfFeeAmount.setText("");
         jcmbFeeCategory.setSelectedIndex(-1);
         jtaFeeDescription.setText(null);
     }
@@ -1300,36 +1097,94 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         } else {
             int selected = JOptionPane.showConfirmDialog(null, "Add Fee", "Add Confirmation", JOptionPane.YES_NO_OPTION);
             if (selected == JOptionPane.YES_OPTION) {
-                if (InputUtil.isDouble(jtfFeeAmount.getText().trim())) {
-                    String feeDescription = jtaFeeDescription.getText();
-                    String feeName = jtfFeeName.getText().trim();
-                    FeeCategory feeCategory = new FeeCategory();
-                    String fCat = jcmbFeeCategory.getSelectedItem().toString();
-                    feeCategory.setCategory(fCat);
+                String feeDescription = jtaFeeDescription.getText();
+                String feeName = jtfFeeName.getText().trim();
 
-                    SchoolYearDaoImpl schoolYearDaoImpl = new SchoolYearDaoImpl();
-                    SchoolYear yearCreated = new SchoolYear();
-                    yearCreated.setSchoolYearId(schoolYearDaoImpl.getCurrentSchoolYearId());
+                FeeCategory feeCategory = new FeeCategory();
+                String fCat = jcmbFeeCategory.getSelectedItem().toString();
+                feeCategory.setCategory(fCat);
 
-                    Fee fee = new Fee();
-                    fee.setName(feeName);
-                    fee.setDescription(feeDescription);
-                    fee.setFeeCategory(feeCategory);
-                    fee.setAmount(Double.parseDouble(jtfFeeAmount.getText().trim()));
-                    fee.setAssignedGradeLevels(getGradeLevelsSelected());
-                    fee.setSchoolYear(yearCreated);
+                SchoolYear syCreated = new SchoolYear();
+                syCreated.setSchoolYearId(sdi.getCurrentSchoolYearId());
 
-                    FeeDaoImpl fdi = new FeeDaoImpl();
-                    boolean isSuccessfullyAdded = fdi.add(fee);
-                    if (isSuccessfullyAdded) {
-                        resetCreateFeeFormPanel();
-                        JOptionPane.showMessageDialog(null, "Successfully added " + fee.getName());
-                        reloadFeeJList();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Adding of " + fee.getName() + " failed.");
+                Map<Integer, Double> gradelevel_amount_pair = new HashMap<>();
+                Integer key = null;
+                Double value = null;
+
+                Component[] comp = jpnlFeeAmount.getComponents();
+                for (Component c : comp) {
+                    if (c instanceof JCheckBox) {
+                        if (((JCheckBox) c).isSelected() && !((JCheckBox) c).getText().equals("Kindergarten")) {
+                            String glStr = ((JCheckBox) c).getText().replaceAll("[^-?0-9]+", " "); //takes out all numeric from string 
+                            String aGradeLevel = glStr.replaceAll("\\s+", ""); // removes all whitespace
+                            if (!aGradeLevel.isEmpty()) {
+                                int aGradeLevelInt = Integer.parseInt(aGradeLevel);
+                                switch (aGradeLevelInt) {
+                                    case 1:
+                                        key = 1;
+                                        value = Double.parseDouble(jtfGrade1Amount.getText().trim());
+                                        break;
+                                    case 2:
+                                        key = 2;
+                                        value = Double.parseDouble(jtfGrade2Amount.getText().trim());
+                                        break;
+                                    case 3:
+                                        key = 3;
+                                        value = Double.parseDouble(jtfGrade3Amount.getText().trim());
+                                        break;
+                                    case 4:
+                                        key = 4;
+                                        value = Double.parseDouble(jtfGrade4Amount.getText().trim());
+                                        break;
+                                    case 5:
+                                        key = 5;
+                                        value = Double.parseDouble(jtfGrade5Amount.getText().trim());
+                                        break;
+                                    case 6:
+                                        key = 6;
+                                        value = Double.parseDouble(jtfGrade6Amount.getText().trim());
+                                        break;
+                                    case 7:
+                                        key = 7;
+                                        value = Double.parseDouble(jtfGrade7Amount.getText().trim());
+                                        break;
+                                    case 8:
+                                        key = 8;
+                                        value = Double.parseDouble(jtfGrade8Amount.getText().trim());
+                                        break;
+                                    case 9:
+                                        key = 9;
+                                        value = Double.parseDouble(jtfGrade9Amount.getText().trim());
+                                        break;
+                                    case 10:
+                                        key = 10;
+                                        value = Double.parseDouble(jtfGrade10Amount.getText().trim());
+                                        break;
+                                }
+                                gradelevel_amount_pair.put(key, value);
+                            }
+                        } else if (((JCheckBox) c).isSelected() && ((JCheckBox) c).getText().equals("Kindergarten")) {
+                            key = 0;
+                            value = Double.parseDouble(jtfKindergartenAmount.getText().trim());
+                            gradelevel_amount_pair.put(key, value);
+                        }
                     }
+                }
+
+                Fee fee = new Fee();
+                fee.setName(feeName);
+                fee.setDescription(feeDescription);
+                fee.setFeeCategory(feeCategory);
+                fee.setGradeLevelAmountPair(gradelevel_amount_pair);
+                fee.setSchoolYear(syCreated);
+
+                boolean isSuccessfullyAdded = fdi.add(fee);
+                if (isSuccessfullyAdded) {
+                    resetCreateFeeFormPanel();
+                    JOptionPane.showMessageDialog(null, "Successfully added " + fee.getName());
+                    reloadFeeJList();
                 } else {
-                    JOptionPane.showMessageDialog(null,"Please enter a valid amount value.");
+                    JOptionPane.showMessageDialog(null, "Adding of " + fee.getName() + " failed.");
                 }
             }
         }
@@ -1338,10 +1193,9 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private void jtfFilterEnterSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfFilterEnterSearchKeyPressed
         //TODO add your handling code here:
         if( (jtfFilterEnterSearch.getText().isEmpty())&&(evt.getKeyCode() == KeyEvent.VK_ENTER) ){
-            FeeDaoImpl feeDaoImpl = new FeeDaoImpl();
             DefaultTableModel feeInfoModel = (DefaultTableModel) jtblAllFees.getModel();
             feeInfoModel.setRowCount(0); // CLEAR THE RECORD ON VIEW BEFORE LOADING NEW DATA
-            Object[] rowData = feeDaoImpl.getAll().toArray();
+            Object[] rowData = fdi.getAll().toArray();
             for (Object rd : rowData) {
                 //cast rd first to its object type which is Fee
                 Fee f = (Fee) rd;//rd contains a list of Fee objects not their attributes
@@ -1374,10 +1228,9 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         if (jcmbFilterGradeLevel.getSelectedIndex() > -1) {
             DefaultTableModel feeInfoModel = (DefaultTableModel) jtblAllFees.getModel();
             feeInfoModel.setRowCount(0);
-            FeeDaoImpl feeDaoImpl = new FeeDaoImpl();
             GradeLevel aGradeLevel = (GradeLevel)jcmbFilterGradeLevel.getSelectedItem();
 
-            Object[] rowData = feeDaoImpl.getByGradeLevel(aGradeLevel).toArray();
+            Object[] rowData = fdi.getByGradeLevel(aGradeLevel).toArray();
             for (Object rd : rowData) {
                 //cast rd first to its object type which is Fee
                 Fee f = (Fee) rd;//rd contains a list of Fee objects not their attributes
@@ -1396,59 +1249,6 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jcmbFilterGradeLevelItemStateChanged
-
-    private void jbtnClearFeeInfoFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnClearFeeInfoFieldsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnClearFeeInfoFieldsActionPerformed
-
-    private void jbtnUpdateFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnUpdateFeeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnUpdateFeeActionPerformed
-
-    private void jcmbFeeCategory1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbFeeCategory1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbFeeCategory1ItemStateChanged
-
-    private void jcbJuniorHighCtgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbJuniorHighCtgItemStateChanged
-       if(jcbJuniorHighCtg.isSelected()){
-           jcbGradeSeven.setSelected(true);
-           jcbGradeEight.setSelected(true);
-           jcbGradeNine.setSelected(true);
-           jcbGradeTen.setSelected(true);
-       }else if(!jcbJuniorHighCtg.isSelected()){
-           jcbGradeSeven.setSelected(false);
-           jcbGradeEight.setSelected(false);
-           jcbGradeNine.setSelected(false);
-           jcbGradeTen.setSelected(false);
-       }
-    }//GEN-LAST:event_jcbJuniorHighCtgItemStateChanged
-
-    private void jcbElementaryCtgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbElementaryCtgItemStateChanged
-        if(jcbElementaryCtg.isSelected()){
-           jcbGradeOne.setSelected(true);
-           jcbGradeTwo.setSelected(true);
-           jcbGradeThree.setSelected(true);
-           jcbGradeFour.setSelected(true);
-           jcbGradeFive.setSelected(true);
-           jcbGradeSix.setSelected(true);
-       }else if(!jcbElementaryCtg.isSelected()){
-           jcbGradeOne.setSelected(false);
-           jcbGradeTwo.setSelected(false);
-           jcbGradeThree.setSelected(false);
-           jcbGradeFour.setSelected(false);
-           jcbGradeFive.setSelected(false);
-           jcbGradeSix.setSelected(false);
-       }
-    }//GEN-LAST:event_jcbElementaryCtgItemStateChanged
-
-    private void jcbKindergartenCtgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbKindergartenCtgItemStateChanged
-        if(jcbKindergartenCtg.isSelected()){
-            JPanelGUIUtil.clearAllJPanelCheckBox(jpnlGradeLevelSelection);
-            jcbKindergarten.setSelected(true);
-        }else{
-            jcbKindergarten.setSelected(false);
-        }
-    }//GEN-LAST:event_jcbKindergartenCtgItemStateChanged
 
     private void jbtnDeleteFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDeleteFeeActionPerformed
         
@@ -1476,7 +1276,7 @@ public class FeesManagementContainer extends javax.swing.JPanel {
                 discount.setDescription(description);
                 discount.setPercentOfDiscount(percentage);
                 discount.setDiscountName(discountName);
-                boolean isAdded = discountDaoImpl.add(discount);
+                boolean isAdded = ddi.add(discount);
                 if(isAdded){
                     JOptionPane.showMessageDialog(null,"Successfully added "+discountName);
                     reloadDiscountList();
@@ -1528,23 +1328,97 @@ public class FeesManagementContainer extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcmbYearCreatedItemStateChanged
 
+    private void jcbKindergartenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbKindergartenItemStateChanged
+        if(jcbKindergarten.isSelected()){
+            jtfKindergartenAmount.setEnabled(true);
+        }else{
+            jtfKindergartenAmount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbKindergartenItemStateChanged
+
+    private void jcbGrade1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade1ItemStateChanged
+        if(jcbGrade1.isSelected()){
+            jtfGrade1Amount.setEnabled(true);
+        }else{
+            jtfGrade1Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade1ItemStateChanged
+
+    private void jcbGrade2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade2ItemStateChanged
+        if(jcbGrade2.isSelected()){
+            jtfGrade2Amount.setEnabled(true);
+        }else{
+            jtfGrade2Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade2ItemStateChanged
+
+    private void jcbGrade3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade3ItemStateChanged
+        if(jcbGrade3.isSelected()){
+            jtfGrade3Amount.setEnabled(true);
+        }else{
+            jtfGrade3Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade3ItemStateChanged
+
+    private void jcbGrade4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade4ItemStateChanged
+        if(jcbGrade4.isSelected()){
+            jtfGrade4Amount.setEnabled(true);
+        }else{
+            jtfGrade4Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade4ItemStateChanged
+
+    private void jcbGrade5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade5ItemStateChanged
+        if(jcbGrade5.isSelected()){
+            jtfGrade5Amount.setEnabled(true);
+        }else{
+            jtfGrade5Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade5ItemStateChanged
+
+    private void jcbGrade6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade6ItemStateChanged
+        if(jcbGrade6.isSelected()){
+            jtfGrade6Amount.setEnabled(true);
+        }else{
+            jtfGrade6Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade6ItemStateChanged
+
+    private void jcbGrade7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade7ItemStateChanged
+        if(jcbGrade7.isSelected()){
+            jtfGrade7Amount.setEnabled(true);
+        }else{
+            jtfGrade7Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade7ItemStateChanged
+
+    private void jcbGrade8ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade8ItemStateChanged
+        if(jcbGrade8.isSelected()){
+            jtfGrade8Amount.setEnabled(true);
+        }else{
+            jtfGrade8Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade8ItemStateChanged
+
+    private void jcbGrade9ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade9ItemStateChanged
+        if(jcbGrade9.isSelected()){
+            jtfGrade9Amount.setEnabled(true);
+        }else{
+            jtfGrade9Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade9ItemStateChanged
+
+    private void jcbGrade10ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbGrade10ItemStateChanged
+        if(jcbGrade10.isSelected()){
+            jtfGrade10Amount.setEnabled(true);
+        }else{
+            jtfGrade10Amount.setEnabled(false);
+        }
+    }//GEN-LAST:event_jcbGrade10ItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel feesCardContainer;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
-    private javax.swing.JCheckBox jCheckBox18;
-    private javax.swing.JCheckBox jCheckBox19;
-    private javax.swing.JCheckBox jCheckBox20;
-    private javax.swing.JCheckBox jCheckBox21;
-    private javax.swing.JCheckBox jCheckBox22;
-    private javax.swing.JCheckBox jCheckBox23;
-    private javax.swing.JCheckBox jCheckBox24;
-    private javax.swing.JCheckBox jCheckBox25;
-    private javax.swing.JCheckBox jCheckBox26;
-    private javax.swing.JCheckBox jCheckBox27;
-    private javax.swing.JCheckBox jCheckBox28;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1558,6 +1432,8 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1571,46 +1447,34 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jbtnClear;
-    private javax.swing.JButton jbtnClearFeeInfoFields;
     private javax.swing.JButton jbtnCreateFee;
     private javax.swing.JButton jbtnDeleteFee;
     private javax.swing.JButton jbtnSaveDiscountCreate;
     private javax.swing.JButton jbtnUpdateDiscountInfo;
-    private javax.swing.JButton jbtnUpdateFee;
-    private javax.swing.JCheckBox jcbElementaryCtg;
-    private javax.swing.JCheckBox jcbGradeEight;
-    private javax.swing.JCheckBox jcbGradeFive;
-    private javax.swing.JCheckBox jcbGradeFour;
-    private javax.swing.JCheckBox jcbGradeNine;
-    private javax.swing.JCheckBox jcbGradeOne;
-    private javax.swing.JCheckBox jcbGradeSeven;
-    private javax.swing.JCheckBox jcbGradeSix;
-    private javax.swing.JCheckBox jcbGradeTen;
-    private javax.swing.JCheckBox jcbGradeThree;
-    private javax.swing.JCheckBox jcbGradeTwo;
-    private javax.swing.JCheckBox jcbJuniorHighCtg;
+    private javax.swing.JCheckBox jcbGrade1;
+    private javax.swing.JCheckBox jcbGrade10;
+    private javax.swing.JCheckBox jcbGrade2;
+    private javax.swing.JCheckBox jcbGrade3;
+    private javax.swing.JCheckBox jcbGrade4;
+    private javax.swing.JCheckBox jcbGrade5;
+    private javax.swing.JCheckBox jcbGrade6;
+    private javax.swing.JCheckBox jcbGrade7;
+    private javax.swing.JCheckBox jcbGrade8;
+    private javax.swing.JCheckBox jcbGrade9;
     private javax.swing.JCheckBox jcbKindergarten;
-    private javax.swing.JCheckBox jcbKindergartenCtg;
     private javax.swing.JComboBox<String> jcmbAction;
     private javax.swing.JComboBox<String> jcmbDiscountStatusUpdate;
     private javax.swing.JComboBox<String> jcmbFeeCategory;
-    private javax.swing.JComboBox<String> jcmbFeeCategory1;
     private javax.swing.JComboBox<String> jcmbFilterByFeeCategory;
     private javax.swing.JComboBox<String> jcmbFilterGradeLevel;
     private javax.swing.JComboBox<String> jcmbYearCreated;
-    private javax.swing.JLabel jlblAmount;
-    private javax.swing.JLabel jlblAmount2;
     private javax.swing.JLabel jlblDateCreateText;
     private javax.swing.JLabel jlblDiscountNameUpdate;
     private javax.swing.JLabel jlblFeeCategory;
-    private javax.swing.JLabel jlblFeeCategory1;
     private javax.swing.JLabel jlblFeeName;
-    private javax.swing.JLabel jlblFeeName2;
     private javax.swing.JLabel jlblFilterFeeCategory;
     private javax.swing.JLabel jlblFilterGradeLevel;
     private javax.swing.JLabel jlblFilterSearch;
-    private javax.swing.JLabel jlblGradeLevel;
-    private javax.swing.JLabel jlblGradeLevel2;
     private javax.swing.JLabel jlblStatus;
     private javax.swing.JLabel jlblYearCreated;
     private javax.swing.JList<String> jlstDiscountsList;
@@ -1618,34 +1482,36 @@ public class FeesManagementContainer extends javax.swing.JPanel {
     private javax.swing.JPanel jpnlCreateFee;
     private javax.swing.JPanel jpnlCreateFeeControls;
     private javax.swing.JPanel jpnlCreateNewFeeDescription;
-    private javax.swing.JPanel jpnlCreateNewFeeDescription1;
     private javax.swing.JPanel jpnlCreateNewFeeFields;
+    private javax.swing.JPanel jpnlFeeAmount;
     private javax.swing.JPanel jpnlFeeCreationTab;
     private javax.swing.JPanel jpnlFeeRecordTab;
     private javax.swing.JPanel jpnlFilterControl;
-    private javax.swing.JPanel jpnlGradeLevelSelection;
-    private javax.swing.JPanel jpnlGradeLevelSelection1;
     private javax.swing.JPanel jpnlSortFeeList;
-    private javax.swing.JPanel jpnlUpdateFee;
-    private javax.swing.JPanel jpnlUpdateFeeControls;
     private javax.swing.JScrollPane jspFeeCreation;
     private javax.swing.JScrollPane jspFeeDescription;
-    private javax.swing.JScrollPane jspFeeDescription2;
     private javax.swing.JScrollPane jspFeeList;
     private javax.swing.JSpinner jsprPercentOfDiscountCreate;
     private javax.swing.JSpinner jsprPercentOfDiscountUpdate;
     private javax.swing.JTextArea jtaDiscountDescriptionCreate;
     private javax.swing.JTextArea jtaDiscountDescriptionUpdate;
     private javax.swing.JTextArea jtaFeeDescription;
-    private javax.swing.JTextArea jtaFeeDescription1;
     private javax.swing.JTable jtblAllFees;
     private javax.swing.JTextField jtfDiscountNameCreate;
     private javax.swing.JTextField jtfDiscountNameUpdate;
-    private javax.swing.JTextField jtfFeeAmount;
-    private javax.swing.JTextField jtfFeeAmount1;
     private javax.swing.JTextField jtfFeeName;
-    private javax.swing.JTextField jtfFeeName1;
     private javax.swing.JTextField jtfFilterEnterSearch;
+    private javax.swing.JTextField jtfGrade10Amount;
+    private javax.swing.JTextField jtfGrade1Amount;
+    private javax.swing.JTextField jtfGrade2Amount;
+    private javax.swing.JTextField jtfGrade3Amount;
+    private javax.swing.JTextField jtfGrade4Amount;
+    private javax.swing.JTextField jtfGrade5Amount;
+    private javax.swing.JTextField jtfGrade6Amount;
+    private javax.swing.JTextField jtfGrade7Amount;
+    private javax.swing.JTextField jtfGrade8Amount;
+    private javax.swing.JTextField jtfGrade9Amount;
+    private javax.swing.JTextField jtfKindergartenAmount;
     private javax.swing.JTabbedPane jtpFees;
     private javax.swing.JTabbedPane jtpFeesTopTabbedPane;
     // End of variables declaration//GEN-END:variables

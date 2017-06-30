@@ -13,12 +13,16 @@ import model.GradeLevel;
  * @author Acer
  */
 public interface IGradeLevel {
+    int getId(int level);
+    int getId(GradeLevel aGradeLevel);
+    GradeLevel getById(int aGradeLevelId);
+    
     List<GradeLevel> getAllGradeLevelsInfo();
     List<GradeLevel> getAllActiveGradeLevels();
     List<GradeLevel> getAllInactiveGradeLevels();
     List<GradeLevel> getAllRegisteredSubjectGradeLevel();
-    int getGradeLevelId(GradeLevel aGradeLevel);
-    GradeLevel getGradeLevelById(int aGradeLevelId);
+    
+    
     boolean addGradeLevel(GradeLevel aGradeLevel);
     boolean isGradeLevelActive(GradeLevel aGradeLevel);
     boolean deactivateGradeLevel(GradeLevel aGradeLevel);

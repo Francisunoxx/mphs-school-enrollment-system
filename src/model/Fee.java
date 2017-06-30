@@ -6,8 +6,7 @@
 package model;
 
 import java.util.List;
-import model.GradeLevel;
-import model.SchoolYear;
+import java.util.Map;
 
 /**
  *
@@ -19,12 +18,20 @@ public class Fee {
     private double amount;
     private FeeCategory feeCategory; // miscellaneous, other, tuition, etc
     private GradeLevel gradeLevel;
-    private List<GradeLevel> assignedGradeLevels;
+    private Map<Integer,Double> gradeLevelAmountPair;
     private SchoolYear schoolYear;
     private String description;
     private boolean isActive;
     private boolean exists;
 
+    public Map<Integer, Double> getGradeLevelAmountPair() {
+        return gradeLevelAmountPair;
+    }
+
+    public void setGradeLevelAmountPair(Map<Integer, Double> gradeLevelAmountPair) {
+        this.gradeLevelAmountPair = gradeLevelAmountPair;
+    }
+    
     public boolean exists() {
         return exists;
     }
@@ -33,13 +40,6 @@ public class Fee {
         this.exists = exists;
     }
 
-    public List<GradeLevel> getAssignedGradeLevels() {
-        return assignedGradeLevels;
-    }
-
-    public void setAssignedGradeLevels(List<GradeLevel> assignedGradeLevels) {
-        this.assignedGradeLevels = assignedGradeLevels;
-    }
     
     public boolean isActive() {
         return isActive;

@@ -1418,7 +1418,7 @@ public class RegistrationForm extends javax.swing.JPanel {
             int aGradeLevel = Integer.parseInt(jcmbGradeLevel.getSelectedItem().toString());
             GradeLevel gradeLevel = new GradeLevel();
             gradeLevel.setLevel(aGradeLevel);
-            int aGradeLevelId = gradeLevelDaoImpl.getGradeLevelId(gradeLevel);
+            int aGradeLevelId = gradeLevelDaoImpl.getId(gradeLevel);
 
             jlstCredentialRequirements.setModel(credentialGUIUtil.getAllCredentialNamesByGradeLevelId(aGradeLevelId));
         }
