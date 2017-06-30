@@ -386,9 +386,9 @@ public class RegistrationDaoImpl implements IRegistration{
             
             
             String paymentTerm = aRegistration.getPaymentTerm();
-            JOptionPane.showMessageDialog(null, "Payment Term : "+aRegistration.getPaymentTerm());
+//            JOptionPane.showMessageDialog(null, "Payment Term : "+aRegistration.getPaymentTerm());
             Integer aPaymentTermId = paymentTermDaoImpl.getId(paymentTerm);
-            JOptionPane.showMessageDialog(null, "Payment Term Id : "+aPaymentTermId);
+//            JOptionPane.showMessageDialog(null, "Payment Term Id : "+aPaymentTermId);
             cs.setInt(41, aPaymentTermId);
             
             cs.executeUpdate();

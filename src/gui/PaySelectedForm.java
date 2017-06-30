@@ -280,7 +280,7 @@ public class PaySelectedForm extends javax.swing.JDialog {
                                 JOptionPane.showMessageDialog(null, "Transaction complete.");
                                 this.dispose();
                             } else {
-                                JOptionPane.showMessageDialog(null, "Error encountered while processing payment.");
+//                                JOptionPane.showMessageDialog(null, "Error encountered while processing payment.");
                             }
                         } else {
                             tuitionFee.setPayment(payment);
@@ -294,7 +294,7 @@ public class PaySelectedForm extends javax.swing.JDialog {
                                 //recommended gradelevel to enroll
                                 //studentId
                             } else {
-                                JOptionPane.showMessageDialog(null, "Error encountered while processing payment.");
+//                                JOptionPane.showMessageDialog(null, "Error encountered while processing payment.");
                             }
                         }
                         OfficialReceipt officialReceipt = new OfficialReceipt();

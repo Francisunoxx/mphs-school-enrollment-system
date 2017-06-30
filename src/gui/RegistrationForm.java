@@ -1384,7 +1384,7 @@ public class RegistrationForm extends javax.swing.JPanel {
         registration.setSchoolLastAttended(jtfSchoolLastAttended.getText().trim());
         registration.setSchoolLastAttendedAddress(jtfSchoolLastAttendedAddress.getText().trim());
         registration.setPaymentTerm( ((PaymentTerm)jcmbPaymentTerm.getSelectedItem()).getPaymentTerm() );
-        JOptionPane.showMessageDialog(null,"Test 1: "+((PaymentTerm)jcmbPaymentTerm.getSelectedItem()).getPaymentTerm());
+//        JOptionPane.showMessageDialog(null,"Test 1: "+((PaymentTerm)jcmbPaymentTerm.getSelectedItem()).getPaymentTerm());
         
         int gradeLevelNo = Integer.parseInt(jcmbGradeLevel.getSelectedItem().toString());
         registration.setGradeLevel(gradeLevelNo);

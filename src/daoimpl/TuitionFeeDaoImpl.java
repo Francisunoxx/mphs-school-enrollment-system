@@ -226,7 +226,7 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
                 int aTransactionId = csA.getInt(2);
                 
                 for(BalanceBreakDownFee b: tuitionFee.getPayment().getParticulars().getBalanceBreakDownFees()){
-                    JOptionPane.showMessageDialog(null,"Balance BreakDown Id: "+b.getBalanceBreakDownFeeId());
+//                    JOptionPane.showMessageDialog(null,"Balance BreakDown Id: "+b.getBalanceBreakDownFeeId());
                     csB.setInt(1, b.getBalanceBreakDownFeeId());
                     csB.setDouble(2,tuitionFee.getPayment().getAmountTendered());
                     csB.registerOutParameter(3, Types.INTEGER);
@@ -241,7 +241,7 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
                 con.commit();
                 isSuccessfullyPaid = true;
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
+//                JOptionPane.showMessageDialog(null, e.getMessage());
             }
 
         } catch (SQLException e) {

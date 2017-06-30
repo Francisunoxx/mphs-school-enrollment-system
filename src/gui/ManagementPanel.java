@@ -477,8 +477,8 @@ public class ManagementPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addFacultyPanel(){
-        FacultyManagement fm = new FacultyManagement();
-        jpnlFacultyContainer.add(fm);
+        NewFaculty nf = new NewFaculty();
+        jpnlFacultyContainer.add(nf);
     }
     
     
