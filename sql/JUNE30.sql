@@ -32,7 +32,7 @@ CREATE TABLE `admission_mt` (
   PRIMARY KEY (`admission_id`),
   UNIQUE KEY `registration_id_UNIQUE` (`registration_id`),
   CONSTRAINT `fk_admission_mtTABLE_registration_idCOL` FOREIGN KEY (`registration_id`) REFERENCES `registration_mt` (`registration_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COMMENT='This is a table to be used for new students only.';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 COMMENT='This is a table to be used for new students only.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `admission_mt` (
 
 LOCK TABLES `admission_mt` WRITE;
 /*!40000 ALTER TABLE `admission_mt` DISABLE KEYS */;
-INSERT INTO `admission_mt` VALUES (9,9,'',NULL),(10,10,'',NULL),(11,11,'',NULL),(12,12,'',NULL),(13,13,'',NULL),(14,14,'',NULL),(15,15,'',NULL),(16,16,'',NULL),(17,17,'',NULL),(18,18,'',NULL),(19,19,'',NULL),(20,20,'',NULL),(21,21,'',NULL),(22,22,'',NULL),(23,23,'\0',NULL),(24,24,'',NULL),(25,28,'',NULL);
+INSERT INTO `admission_mt` VALUES (9,9,'',NULL),(10,10,'',NULL),(11,11,'',NULL),(12,12,'',NULL),(13,13,'',NULL),(14,14,'',NULL),(15,15,'',NULL),(16,16,'',NULL),(17,17,'',NULL),(18,18,'',NULL),(19,19,'',NULL),(20,20,'',NULL),(21,21,'',NULL),(22,22,'',NULL),(23,23,'\0',NULL),(24,24,'',NULL),(25,28,'',NULL),(26,29,'',NULL),(27,30,'',NULL),(28,31,'',NULL),(29,32,'',NULL);
 /*!40000 ALTER TABLE `admission_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `balance_breakdown_fee` (
   `amount` decimal(10,2) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`balance_breakdown_fee_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `balance_breakdown_fee` (
 
 LOCK TABLES `balance_breakdown_fee` WRITE;
 /*!40000 ALTER TABLE `balance_breakdown_fee` DISABLE KEYS */;
+INSERT INTO `balance_breakdown_fee` VALUES (47,'Cash',8923.50,'2017-06-30 12:24:20'),(48,'Field Trip',756.00,'2017-06-30 12:24:20'),(49,'Downpayment',5000.00,'2017-06-30 13:10:57'),(50,'Semester 1',2865.17,'2017-06-30 13:10:57'),(51,'Semester 2',2865.17,'2017-06-30 13:10:57'),(52,'Field Trip',756.00,'2017-06-30 13:10:57');
 /*!40000 ALTER TABLE `balance_breakdown_fee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -420,6 +421,7 @@ CREATE TABLE `faculty_mt` (
   `email` varchar(45) DEFAULT NULL,
   `contact` varchar(45) DEFAULT NULL,
   `status` bit(1) DEFAULT NULL,
+  `degree` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`faculty_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -430,7 +432,7 @@ CREATE TABLE `faculty_mt` (
 
 LOCK TABLES `faculty_mt` WRITE;
 /*!40000 ALTER TABLE `faculty_mt` DISABLE KEYS */;
-INSERT INTO `faculty_mt` VALUES (1,'Jose','Rizal','Protacio',NULL,NULL,NULL,NULL),(2,'francis','ochotorina','talaga','single','john@gmail.com','09362250625','\0'),(3,'a','a','a','a','a','a','\0'),(4,'dasdsad','asdas','asdasasdas','dasd','asdas','dasdas','\0'),(5,'dasd','dasd','dasd','asd','adsdas','asdas','\0'),(6,'paul','neo','t','single','paulnapadao@gmail.com','09273309427','\0'),(7,'paul','neo','t','single','09273309427','paulnapadao@gmail.com','\0'),(8,'ZXZ','dasdasda','asd','adsas','dasd','dsadasdas','\0');
+INSERT INTO `faculty_mt` VALUES (1,'Jordan','Rizal','Protacio','asdf','In a Relationship','asdf',NULL,NULL),(2,'francis','ochotorina','talaga','single','john@gmail.com','09362250625','\0',NULL),(3,'b','b','b','b','Single','b','\0',NULL),(4,'dasdsad','asdas','asdasasdas','dasd','asdas','dasdas','\0',NULL),(5,'dasd','dasd','dasd','asd','adsdas','asdas','\0',NULL),(6,'paul','neo','t','single','paulnapadao@gmail.com','09273309427','\0',NULL),(7,'paul','neo','t','single','09273309427','paulnapadao@gmail.com','\0',NULL),(8,'ZXZ','dasdasda','asd','adsas','dasd','dsadasdas','\0',NULL);
 /*!40000 ALTER TABLE `faculty_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -442,12 +444,13 @@ DROP TABLE IF EXISTS `faculty_specialization`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `faculty_specialization` (
-  `faculty_specialization_id` int(11) NOT NULL,
   `faculty_id` int(11) NOT NULL,
-  `specialization` varchar(100) NOT NULL,
-  PRIMARY KEY (`faculty_specialization_id`),
+  `specialization_id` int(11) NOT NULL,
+  `date_assigned` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   KEY `faculty_specialization_TABLE_facultyId_COL_idx` (`faculty_id`),
-  CONSTRAINT `faculty_specialization_TABLE_facultyId_COL` FOREIGN KEY (`faculty_id`) REFERENCES `faculty_mt` (`faculty_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_faculty_specializationTABLE_specialization_idCOL_idx` (`specialization_id`),
+  CONSTRAINT `faculty_specialization_TABLE_facultyId_COL` FOREIGN KEY (`faculty_id`) REFERENCES `faculty_mt` (`faculty_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_faculty_specializationTABLE_specialization_idCOL` FOREIGN KEY (`specialization_id`) REFERENCES `specialization` (`specialization_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -501,7 +504,7 @@ CREATE TABLE `fee_mt` (
   UNIQUE KEY `fee_name_UNIQUE` (`fee_name`),
   KEY `fk_fee_mtTABLE_fee_category_idCOL_idx` (`fee_category_id`),
   CONSTRAINT `fk_fee_mtTABLE_fee_category_idCOL` FOREIGN KEY (`fee_category_id`) REFERENCES `fee_category_mt` (`fee_category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1 COMMENT='MASTER';
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1 COMMENT='MASTER';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -510,7 +513,7 @@ CREATE TABLE `fee_mt` (
 
 LOCK TABLES `fee_mt` WRITE;
 /*!40000 ALTER TABLE `fee_mt` DISABLE KEYS */;
-INSERT INTO `fee_mt` VALUES (90,'Downpayment','Downpayment amount for all grade levels',4),(91,'Tuition','Tuition Fee ',1),(92,'Energy Fee','Energy Fee',2),(93,'Field Trip','Field Trip',3),(94,'Sports Fee','Sports Fee',2),(95,'Clinic Fee','Clinic Fee',2),(96,'Bookk','Book',2);
+INSERT INTO `fee_mt` VALUES (90,'Downpayment','Downpayment amount for all grade levels',4),(91,'Tuition','Tuition Fee ',1),(92,'Energy Fee','Energy Fee',2),(93,'Field Trip','Field Trip',3),(94,'Sports Fee','Sports Fee',2),(95,'Clinic Fee','Clinic Fee',2),(96,'Bookk','Book',2),(97,'Sample','Sample Fee',2);
 /*!40000 ALTER TABLE `fee_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -542,7 +545,7 @@ CREATE TABLE `fee_schoolyear_lt` (
 
 LOCK TABLES `fee_schoolyear_lt` WRITE;
 /*!40000 ALTER TABLE `fee_schoolyear_lt` DISABLE KEYS */;
-INSERT INTO `fee_schoolyear_lt` VALUES (90,5000.00,301,409,''),(90,5000.00,302,409,''),(90,5000.00,303,409,''),(90,5000.00,304,409,''),(90,5000.00,305,409,''),(90,5000.00,306,409,''),(90,5000.00,307,409,''),(90,5000.00,308,409,''),(90,5000.00,309,409,''),(90,5000.00,310,409,''),(90,5000.00,311,409,''),(91,8000.00,301,407,''),(91,8000.00,302,407,''),(91,8000.00,303,407,''),(91,8000.00,304,407,''),(91,8000.00,305,407,''),(91,8000.00,306,407,''),(91,8000.00,307,407,''),(91,8000.00,308,407,''),(91,8000.00,309,407,''),(91,8000.00,310,407,''),(91,8000.00,311,407,''),(92,2500.00,301,407,''),(92,2500.00,302,407,''),(92,2500.00,303,407,''),(92,2500.00,304,407,''),(92,2500.00,305,407,''),(92,2500.00,306,407,''),(92,2500.00,307,407,''),(92,2500.00,308,407,''),(92,2500.00,309,407,''),(92,2500.00,310,407,''),(92,2500.00,311,407,''),(93,756.00,301,407,''),(93,756.00,302,407,''),(93,756.00,303,407,''),(93,756.00,304,407,''),(93,756.00,305,407,''),(93,756.00,306,407,''),(93,756.00,307,407,''),(93,756.00,308,407,''),(93,756.00,309,407,''),(93,756.00,310,407,''),(93,756.00,311,407,''),(94,3566.00,308,407,''),(95,1150.00,302,407,''),(95,1150.00,303,407,''),(95,1150.00,304,407,''),(95,1150.00,305,407,''),(95,1150.00,306,407,''),(95,1150.00,307,407,''),(96,500.00,301,407,''),(96,500.00,302,407,''),(96,500.00,303,407,''),(96,500.00,304,407,''),(96,500.00,305,407,''),(96,500.00,306,407,''),(96,500.00,307,407,''),(96,500.00,308,407,''),(96,500.00,309,407,''),(96,500.00,310,407,''),(96,500.00,311,407,'');
+INSERT INTO `fee_schoolyear_lt` VALUES (90,5000.00,301,409,''),(90,5000.00,302,409,''),(90,5000.00,303,409,''),(90,5000.00,304,409,''),(90,5000.00,305,409,''),(90,5000.00,306,409,''),(90,5000.00,307,409,''),(90,5000.00,308,409,''),(90,5000.00,309,409,''),(90,5000.00,310,409,''),(90,5000.00,311,409,''),(91,8000.00,301,407,''),(91,8000.00,302,407,''),(91,8000.00,303,407,''),(91,8000.00,304,407,''),(91,8000.00,305,407,''),(91,8000.00,306,407,''),(91,8000.00,307,407,''),(91,8000.00,308,407,''),(91,8000.00,309,407,''),(91,8000.00,310,407,''),(91,8000.00,311,407,''),(92,2500.00,301,407,''),(92,2500.00,302,407,''),(92,2500.00,303,407,''),(92,2500.00,304,407,''),(92,2500.00,305,407,''),(92,2500.00,306,407,''),(92,2500.00,307,407,''),(92,2500.00,308,407,''),(92,2500.00,309,407,''),(92,2500.00,310,407,''),(92,2500.00,311,407,''),(93,756.00,301,407,''),(93,756.00,302,407,''),(93,756.00,303,407,''),(93,756.00,304,407,''),(93,756.00,305,407,''),(93,756.00,306,407,''),(93,756.00,307,407,''),(93,756.00,308,407,''),(93,756.00,309,407,''),(93,756.00,310,407,''),(93,756.00,311,407,''),(94,3566.00,308,407,''),(95,1150.00,302,407,''),(95,1150.00,303,407,''),(95,1150.00,304,407,''),(95,1150.00,305,407,''),(95,1150.00,306,407,''),(95,1150.00,307,407,''),(96,500.00,301,407,''),(96,500.00,302,407,''),(96,500.00,303,407,''),(96,500.00,304,407,''),(96,500.00,305,407,''),(96,500.00,306,407,''),(96,500.00,307,407,''),(96,500.00,308,407,''),(96,500.00,309,407,''),(96,500.00,310,407,''),(96,500.00,311,407,''),(97,500.00,301,407,''),(97,500.00,302,407,''),(97,500.00,303,407,''),(97,500.00,304,407,''),(97,500.00,305,407,''),(97,500.00,306,407,''),(97,500.00,307,407,'');
 /*!40000 ALTER TABLE `fee_schoolyear_lt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -710,7 +713,7 @@ CREATE TABLE `registration_mt` (
   CONSTRAINT `fk_registration_mtTABLE_gradelevel_idCOL` FOREIGN KEY (`gradelevel_id`) REFERENCES `gradelevel_mt` (`gradelevel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_registration_mtTABLE_paymentterm_idCOL` FOREIGN KEY (`paymentterm_id`) REFERENCES `paymentterm_mt` (`paymentterm_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_registration_mtTABLE_schoolyear_idCOL` FOREIGN KEY (`schoolyear_id`) REFERENCES `schoolyear_mt` (`schoolyear_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COMMENT='Master Table for registration of new students and transferees ';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1 COMMENT='Master Table for registration of new students and transferees ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +722,7 @@ CREATE TABLE `registration_mt` (
 
 LOCK TABLES `registration_mt` WRITE;
 /*!40000 ALTER TABLE `registration_mt` DISABLE KEYS */;
-INSERT INTO `registration_mt` VALUES (9,'New','Smith','John','Michael','2001-02-15','Manila','American','Catholic','','John','Michael','Smith','Engineer','1564546','7871213','','Kristine','Michaels','Taylor','Nurse','6541512','6541512','','','','','','','','','\0','University Of Santo Thomas','Manila','\0','255','Hope','Filinvest','Quezon City','',301,409,'2017-03-24 20:52:55',2),(10,'New','Ahos','Catherine','X','2007-12-13','Philippines','Filipino','Catholic','\0','Rolando','S.','Ahos','Mechanical Engr.','15645649','45454789','','Rosario','T.','Ahos','Accountant','45454789','12032154','','','','','','','','','\0','Bagong Silangan National High School','Bagong Silangan','\0','20','Pilapil St.','Bagong Silangan','Quezon City','',304,409,'2017-03-24 20:52:55',3),(11,'New','Elnas','Jerry','Pili','2002-04-05','Bicol','Filipino','Catholic','','Romeo','M.','Elnas','Manager','989978','7668697','','Maria','V.','Elnas','Housewife','5445','675757675','','Villamor','Elena','C','Housewife','5435435','767567','Aunt','','','','\0','8','Bane','Sto. Tomas','Bicol','Bicol',306,409,'2017-03-24 20:52:55',2),(12,'New','Elnas','Paolo','Santos','1998-10-08','Manila','Filipino','Catholic','','Jericho','Marco','Elnas','Data Scientist','123456798','987654321','','Carlo','Mina','Ragudo','Nurse','65448965','32145611','','','','','','','','','\0','University of San Carlos','Pangasinan','\0','06','Mapayapa','Matahimik','Quezon City','',310,409,'2017-03-24 20:52:55',3),(13,'New','Santos','Frederick','Sebastian','2000-12-14','Philippines','Filipino','Catholic','','Mariano','Aquino','Santos','Systems Engineer','4549876','1203156','','Marie','Marquez','Perez','Psychologist','15146789','0915644987','','','','','','','','','\0','University of the East','Manila','\0','12','Masipag','Kanluran','Quezon City','',304,409,'2017-03-24 20:52:55',2),(14,'New','Maala','Jonnie','U.','2009-08-05','Manila','Filipino','Catholic','','Anthony','R.','Maala','Plumber','4343424','45435454','','Rose','P.','Maala','Housewife','446456','4645656','','Maala','Jinky','P.','Office Staff','4466','46456456','Aunt','\0','','','\0','7','Rhubarb','Greenville','San Juan','NCR',303,409,'2017-03-24 20:52:55',3),(15,'New','Conelly','Miranda','I.','2008-04-05','New York','American','Catholic','\0','Alejandro','L.','Conelly','Manager','4354545','45464646','','Alexandra','K.','Conelly','Housewife','4343424','4534534545','','Conelly','Alexandra','K','Housewife','433454','35435345','Mother','\0','St. Paul School','Virginia','\0','3','45th','Greenville','New York','USA',304,409,'2017-03-24 22:54:15',2),(16,'New','John Francis','Ochotorina','Z.','2006-12-12','Quezon City','Filipino','Catholic','','Elias','Makaryo','Lazaro','Manager','987987456','06654499','','Stephanie','Mina','Lazaro','Doctor','1234654649','091654789','\0','','','','','','','','\0','University of the East','','\0','09','Dahlia','Katahimikan','Quezon City','',306,409,'2017-03-25 10:25:14',3),(17,'Transferee','Napadao','Paul Neo','T','1995-07-30','Bulacan','Filpino','Born Again','','Ireneo','C','Napadao','Teacher','09273309427','092323232323','','Melba','T','Napadao','Teacher','09277777','09273309427','','Napadao','09273309427','T','Teacher','092222','09273309427','Mother','','Vms','Bulacan','\0','Bulacan','Narra','Narra','Bulacan','',306,409,'2017-03-25 10:41:45',2),(18,'Transferee','Antonio','John Ferdinand','Maala','2007-12-12','Quezon City','Filipino','Catholic','','Jine','Gonzales','Antonio','OFW','16547531','0951564867','','Jocelyn','Maala','Antonio','Real Estate Broker','4654654753','159465432','','','','','','','','','\0','FEU Diliman','Manila','\0','03','Emerald','Bagong Silangan','Quezon City','',303,409,'2017-03-25 14:21:33',3),(19,'Transferee','Jacinto','Larry','B.','2000-11-06','Bulacan','Filipino','Catholic','','Luna','S.','Belarmino','OFW','46545687','9879841651','','Teresita','X.','Belarmino','Housewife','4654654','987987987','\0','','','','','','','','\0','University of the Philippines','Diliman Quezon City','\0','45','Manggahan','Narra','Bulacan','',305,409,'2017-03-25 15:27:15',2),(20,'Transferee','Rolle','Karlo','T','1981-03-02','qc','Filpino','Catholic','','Tatay','P','Rolle','Marine','02922919291','09277918179','','nanay','t','rolle','marine','02020201','09277918179','','rolle','nanay','t','marine','02002020202','0927790633','mother','','village montessori school','bulacan','\0','201','santol','mt.view','qc','',302,409,'2017-03-25 15:49:04',3),(21,'Transferee','Domingo','Kim','N','1995-03-01','Mani;a','filipino','INC','\0','Francis','O','Domingo','programmer','02929201','232365923','','marinela','i','Domingo','programmer','2020291910','0927797989826','','domigo','marinela','q','programmer','302300302','09276656565','mother','','Mother of perpetual Help','qc','\0','202','apple','mulawin','','',303,409,'2017-03-25 15:55:52',2),(22,'Transferee','Labilles','Jeno','K','1991-02-05','mexico','American','inc','','Kennteh','P','Labilles','Engineer','201020100','0927797965','','Kristle','I','Labilles','house wife','2002002002','0927995959','','','','','','','','','\0','school of qc','qc','\0','211','makopa','da','qc','',304,409,'2017-03-25 16:00:36',3),(23,'Transferee','taclas','kyle','P','2006-02-03','bulacan','filipino','INC','','jong','K','taclas','Boxer','2002029299','092772323232323','','Arbues','2','Taclas','house wife','0209090909','09277565656','','','','','','','','','\0','Learning','bulacan','\0','202','duhat','green','qc','',307,409,'2017-03-25 16:17:34',2),(24,'New','Magturo','Tin','M','1980-03-26','Jeddah','Arabian','Catholic','\0','magturo','magturo','magturo','magturo','magturo','magturo','\0','magturo','magturo','magturo','magturo','magturo','magturo','\0','magturo','magturo','magturo','magturo','312312312','23423423','mother','','FEU','Diliman','\0','303','santol','mangga','qc','qc',308,409,'2017-03-25 17:29:47',3),(28,'Transferee','Test','Test','Test','2001-07-06','Test','Test','Test','','Test','Test','Test','Test','Test','Test','','Test','Test','Test','Test','Test','Test','','Test','Test','Test','Test','Test','Test','Test','','Test','Test','\0','Test','Test','Test','Test','Test',307,409,'2017-05-10 19:29:52',3);
+INSERT INTO `registration_mt` VALUES (9,'New','Smith','John','Michael','2001-02-15','Manila','American','Catholic','','John','Michael','Smith','Engineer','1564546','7871213','','Kristine','Michaels','Taylor','Nurse','6541512','6541512','','','','','','','','','\0','University Of Santo Thomas','Manila','\0','255','Hope','Filinvest','Quezon City','',301,409,'2017-03-24 20:52:55',2),(10,'New','Ahos','Catherine','X','2007-12-13','Philippines','Filipino','Catholic','\0','Rolando','S.','Ahos','Mechanical Engr.','15645649','45454789','','Rosario','T.','Ahos','Accountant','45454789','12032154','','','','','','','','','\0','Bagong Silangan National High School','Bagong Silangan','\0','20','Pilapil St.','Bagong Silangan','Quezon City','',304,409,'2017-03-24 20:52:55',3),(11,'New','Elnas','Jerry','Pili','2002-04-05','Bicol','Filipino','Catholic','','Romeo','M.','Elnas','Manager','989978','7668697','','Maria','V.','Elnas','Housewife','5445','675757675','','Villamor','Elena','C','Housewife','5435435','767567','Aunt','','','','\0','8','Bane','Sto. Tomas','Bicol','Bicol',306,409,'2017-03-24 20:52:55',2),(12,'New','Elnas','Paolo','Santos','1998-10-08','Manila','Filipino','Catholic','','Jericho','Marco','Elnas','Data Scientist','123456798','987654321','','Carlo','Mina','Ragudo','Nurse','65448965','32145611','','','','','','','','','\0','University of San Carlos','Pangasinan','\0','06','Mapayapa','Matahimik','Quezon City','',310,409,'2017-03-24 20:52:55',3),(13,'New','Santos','Frederick','Sebastian','2000-12-14','Philippines','Filipino','Catholic','','Mariano','Aquino','Santos','Systems Engineer','4549876','1203156','','Marie','Marquez','Perez','Psychologist','15146789','0915644987','','','','','','','','','\0','University of the East','Manila','\0','12','Masipag','Kanluran','Quezon City','',304,409,'2017-03-24 20:52:55',2),(14,'New','Maala','Jonnie','U.','2009-08-05','Manila','Filipino','Catholic','','Anthony','R.','Maala','Plumber','4343424','45435454','','Rose','P.','Maala','Housewife','446456','4645656','','Maala','Jinky','P.','Office Staff','4466','46456456','Aunt','\0','','','\0','7','Rhubarb','Greenville','San Juan','NCR',303,409,'2017-03-24 20:52:55',3),(15,'New','Conelly','Miranda','I.','2008-04-05','New York','American','Catholic','\0','Alejandro','L.','Conelly','Manager','4354545','45464646','','Alexandra','K.','Conelly','Housewife','4343424','4534534545','','Conelly','Alexandra','K','Housewife','433454','35435345','Mother','\0','St. Paul School','Virginia','\0','3','45th','Greenville','New York','USA',304,409,'2017-03-24 22:54:15',2),(16,'New','John Francis','Ochotorina','Z.','2006-12-12','Quezon City','Filipino','Catholic','','Elias','Makaryo','Lazaro','Manager','987987456','06654499','','Stephanie','Mina','Lazaro','Doctor','1234654649','091654789','\0','','','','','','','','\0','University of the East','','\0','09','Dahlia','Katahimikan','Quezon City','',306,409,'2017-03-25 10:25:14',3),(17,'Transferee','Napadao','Paul Neo','T','1995-07-30','Bulacan','Filpino','Born Again','','Ireneo','C','Napadao','Teacher','09273309427','092323232323','','Melba','T','Napadao','Teacher','09277777','09273309427','','Napadao','09273309427','T','Teacher','092222','09273309427','Mother','','Vms','Bulacan','\0','Bulacan','Narra','Narra','Bulacan','',306,409,'2017-03-25 10:41:45',2),(18,'Transferee','Antonio','John Ferdinand','Maala','2007-12-12','Quezon City','Filipino','Catholic','','Jine','Gonzales','Antonio','OFW','16547531','0951564867','','Jocelyn','Maala','Antonio','Real Estate Broker','4654654753','159465432','','','','','','','','','\0','FEU Diliman','Manila','\0','03','Emerald','Bagong Silangan','Quezon City','',303,409,'2017-03-25 14:21:33',3),(19,'Transferee','Jacinto','Larry','B.','2000-11-06','Bulacan','Filipino','Catholic','','Luna','S.','Belarmino','OFW','46545687','9879841651','','Teresita','X.','Belarmino','Housewife','4654654','987987987','\0','','','','','','','','\0','University of the Philippines','Diliman Quezon City','\0','45','Manggahan','Narra','Bulacan','',305,409,'2017-03-25 15:27:15',2),(20,'Transferee','Rolle','Karlo','T','1981-03-02','qc','Filpino','Catholic','','Tatay','P','Rolle','Marine','02922919291','09277918179','','nanay','t','rolle','marine','02020201','09277918179','','rolle','nanay','t','marine','02002020202','0927790633','mother','','village montessori school','bulacan','\0','201','santol','mt.view','qc','',302,409,'2017-03-25 15:49:04',3),(21,'Transferee','Domingo','Kim','N','1995-03-01','Mani;a','filipino','INC','\0','Francis','O','Domingo','programmer','02929201','232365923','','marinela','i','Domingo','programmer','2020291910','0927797989826','','domigo','marinela','q','programmer','302300302','09276656565','mother','','Mother of perpetual Help','qc','\0','202','apple','mulawin','','',303,409,'2017-03-25 15:55:52',2),(22,'Transferee','Labilles','Jeno','K','1991-02-05','mexico','American','inc','','Kennteh','P','Labilles','Engineer','201020100','0927797965','','Kristle','I','Labilles','house wife','2002002002','0927995959','','','','','','','','','\0','school of qc','qc','\0','211','makopa','da','qc','',304,409,'2017-03-25 16:00:36',3),(23,'Transferee','taclas','kyle','P','2006-02-03','bulacan','filipino','INC','','jong','K','taclas','Boxer','2002029299','092772323232323','','Arbues','2','Taclas','house wife','0209090909','09277565656','','','','','','','','','\0','Learning','bulacan','\0','202','duhat','green','qc','',307,409,'2017-03-25 16:17:34',2),(24,'New','Magturo','Tin','M','1980-03-26','Jeddah','Arabian','Catholic','\0','magturo','magturo','magturo','magturo','magturo','magturo','\0','magturo','magturo','magturo','magturo','magturo','magturo','\0','magturo','magturo','magturo','magturo','312312312','23423423','mother','','FEU','Diliman','\0','303','santol','mangga','qc','qc',308,409,'2017-03-25 17:29:47',3),(28,'Transferee','Test','Test','Test','2001-07-06','Test','Test','Test','','Test','Test','Test','Test','Test','Test','','Test','Test','Test','Test','Test','Test','','Test','Test','Test','Test','Test','Test','Test','','Test','Test','\0','Test','Test','Test','Test','Test',307,409,'2017-05-10 19:29:52',3),(29,'New','Test','Test','Test','1988-08-01','Test','Test','Test','','Test','Test','Test','Test','Test','Test','','Test','Test','Test','Test','Test','Test','\0','Test','Test','Test','Test','Test','Test','Test','\0','Test','Test','\0','Test','Test','Test','Test','Test',307,407,'2017-06-29 23:50:09',5),(30,'New','Test2','Test2','Test2','2004-12-12','Test2','Test2','Test2','','Test2','Test2','Test2','Test2','Test2','Test2','','Test2','Test2','Test2','Test2','Test2','Test2','','Test2','Test2','Test2','Test2','Test2','Test2','Test2','\0','Test2','Test2','\0','Test2','Test2','Test2','Test2','Test2',303,407,'2017-06-30 12:13:50',2),(31,'Transferee','Test3','Test3','Test3','1995-04-01','Test3','Test3','Test3','','Test3','Test3','Test3','Test3','Test3','Test3','','Test3','Test3','Test3','Test3','Test3','Test3','','Test3','Test3','Test3','Test3','Test3','Test3','Test3','\0','Test3','Test3','\0','Test3','Test3','Test3','Test3','Test3',305,407,'2017-06-30 12:18:45',4),(32,'New','Test4','Test4','Test4','2006-11-11','Test4','Test4','Test4','','Test4','Test4','Test4','Test4','Test4','Test4','','Test4','Test4','Test4','Test4','Test4','Test4','','Test4','Test4','Test4','Test4','','','','\0','','','\0','Test4','Test4','Test4','Test4','Test4',303,407,'2017-06-30 13:07:25',4);
 /*!40000 ALTER TABLE `registration_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1006,6 +1009,34 @@ INSERT INTO `session_mt` VALUES (1,'AM'),(2,'PM');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `specialization`
+--
+
+DROP TABLE IF EXISTS `specialization`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `specialization` (
+  `specialization_id` int(11) NOT NULL AUTO_INCREMENT,
+  `specialization_title` varchar(45) NOT NULL,
+  `isActive` bit(1) NOT NULL DEFAULT b'1',
+  `description` text NOT NULL,
+  `date_created` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`specialization_id`),
+  UNIQUE KEY `specialization_title_UNIQUE` (`specialization_title`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `specialization`
+--
+
+LOCK TABLES `specialization` WRITE;
+/*!40000 ALTER TABLE `specialization` DISABLE KEYS */;
+INSERT INTO `specialization` VALUES (1,'English','','English specialization',NULL),(2,'Mathematics','','Math Subjects',NULL),(3,'Science','','',NULL);
+/*!40000 ALTER TABLE `specialization` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `student_address_lt`
 --
 
@@ -1060,6 +1091,7 @@ CREATE TABLE `student_discount_lt` (
 
 LOCK TABLES `student_discount_lt` WRITE;
 /*!40000 ALTER TABLE `student_discount_lt` DISABLE KEYS */;
+INSERT INTO `student_discount_lt` VALUES (24,10,407,'2017-06-30 12:24:20',0.00),(26,4,407,'2017-06-30 13:10:57',0.00);
 /*!40000 ALTER TABLE `student_discount_lt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1082,7 +1114,7 @@ CREATE TABLE `student_mt` (
   UNIQUE KEY `registration_id_UNIQUE` (`registration_id`),
   KEY `fk_student_mtTABLE_registration_idCOL_idx` (`registration_id`),
   CONSTRAINT `fk_student_mtTABLE_registration_idCOL` FOREIGN KEY (`registration_id`) REFERENCES `registration_mt` (`registration_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1 COMMENT='Students Master Table';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1 COMMENT='Students Master Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1091,7 +1123,7 @@ CREATE TABLE `student_mt` (
 
 LOCK TABLES `student_mt` WRITE;
 /*!40000 ALTER TABLE `student_mt` DISABLE KEYS */;
-INSERT INTO `student_mt` VALUES (7,9,'2017-03-21 15:06:30','\0',NULL,'\0',''),(8,11,'2017-03-24 00:30:52','\0',NULL,'\0',''),(9,12,'2017-03-24 18:15:54','\0',NULL,'',''),(10,10,'2017-03-24 18:21:50','\0',NULL,'',''),(11,13,'2017-03-24 18:28:49','\0',NULL,'',''),(12,14,'2017-03-24 18:51:21','\0',NULL,'',''),(13,15,'2017-03-24 22:55:15','\0',NULL,'\0',''),(14,16,'2017-03-25 10:25:38','\0',NULL,'',''),(15,17,'2017-03-25 10:43:06','\0',NULL,'',''),(16,18,'2017-03-25 14:21:53','\0',NULL,'',''),(17,19,'2017-03-25 15:27:34','\0',NULL,'',''),(18,24,'2017-03-25 17:31:09','\0',NULL,'',''),(19,20,'2017-05-12 18:45:20','\0',NULL,'\0',''),(20,28,'2017-05-13 21:41:24','\0',NULL,'\0',''),(21,21,'2017-05-15 21:46:33','\0',NULL,'\0',''),(22,22,'2017-05-19 17:07:37','\0',NULL,'\0','');
+INSERT INTO `student_mt` VALUES (7,9,'2017-03-21 15:06:30','\0',NULL,'\0',''),(8,11,'2017-03-24 00:30:52','\0',NULL,'\0',''),(9,12,'2017-03-24 18:15:54','\0',NULL,'',''),(10,10,'2017-03-24 18:21:50','\0',NULL,'',''),(11,13,'2017-03-24 18:28:49','\0',NULL,'',''),(12,14,'2017-03-24 18:51:21','\0',NULL,'',''),(13,15,'2017-03-24 22:55:15','\0',NULL,'\0',''),(14,16,'2017-03-25 10:25:38','\0',NULL,'',''),(15,17,'2017-03-25 10:43:06','\0',NULL,'',''),(16,18,'2017-03-25 14:21:53','\0',NULL,'',''),(17,19,'2017-03-25 15:27:34','\0',NULL,'',''),(18,24,'2017-03-25 17:31:09','\0',NULL,'',''),(19,20,'2017-05-12 18:45:20','\0',NULL,'\0',''),(20,28,'2017-05-13 21:41:24','\0',NULL,'\0',''),(21,21,'2017-05-15 21:46:33','\0',NULL,'\0',''),(22,22,'2017-05-19 17:07:37','\0',NULL,'\0',''),(23,29,'2017-06-29 23:50:32','\0',NULL,'\0',''),(24,30,'2017-06-30 12:14:02','\0',NULL,'\0',''),(25,31,'2017-06-30 12:18:57','\0',NULL,'\0',''),(26,32,'2017-06-30 13:08:00','\0',NULL,'\0','');
 /*!40000 ALTER TABLE `student_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1121,6 +1153,7 @@ CREATE TABLE `student_paymentterm_lt` (
 
 LOCK TABLES `student_paymentterm_lt` WRITE;
 /*!40000 ALTER TABLE `student_paymentterm_lt` DISABLE KEYS */;
+INSERT INTO `student_paymentterm_lt` VALUES (24,2,407),(26,4,407);
 /*!40000 ALTER TABLE `student_paymentterm_lt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1193,7 +1226,7 @@ CREATE TABLE `transaction_mt` (
   PRIMARY KEY (`transaction_id`),
   KEY `fk_transaction_mtTABLE_student_idCOL_idx` (`student_id`),
   CONSTRAINT `fk_transaction_mtTABLE_student_idCOL` FOREIGN KEY (`student_id`) REFERENCES `student_mt` (`student_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1202,6 +1235,7 @@ CREATE TABLE `transaction_mt` (
 
 LOCK TABLES `transaction_mt` WRITE;
 /*!40000 ALTER TABLE `transaction_mt` DISABLE KEYS */;
+INSERT INTO `transaction_mt` VALUES (1,'2017-06-29 19:34:39',18),(2,'2017-06-29 19:39:35',18),(3,'2017-06-29 20:27:33',18),(4,'2017-06-29 23:51:10',20),(5,'2017-06-30 12:19:41',25),(6,'2017-06-30 12:20:42',24),(7,'2017-06-30 12:21:40',17),(8,'2017-06-30 12:24:20',24),(9,'2017-06-30 13:10:57',26);
 /*!40000 ALTER TABLE `transaction_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1256,6 +1290,7 @@ CREATE TABLE `tuition_fee` (
 
 LOCK TABLES `tuition_fee` WRITE;
 /*!40000 ALTER TABLE `tuition_fee` DISABLE KEYS */;
+INSERT INTO `tuition_fee` VALUES (47,24,407,'2017-06-30 12:24:20'),(48,24,407,'2017-06-30 12:24:20'),(49,26,407,'2017-06-30 13:10:57'),(50,26,407,'2017-06-30 13:10:57'),(51,26,407,'2017-06-30 13:10:57'),(52,26,407,'2017-06-30 13:10:57');
 /*!40000 ALTER TABLE `tuition_fee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1290,7 +1325,7 @@ CREATE TABLE `user_mt` (
 
 LOCK TABLES `user_mt` WRITE;
 /*!40000 ALTER TABLE `user_mt` DISABLE KEYS */;
-INSERT INTO `user_mt` VALUES (3,'jordan','jordanjordanjoan',1,0,'Antonio','John Ferdinand','Maala','2017-06-25 19:33:05','2016-05-18 22:35:02','jordan');
+INSERT INTO `user_mt` VALUES (3,'jordan','jordanjordanjoan',1,0,'Antonio','John Ferdinand','Maala','2017-06-30 15:07:51','2016-05-18 22:35:02','jordan');
 /*!40000 ALTER TABLE `user_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1595,6 +1630,31 @@ BEGIN
 
 	INSERT INTO faculty_mt (faculty_id,firstName,lastName,middleName,civilStatus,email,contact,`status`)
     VALUES(p_faculty_id,p_firstName,p_lastName,p_middleName,p_civilStatus,p_email,p_contact,p_status);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addFacultyandSpecialization` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addFacultyandSpecialization`(
+	IN p_faculty_specialization_id INT,
+    IN p_faculty_id INT,
+    IN p_specialization Varchar(45)
+)
+BEGIN
+	INSERT INTO faculty_specialization(faculty_specialization_id,faculty_id,specialization)
+    VALUES(p_faculty_specialization_id,p_faculty_id,p_specialization);
 
 END ;;
 DELIMITER ;
@@ -2063,6 +2123,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addSpecialization` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addSpecialization`(
+	IN	p_id int,
+    IN	p_title varchar(45),
+    IN	p_desciption text,
+    IN p_date DATETIME
+    
+   
+)
+BEGIN
+	INSERT into specialization(specialization_id,specialization_title,description,date_created)
+    VALUES(p_id,p_title,p_desciption,p_date);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `addStudentDiscount` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2171,7 +2258,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addTransaction`(aStudentId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTransaction`(aStudentId INT, OUT aTransactionId INT)
 BEGIN
 	DECLARE EXIT HANDLER FOR sqlexception
     BEGIN
@@ -2183,7 +2270,7 @@ START TRANSACTION;
 	INSERT INTO transaction_mt(student_id)
 	VALUES(aStudentId);
     
-    SELECT LAST_INSERT_ID() AS transactionId;
+    SELECT LAST_INSERT_ID() INTO aTransactionId;
     
     COMMIT;
 
@@ -4369,6 +4456,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getFacultyByID` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getFacultyByID`(
+	IN p_facultyID int(11)
+)
+BEGIN
+	SELECT * FROM faculty_mt WHERE faculty_id = p_facultyID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getFacultyId` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -5473,6 +5581,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getSpecialization` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecialization`()
+BEGIN
+	SELECT * FROM specialization;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getStudentDiscount` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -5486,7 +5613,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getStudentDiscount`(aStudentId INT, aSchoolYearId INT)
 BEGIN
 
-SELECT d.* FROM discount_mt d
+SELECT d.*,sd.* FROM discount_mt d
 INNER JOIN student_discount_lt sd
 ON d.discount_id = sd.discount_id
 WHERE sd.student_id = aStudentId
@@ -6825,14 +6952,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateFaculty`(
     IN p_mname varchar(45),
     IN p_civilStatus varchar(45),
     IN p_contact varchar(45),
-    IN p_email varchar(45),
-    IN p_status BIT(1)
-
+    IN p_email varchar(45)
+    
 )
 BEGIN
 	UPDATE faculty_mt set firstName = p_fname, lastName = p_lname,
     middleName = p_mname,civilStatus = p_civilStatus,
-    contact = p_contact,email = p_email, `status` = p_status
+    contact = p_contact,email = p_email
     WHERE faculty_id = p_faculty_id;
 END ;;
 DELIMITER ;
@@ -7073,4 +7199,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-25 20:23:36
+-- Dump completed on 2017-06-30 21:12:43
