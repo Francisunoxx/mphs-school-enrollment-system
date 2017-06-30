@@ -1691,7 +1691,7 @@ public class PaymentForm extends javax.swing.JPanel {
             SchoolYear schoolYear = schoolYearDaoImpl.getSchoolYearById(aSchoolYearId);
             TuitionFee tuitionFee = new TuitionFee();
             Particulars particulars = new Particulars();
-            List<BalanceBreakDownFee> balanceBreakDownFees = new ArrayList<>();
+            List<BalanceBreakDownFee> balanceBreakDownFeeList = new ArrayList<>();
             Student student = studentDaoImpl.getStudentById(aStudentId);
             int gradeLevelId = gradeLevelDaoImpl.getId(student.getPresentGradeLevel());
             SchoolFees schoolFees = schoolFeesDaoImpl.get(gradeLevelId);
@@ -1713,9 +1713,9 @@ public class PaymentForm extends javax.swing.JPanel {
                     balanceFeeToPay.setStudentId(aStudentId);
                     balanceFeeToPay.setSchoolYearId(aSchoolYearId);
 
-                    balanceBreakDownFees.add(balanceFeeToPay);
+                    balanceBreakDownFeeList.add(balanceFeeToPay);
                     particularSum += balance;
-                    particulars.setBalanceBreakDownFees(balanceBreakDownFees);
+                    particulars.setBalanceBreakDownFees(balanceBreakDownFeeList);
                     particulars.setBalanceSum(particularSum);
                 }
             }

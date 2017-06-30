@@ -249,8 +249,6 @@ public class PaySelectedForm extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void processPayment() {
-        int studentId = tuitionFee.getStudent().getStudentId();
-        int schoolYearId = tuitionFee.getSchoolYear().getSchoolYearId();
         SchoolYear schoolYear = tuitionFee.getSchoolYear();
         Student student = tuitionFee.getStudent();
 
@@ -285,8 +283,7 @@ public class PaySelectedForm extends javax.swing.JDialog {
                         } else {
                             tuitionFee.setPayment(payment);
                             boolean added = tuitionFeeDaoImpl.add(tuitionFee);
-                            boolean paid = tuitionFeeDaoImpl.pay(tuitionFee);
-                            if (added && paid) {
+                            if (added) {
                                 JOptionPane.showMessageDialog(null, "Transaction complete.");
                                 this.dispose();
                                 //schoolyear enrolled

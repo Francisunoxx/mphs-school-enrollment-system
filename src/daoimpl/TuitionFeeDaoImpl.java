@@ -8,7 +8,6 @@ package daoimpl;
 import dao.ITuitionFee;
 import database_utility.DBType;
 import database_utility.DBUtil;
-import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -43,10 +42,13 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
         int studentId = tuitionFee.getStudent().getStudentId();
         int schoolYearId = tuitionFee.getSchoolYear().getSchoolYearId();
 
-        String SQLa = "{CALL addBalanceBreakDownFee(?,?,?)}";
-        String SQLb = "{CALL addTuitionFee(?,?,?)}";
+        String SQLa = "{CALL addBalanceBreakDownFee(?,?,?)}"; //add to balance_breakdown_fee master
+        String SQLb = "{CALL addTuitionFee(?,?,?)}"; 
         String SQLc = "{CALL addStudentDiscount(?,?,?,?)}";
         String SQLd = "{CALL addStudentPaymentTerm(?,?,?)}";
+        String SQLe = "{CALL addTransaction(?,?)}";
+        String SQLf = "{CALL payTuitionFee(?,?,?)}";
+        String SQLg = "{CALL addTransactionPayment(?,?)}";
 
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);) {
             try (CallableStatement csA = con.prepareCall(SQLa);
@@ -227,6 +229,7 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
                 
                 for(BalanceBreakDownFee b: tuitionFee.getPayment().getParticulars().getBalanceBreakDownFees()){
 //                    JOptionPane.showMessageDialog(null,"Balance BreakDown Id: "+b.getBalanceBreakDownFeeId());
+
                     csB.setInt(1, b.getBalanceBreakDownFeeId());
                     csB.setDouble(2,tuitionFee.getPayment().getAmountTendered());
                     csB.registerOutParameter(3, Types.INTEGER);
