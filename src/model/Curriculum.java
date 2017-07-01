@@ -6,13 +6,18 @@ import java.util.List;
 
 public class Curriculum {
     private int curriculumId;
+    private int isActive;
+    private String title;
+    private String dateCreated;
+    private String description;
+    private List<Subject> subject;
+    
+    
+    
     public GradeLevel gradeLevel = new GradeLevel();
     public Subject s = new Subject();
     public SchoolYear schoolYear = new SchoolYear(); //schoolyear when the curriculum was created
-    private List<Subject> subject;
-    private String description;
-    private int isActive;
-    private String dateCreated;
+    
     public int getCurriculumId() {
         return curriculumId;
     }
@@ -24,7 +29,17 @@ public class Curriculum {
     public GradeLevel getGradeLevel() {
         return gradeLevel;
     }
-
+    
+    public void setCurriculumTitle(String title)
+    {
+        this.title = title;
+    }
+    
+    public String getCurriculumTitle()
+    {
+        return title;
+    }
+    
     public void setGradeLevel(GradeLevel gradeLevel) {
         this.gradeLevel = gradeLevel;
     }

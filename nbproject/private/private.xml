@@ -3,10 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/daoimpl/TuitionFeeDaoImpl.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/SubjectManagementContainer.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/daoimpl/CurriculumDaoImpl.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/PaySelectedForm.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/daoimpl/GradeLevelDaoImpl.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/database_utility/DBUtil.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/ScheduleManagementContainer.java</file>
             <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/PaymentForm.java</file>
             <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/daoimpl/EnrollmentDaoImpl.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/daoimpl/TuitionFeeDaoImpl.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/PaySelectedForm.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/daoimpl/SubjectDaoImpl.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/UpdateCurriculum.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/FacultyManagement.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/model/GradeLevel.java</file>
         </group>
     </open-files>
 </project-private>

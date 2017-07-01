@@ -1,50 +1,41 @@
 package gui;
 
 import daoimpl.CurriculumDaoImpl;
-import daoimpl.CurriculumDaoImpl_OLD;
 import java.awt.Color;
 import java.util.Arrays;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import component_model_loader.JTableGUIUtil;
-import daoimpl.SchoolYearDaoImpl;
-import daoimpl.SubjectDaoImpl_OLD;
-import daoimpl.GradeLevelDaoImpl;
 import component_model_loader.CurriculumML;
 import component_model_loader.GradeLevelML;
 import component_model_loader.SchoolYearML;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.table.TableModel;
 import model.Curriculum;
 import model.GradeLevel;
 import model.SchoolYear;
 import model.Subject;
-import org.joda.time.format.DateTimeFormatter;
 import component_renderers.JComboBoxRenderer_GradeLevel;
 
 public class CreateCurriculumForm extends javax.swing.JPanel {
 
     //HAS-A
     // Has the following classes
-    
     GradeLevelML glu = new GradeLevelML();
     SchoolYearML syu = new SchoolYearML();
     CurriculumML cu = new CurriculumML();
     CurriculumDaoImpl cdi = new CurriculumDaoImpl();
-    
+
     Subject subject = new Subject();
     GradeLevel gradeLevel = new GradeLevel();
     Curriculum curriculum = new Curriculum();
     SchoolYear schoolYear = new SchoolYear();
-    
+
     private final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
     private final java.time.format.DateTimeFormatter dtf = java.time.format.DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
     public CreateCurriculumForm() {
         UIManager.put("ComboBox.disabledBackground", new Color(212, 212, 210));
         UIManager.put("ComboBox.disabledForeground", Color.BLACK);
@@ -412,8 +403,8 @@ public class CreateCurriculumForm extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     private void cancelCreateCurriculumJbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCreateCurriculumJbtnActionPerformed
 
     }//GEN-LAST:event_cancelCreateCurriculumJbtnActionPerformed
@@ -502,35 +493,31 @@ public class CreateCurriculumForm extends javax.swing.JPanel {
             Curriculum curc = new Curriculum();
             curc.setGradeLevel(gl);
             curc.setSchoolYear(sy);
-            
-            if(cdi.curriculumExists(curc)){
-               JOptionPane.showMessageDialog
-                (null,"Curriculum for SY :"+selectedSyYearFrom+"-"+selectedSyYearTo+"\nfor Grade: "+selectedGradeLevel+
-                        "already exists.");
-               JOptionPane.showMessageDialog(null,"Please select a different gradelevel and schoolyear.");
-            }else{
-                JOptionPane.showMessageDialog(null,"Does not exist yet.");
+
+            if (cdi.curriculumExists(curc)) {
+                JOptionPane.showMessageDialog(null, "Curriculum for SY :" + selectedSyYearFrom + "-" + selectedSyYearTo + "\nfor Grade: " + selectedGradeLevel
+                        + "already exists.");
+                JOptionPane.showMessageDialog(null, "Please select a different gradelevel and schoolyear.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Does not exist yet.");
                 //call the cdi.addCurriculum() here
             }
         }
-            
-          gradeLevel.setLevel((int) jcmbGradeLevel.getSelectedItem());
-          schoolYear.setYearFrom((int) jcmbSchoolYearYearFrom.getSelectedItem());
-          curriculum.setCurriculumDescription(curriculumDescriptionJta.getText());
-          curriculum.setIsActive(1);
-          LocalDateTime now = LocalDateTime.now();
-          curriculum.setDateCreated(dtf.format(now));
-          cdi.addCurriculum(curriculum, schoolYear,gradeLevel);
-          
-          for(int i = 0; i < curriculumSubjectsJtbl.getModel().getRowCount(); i++)
-          {
-              //While looping < rowCount also insert into curriculum_subject_lt
-              curriculum.s.setSubjectCode((String) curriculumSubjectsJtbl.getValueAt(i, 0));
-              curriculum.setCurriculumId(curriculum.getCurriculumId());
-              cdi.addCurriculumWithSubjects(curriculum);
-          }
-        
-          
+
+        gradeLevel.setLevel((int) jcmbGradeLevel.getSelectedItem());
+        schoolYear.setYearFrom((int) jcmbSchoolYearYearFrom.getSelectedItem());
+        curriculum.setCurriculumDescription(curriculumDescriptionJta.getText());
+        curriculum.setIsActive(1);
+        LocalDateTime now = LocalDateTime.now();
+        curriculum.setDateCreated(dtf.format(now));
+//        cdi.addCurriculum(curriculum, schoolYear, gradeLevel);
+
+        for (int i = 0; i < curriculumSubjectsJtbl.getModel().getRowCount(); i++) {
+            //While looping < rowCount also insert into curriculum_subject_lt
+            curriculum.s.setSubjectCode((String) curriculumSubjectsJtbl.getValueAt(i, 0));
+            curriculum.setCurriculumId(curriculum.getCurriculumId());
+//            cdi.addCurriculumWithSubjects(curriculum);
+        }
     }//GEN-LAST:event_saveCurriculumJbtnActionPerformed
 
     private void jcmbSchoolYearYearFromItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSchoolYearYearFromItemStateChanged
@@ -538,15 +525,14 @@ public class CreateCurriculumForm extends javax.swing.JPanel {
             int selectedYearFrom = jcmbSchoolYearYearFrom.getSelectedIndex();
             jcmbSchoolYearYearTo.setSelectedIndex(selectedYearFrom);
         }
-        
-        
+
+
     }//GEN-LAST:event_jcmbSchoolYearYearFromItemStateChanged
 
     private void jcmbGradeLevelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbGradeLevelItemStateChanged
-        if(jcmbGradeLevel.getSelectedIndex() != -1)
-        {
+        if (jcmbGradeLevel.getSelectedIndex() != -1) {
             gradeLevel.setLevel((int) jcmbGradeLevel.getSelectedItem());
-            cdi.getEachSubjectByGradeLevelForCurriculum(gradeLevel);
+//            cdi.getEachSubjectByGradeLevelForCurriculum(gradeLevel);
             subjectsListJtbl.setModel(cu.getAllSubjectsByGradeLevel(gradeLevel));
         }
 //        else

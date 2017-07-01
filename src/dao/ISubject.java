@@ -17,12 +17,17 @@ import model.Subject;
  */
 public interface ISubject {
     List<Subject> getAllSubjects();
-    List<Subject> getSubjectsByGradeLevel(GradeLevel aGradeLevel);
+    List<Subject> getAllSubjectsByGradeLevelId(GradeLevel aGradeLevel);
     List<Subject> getSubjectsByCurriculum(Curriculum aCurriculum);
     List<Subject> getSubjectsBySchoolYear(SchoolYear aSchoolYear);
+    List<Subject> getEachSubjectByGradeLevelForCurriculum(GradeLevel aGradeLevel);
     boolean updateSubjectAndGradeLevel(Subject aSubject, GradeLevel aGradeLevel);
-    boolean addSubject(Subject aSubject, GradeLevel aGradeLevel);
+    boolean createSubject(Subject aSubject, GradeLevel aGradeLevel);
     boolean editSubject(Subject aSubject, GradeLevel aGradeLevel);
     int getSubjectId(Subject aSubject);
     boolean subjectExists(Subject aSubject);
+    List <Subject> getCreatedSubjectInfoById(Subject aSubject, GradeLevel aGradeLevel);
+    boolean updateCreatedSubjectById(Subject aSubject, GradeLevel aGradeLevel);
+    boolean checkSubjectExists(Subject aSubject);
+    List <Subject> checkSubjectChanges(Subject aSubject);
 }

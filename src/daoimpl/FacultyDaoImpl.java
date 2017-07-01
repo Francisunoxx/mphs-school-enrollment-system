@@ -7,33 +7,20 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.Faculty;
-import org.apache.derby.client.am.Types;
 
 public class FacultyDaoImpl implements IFaculty  {  
 
-    @Override
-    public int getSpecializationID(String lName, String fName, String mName) {
-           int facultyId = 0;
-        String SQL = "{CALL getFacultyId(?,?,?)}";
-        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
-            cs.setString(1,lName.trim());
-            cs.setString(2, fName.trim());
-            cs.setString(3, mName.trim());
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
-                   facultyId = rs.getInt("faculty_id");
-                }
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        }
-        return facultyId;
-    }
+   
+    
+
+    
     
     @Override
     public Faculty getFacultyByID(int aFacultyID) {
@@ -51,10 +38,10 @@ public class FacultyDaoImpl implements IFaculty  {
                 aFaculty.setFacultyID(rs.getInt("faculty_id"));
                 aFaculty.setFirstName(rs.getString("firstName"));
                 aFaculty.setLastName(rs.getString("lastName"));
-                aFaculty.setMiddleName(rs.getString("middleName"));
-                aFaculty.setCivilStatus(rs.getString("civilStatus"));
-                aFaculty.setEmailAddress(rs.getString("email"));
+                aFaculty.setMiddleName(rs.getString("middleName"));   
+                aFaculty.setEmailAddress(rs.getString("email"));                 
                 aFaculty.setContact(rs.getString("contact"));
+                aFaculty.setCivilStatus(rs.getString("civilStatus"));
                 aFaculty.setDegree(rs.getString("degree"));
                 
                 }
@@ -106,7 +93,7 @@ public class FacultyDaoImpl implements IFaculty  {
             cs.setInt(1, aFaculty.getSpecializationID());
             cs.setString(2, aFaculty.getSpecializationTitle());
             cs.setString(3, aFaculty.getSpecializationDescription());
-              cs.setString(4, aFaculty.getDateCreated());
+            cs.setString(4, aFaculty.getDateCreated());
            
   
             
@@ -193,27 +180,37 @@ public class FacultyDaoImpl implements IFaculty  {
     public boolean addFaculty(Faculty aFaculty) {
         
         boolean isAdded;
-        String SQl = "{CALL addFaculty(?,?,?,?,?,?,?,?,?)}";
-        
+        String SQl_addFaculty = "{CALL addFaculty(?,?,?,?,?,?,?,?)}";
+        String SQl_addSpecialization = "{CALL addSpecialization(?,?,?)}";
+        String SQL_addFacultyAndSpecialization = "{CALL addFacultyAndSpecialization(?,?)}";
         
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQl);){
+                CallableStatement cs1 = con.prepareCall(SQl_addFaculty);
+                CallableStatement cs2 = con.prepareCall(SQl_addSpecialization);
+                CallableStatement cs3 = con.prepareCall(SQL_addFacultyAndSpecialization)){
             
-            cs.setInt(1, aFaculty.getFacultyID());
-            cs.setString(2, aFaculty.getFirstName());
-            cs.setString(3, aFaculty.getLastName());
-            cs.setString(4, aFaculty.getMiddleName());
-            cs.setString(5, aFaculty.getEmailAddress());
-            cs.setString(6, aFaculty.getContact());
-            cs.setString(7, aFaculty.getCivilStatus());
-            cs.setString(8, aFaculty.getDegree());
-            cs.registerOutParameter(9, Types.INTEGER);
-            
-            int aFacultyId = cs.getInt(9);
-            
+            cs1.setString(1, aFaculty.getFirstName());
+            cs1.setString(2, aFaculty.getLastName());
+            cs1.setString(3, aFaculty.getMiddleName());
+            cs1.setString(4, aFaculty.getEmailAddress());
+            cs1.setString(5, aFaculty.getContact());
+            cs1.setString(6, aFaculty.getCivilStatus());
+            cs1.setString(7, aFaculty.getDegree());
+            cs1.registerOutParameter(8,Types.INTEGER);
+            cs1.executeUpdate();
+            int aFacultyID = cs1.getInt(9);
             
             
-            cs.executeUpdate();
+            cs2.setString(1, aFaculty.getSpecializationTitle());
+            cs2.setString(2, aFaculty.getSpecializationDescription());
+            cs2.registerOutParameter(3, Types.INTEGER);
+            cs2.executeUpdate();
+            int aSpecializationID = cs2.getInt(3);
+            
+            cs3.setInt(1, aFacultyID);
+            cs3.setInt(2, aSpecializationID);
+            cs3.executeUpdate();
+            
             isAdded = true;
             
         } catch (SQLException e) {

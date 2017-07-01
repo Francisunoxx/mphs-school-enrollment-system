@@ -381,6 +381,9 @@
                                       <Dimension value="[100, 30]"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                                  </Events>
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                                       <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -394,6 +397,9 @@
                                       <Dimension value="[100, 30]"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                                  </Events>
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                                       <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="11" weightX="0.0" weightY="1.0"/>
@@ -422,6 +428,10 @@
                               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                               <SubComponents>
                                 <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                                  <Properties>
+                                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                                    <Property name="verticalScrollBarPolicy" type="int" value="22"/>
+                                  </Properties>
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                       <BorderConstraints direction="Center"/>
@@ -436,7 +446,7 @@
                                       <SubComponents>
                                         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                                           <Properties>
-                                            <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+                                            <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                                             <Property name="verticalScrollBarPolicy" type="int" value="22"/>
                                           </Properties>
                                           <AuxValues>
@@ -450,12 +460,15 @@
 
                                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                           <SubComponents>
-                                            <Component class="javax.swing.JList" name="jList2">
+                                            <Component class="javax.swing.JList" name="addSpecializationToFaculty">
                                               <Properties>
                                                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                                                   <StringArray count="0"/>
                                                 </Property>
                                               </Properties>
+                                              <Events>
+                                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addSpecializationToFacultyMouseClicked"/>
+                                              </Events>
                                               <AuxValues>
                                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                               </AuxValues>
@@ -1009,8 +1022,7 @@
                                   <SubComponents>
                                     <Container class="javax.swing.JScrollPane" name="jScrollPane8">
                                       <Properties>
-                                        <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
-                                        <Property name="verticalScrollBarPolicy" type="int" value="22"/>
+                                        <Property name="toolTipText" type="java.lang.String" value=""/>
                                       </Properties>
                                       <AuxValues>
                                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -1029,6 +1041,9 @@
                                               <StringArray count="0"/>
                                             </Property>
                                           </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlist_specializationMouseClicked"/>
+                                          </Events>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                           </AuxValues>

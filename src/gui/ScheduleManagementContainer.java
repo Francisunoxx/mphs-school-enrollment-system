@@ -6,10 +6,6 @@
 package gui;
 
 import daoimpl.ScheduleDaoImpl;
-import daoimpl.SectionDaoImpl_OLD;
-import daoimpl.SubjectDaoImpl_OLD;
-import gui.CreateCurriculumForm_Orig;
-import layout_utility.CardLayoutUtil;
 import component_model_loader.GradeLevelML;
 import component_model_loader.JSpinnerGUIUtil;
 import component_model_loader.SchoolYearML;

@@ -3,6 +3,7 @@ package model;
  
 public class Faculty {
     
+    
     private int facultyID;
     private String firstName;
     private String lastName;

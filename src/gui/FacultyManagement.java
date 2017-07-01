@@ -38,8 +38,8 @@ public class FacultyManagement extends javax.swing.JPanel {
         for(Object faculty : FacultyData)
         {
             Faculty f = (Faculty)faculty;
-            Object[] o ={f.getFacultyId(),f.getFirstName(),f.getLastName(),f.getMiddleName(),f.getCivilStatus(),
-               f.getEmailAddress(),f.getContactNumber(),
+            Object[] o ={f.getFacultyID(),f.getFirstName(),f.getLastName(),f.getMiddleName(),f.getCivilStatus(),
+               f.getEmailAddress(),f.getContact(),
                f.getStatus()==true? "Active":"Inactive"};
             tableModel.addRow(o);
         }
@@ -362,7 +362,7 @@ public class FacultyManagement extends javax.swing.JPanel {
         faculty.setLastName(jtf_lname.getText().trim());
         faculty.setMiddleName(jtf_mname.getText().trim());
         faculty.setCivilStatus(jtf_civilStatus.getText().trim());
-        faculty.setContactNumber(jtf_contact.getText().trim());
+        faculty.setContact(jtf_contact.getText().trim());
         faculty.setEmailAddress(jtf_emailAdd.getText().trim());
 
         boolean isActive;
@@ -426,12 +426,12 @@ public class FacultyManagement extends javax.swing.JPanel {
         int facultyId = Integer.parseInt(jtblFaculty.getValueAt(jtblFaculty.getSelectedRow(), 0).toString());
 
         Faculty faculty = new Faculty();
-        faculty.setFacultyId(facultyId);
+        faculty.setFacultyID(facultyId);
         faculty.setFirstName(jtf_fname.getText().trim());
         faculty.setLastName(jtf_lname.getText().trim());
         faculty.setMiddleName(jtf_mname.getText().trim());
         faculty.setCivilStatus(jtf_civilStatus.getText().trim());
-        faculty.setContactNumber(jtf_contact.getText().trim());
+        faculty.setContact(jtf_contact.getText().trim());
         faculty.setEmailAddress(jtf_emailAdd.getText().trim());
         //faculty.setStatus(jtf_status.getText();
 

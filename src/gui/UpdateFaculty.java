@@ -28,16 +28,10 @@ public class UpdateFaculty extends javax.swing.JDialog {
         initComponents();
         this.facultyId = FacultyID;
         loadFaculty();
-
+        
     }
-
-    UpdateFaculty(int registrationId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private UpdateFaculty(JFrame jFrame, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+   
 
     public void loadFaculty() {
         FacultyDaoImpl fdi = new FacultyDaoImpl();
@@ -89,10 +83,10 @@ public class UpdateFaculty extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jlist_UpdateSpecialization = new javax.swing.JList<>();
         jPanel6 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Clear = new javax.swing.JButton();
+        jbtn_updateSpecialization = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -275,12 +269,25 @@ public class UpdateFaculty extends javax.swing.JDialog {
         jPanel7.setPreferredSize(new java.awt.Dimension(200, 344));
         jPanel7.setLayout(new java.awt.BorderLayout());
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         jPanel8.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jScrollPane2.setViewportView(jList1);
+        jlist_UpdateSpecialization.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlist_UpdateSpecializationMouseClicked(evt);
+            }
+        });
+        jlist_UpdateSpecialization.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jlist_UpdateSpecializationValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jlist_UpdateSpecialization);
 
         jPanel8.add(jScrollPane2, java.awt.BorderLayout.LINE_START);
 
@@ -302,27 +309,27 @@ public class UpdateFaculty extends javax.swing.JDialog {
         jPanel6.setPreferredSize(new java.awt.Dimension(360, 80));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setText("Cancel");
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Clear.setText("Cancel");
+        Clear.setPreferredSize(new java.awt.Dimension(100, 30));
+        Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ClearActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel6.add(jButton2, gridBagConstraints);
+        jPanel6.add(Clear, gridBagConstraints);
 
-        jButton3.setText("Update");
-        jButton3.setPreferredSize(new java.awt.Dimension(100, 30));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbtn_updateSpecialization.setText("Update");
+        jbtn_updateSpecialization.setPreferredSize(new java.awt.Dimension(100, 30));
+        jbtn_updateSpecialization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbtn_updateSpecializationActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel6.add(jButton3, gridBagConstraints);
+        jPanel6.add(jbtn_updateSpecialization, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -339,7 +346,7 @@ public class UpdateFaculty extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
         jtf_updateFirstName.setText("");
         jtf_updateLastName.setText("");
         jtf_updateMiddleName.setText("");
@@ -349,10 +356,11 @@ public class UpdateFaculty extends javax.swing.JDialog {
         jcb_updateDegree.setSelectedItem("");
 
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ClearActionPerformed
 
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jbtn_updateSpecializationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_updateSpecializationActionPerformed
+       
         FacultyDaoImpl fdi = new FacultyDaoImpl();
 
         String lName = jtf_updateLastName.getText().trim();
@@ -390,16 +398,25 @@ public class UpdateFaculty extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Error occured during Updating ");
             }
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jbtn_updateSpecializationActionPerformed
+
+    private void jlist_UpdateSpecializationValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlist_UpdateSpecializationValueChanged
+            
+    }//GEN-LAST:event_jlist_UpdateSpecializationValueChanged
+
+    private void jlist_UpdateSpecializationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlist_UpdateSpecializationMouseClicked
+        
+        
+        
+    }//GEN-LAST:event_jlist_UpdateSpecializationMouseClicked
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Clear;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
@@ -409,7 +426,6 @@ public class UpdateFaculty extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -420,8 +436,10 @@ public class UpdateFaculty extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbtn_updateSpecialization;
     private javax.swing.JComboBox<String> jcb_updateCivilStatus;
     private javax.swing.JComboBox<String> jcb_updateDegree;
+    private javax.swing.JList<String> jlist_UpdateSpecialization;
     private javax.swing.JTextField jtf_updateContact;
     private javax.swing.JTextField jtf_updateEmailAddress;
     private javax.swing.JTextField jtf_updateFirstName;
