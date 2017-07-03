@@ -13,6 +13,7 @@ import java.util.List;
  * @author Acer
  */
 public class SchoolYear {
+    private Integer classHours;
     private int schoolYearId;
     private Integer yearFrom;
     private Integer yearTo;
@@ -20,8 +21,25 @@ public class SchoolYear {
     private Date end_date;
     private boolean isActive;
     private boolean isCurrentSchoolYear;
+    private List<Holiday> holidays;
     private Enrollment enrollment;
     private List<Quarter> quarters;
+
+    public List<Holiday> getHolidays() {
+        return holidays;
+    }
+
+    public void setHolidays(List<Holiday> holidays) {
+        this.holidays = holidays;
+    }
+    
+    public Integer getClassHours() {
+        return classHours;
+    }
+
+    public void setClassHours(Integer classHours) {
+        this.classHours = classHours;
+    }
 
     public List<Quarter> getQuarters() {
         return quarters;
@@ -31,15 +49,13 @@ public class SchoolYear {
         this.quarters = quarters;
     }
     
-    public boolean isIsCurrentSchoolYear() {
+    public boolean isCurrentSchoolYear() {
         return isCurrentSchoolYear;
     }
 
     public void setIsCurrentSchoolYear(boolean isCurrentSchoolYear) {
         this.isCurrentSchoolYear = isCurrentSchoolYear;
     }
-
-    
     
     public Enrollment getEnrollment() {
         return enrollment;

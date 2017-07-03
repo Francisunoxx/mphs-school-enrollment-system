@@ -117,6 +117,7 @@ public class ManagementPanel extends javax.swing.JPanel {
 
         jtpManagementTabbedPane.addTab("Subjects", jspSubjectManagement);
 
+        jpnlSchoolYearManagement.setLayout(new java.awt.BorderLayout());
         jspSchoolYearManagement.setViewportView(jpnlSchoolYearManagement);
 
         jtpManagementTabbedPane.addTab("School Year", jspSchoolYearManagement);
