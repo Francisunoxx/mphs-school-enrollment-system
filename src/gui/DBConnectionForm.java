@@ -53,11 +53,6 @@ public class DBConnectionForm extends javax.swing.JDialog {
         jpnlConnectionConfiguration.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("IP Address :");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel1MouseEntered(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);

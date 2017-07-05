@@ -13,7 +13,7 @@ import component_model_loader.JPanelGUIUtil;
 import component_model_loader.JSpinnerGUIUtil;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -26,6 +26,12 @@ import model.Enrollment;
 import model.SchoolYear;
 import model.Quarter;
 import component_renderers.JTableRenderer_SchoolYear;
+import daoimpl.HolidayDaoImpl;
+import java.awt.Dimension;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.DefaultListModel;
+import model.Holiday;
 
 /**
  *
@@ -34,21 +40,25 @@ import component_renderers.JTableRenderer_SchoolYear;
 public class SchoolYearManagementContainer extends javax.swing.JPanel {
 
     private SchoolYearDaoImpl SYDAOIMPL = new SchoolYearDaoImpl();
-    
+    private HolidayDaoImpl HOLIDAYDAOIMPL = new HolidayDaoImpl();
+
     private final int CURRENT_YEAR = CalendarUtil.getCurrentYear();
     private final int SYSTART_MIN_YEAR = CURRENT_YEAR; // 2017
-    private final int SYSTART_MAX_YEAR = CURRENT_YEAR+10; // 2027
-    private final int SYEND_MIN_YEAR = CURRENT_YEAR+1; // 2018
-    private final int SYEND_MAX_YEAR = CURRENT_YEAR+10; // 2028
+    private final int SYSTART_MAX_YEAR = CURRENT_YEAR + 10; // 2027
+    private final int SYEND_MIN_YEAR = CURRENT_YEAR + 1; // 2018
+    private final int SYEND_MAX_YEAR = CURRENT_YEAR + 10; // 2028
     private final int INCREMENT_COUNT = 1;
-    
+
     public SchoolYearManagementContainer() {
         UIManager.put("ComboBox.disabledBackground", new Color(212, 212, 210));
         UIManager.put("ComboBox.disabledForeground", Color.BLACK);
         UIManager.put("TextField.disabledBackground", new Color(255, 255, 255));
         UIManager.put("TextField.inactiveForeground", Color.BLACK);
         initComponents();
-
+        
+        
+        loadJListHolidayRecord();
+        
         jspCreateSchoolYear.getVerticalScrollBar().setUnitIncrement(36);
         setSchoolYearStartDateDayJComboBoxModel();
         setYearJComboModel();
@@ -198,20 +208,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jbtnAddHolidays = new javax.swing.JButton();
         jpnlHolidaySchedule = new javax.swing.JPanel();
-        jlblHolidayStartDate = new javax.swing.JLabel();
-        jcmbHolidayStartDateMonth = new javax.swing.JComboBox<>();
-        jcmbHolidayStartDateDay = new javax.swing.JComboBox<>();
-        jlblHolidayEndDate = new javax.swing.JLabel();
-        jcmbFirstQuarterEndDateMonth1 = new javax.swing.JComboBox<>();
-        jcmbFirstQuarterEndDateDay1 = new javax.swing.JComboBox<>();
-        jlblStartDateMonth6 = new javax.swing.JLabel();
-        jlblStartDateDay6 = new javax.swing.JLabel();
-        jlblEndDateMonth6 = new javax.swing.JLabel();
-        jlblEndDateDay6 = new javax.swing.JLabel();
-        jcmbHolidayStartDateYear = new javax.swing.JComboBox<>();
-        jlblStartDateYear6 = new javax.swing.JLabel();
-        jcmbFirstQuarterEndDateYear1 = new javax.swing.JComboBox<>();
-        jlblEndDateYear6 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtblSchoolYearList = new javax.swing.JTable();
@@ -228,6 +224,8 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jbtnSaveHoliday = new javax.swing.JButton();
         jlblHolidayDescription = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jlstHolidayRecord = new javax.swing.JList<>();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setLayout(new java.awt.GridBagLayout());
@@ -1473,7 +1471,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jpnlHolidays.setBorder(javax.swing.BorderFactory.createTitledBorder("Holidays"));
         jpnlHolidays.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(100, 160));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(160, 200));
 
         jScrollPane3.setViewportView(jlstHolidays);
 
@@ -1482,6 +1480,11 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
         jbtnAddHolidays.setText("Add..");
+        jbtnAddHolidays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAddHolidaysActionPerformed(evt);
+            }
+        });
         jPanel6.add(jbtnAddHolidays, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1491,187 +1494,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jpnlHolidays.add(jPanel6, gridBagConstraints);
 
         jpnlHolidaySchedule.setLayout(new java.awt.GridBagLayout());
-
-        jlblHolidayStartDate.setText("Start Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblHolidayStartDate, gridBagConstraints);
-
-        jcmbHolidayStartDateMonth.setMaximumRowCount(12);
-        jcmbHolidayStartDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
-        jcmbHolidayStartDateMonth.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbHolidayStartDateMonthItemStateChanged(evt);
-            }
-        });
-        jcmbHolidayStartDateMonth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbHolidayStartDateMonthActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jcmbHolidayStartDateMonth, gridBagConstraints);
-
-        jcmbHolidayStartDateDay.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbHolidayStartDateDayItemStateChanged(evt);
-            }
-        });
-        jcmbHolidayStartDateDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbHolidayStartDateDayActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jcmbHolidayStartDateDay, gridBagConstraints);
-
-        jlblHolidayEndDate.setText("End Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblHolidayEndDate, gridBagConstraints);
-
-        jcmbFirstQuarterEndDateMonth1.setMaximumRowCount(12);
-        jcmbFirstQuarterEndDateMonth1.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
-        jcmbFirstQuarterEndDateMonth1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbFirstQuarterEndDateMonth1ItemStateChanged(evt);
-            }
-        });
-        jcmbFirstQuarterEndDateMonth1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbFirstQuarterEndDateMonth1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jcmbFirstQuarterEndDateMonth1, gridBagConstraints);
-
-        jcmbFirstQuarterEndDateDay1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbFirstQuarterEndDateDay1ItemStateChanged(evt);
-            }
-        });
-        jcmbFirstQuarterEndDateDay1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbFirstQuarterEndDateDay1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jcmbFirstQuarterEndDateDay1, gridBagConstraints);
-
-        jlblStartDateMonth6.setText("Month");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblStartDateMonth6, gridBagConstraints);
-
-        jlblStartDateDay6.setText("Day");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblStartDateDay6, gridBagConstraints);
-
-        jlblEndDateMonth6.setText("Month");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblEndDateMonth6, gridBagConstraints);
-
-        jlblEndDateDay6.setText("Day");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblEndDateDay6, gridBagConstraints);
-
-        jcmbHolidayStartDateYear.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbHolidayStartDateYearItemStateChanged(evt);
-            }
-        });
-        jcmbHolidayStartDateYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbHolidayStartDateYearActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jcmbHolidayStartDateYear, gridBagConstraints);
-
-        jlblStartDateYear6.setText("Year");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblStartDateYear6, gridBagConstraints);
-
-        jcmbFirstQuarterEndDateYear1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbFirstQuarterEndDateYear1ItemStateChanged(evt);
-            }
-        });
-        jcmbFirstQuarterEndDateYear1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbFirstQuarterEndDateYear1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jcmbFirstQuarterEndDateYear1, gridBagConstraints);
-
-        jlblEndDateYear6.setText("Year");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidaySchedule.add(jlblEndDateYear6, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -1779,6 +1601,11 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jPanel2.add(jScrollPane4, gridBagConstraints);
 
         jbtnSaveHoliday.setText("Save");
+        jbtnSaveHoliday.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSaveHolidayActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -1794,9 +1621,21 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jPanel2.add(jlblHolidayDescription, gridBagConstraints);
 
         jTabbedPane3.addTab("Creation", jPanel2);
+
+        jScrollPane5.setPreferredSize(new java.awt.Dimension(100, 147));
+
+        jScrollPane5.setViewportView(jlstHolidayRecord);
+
+        jPanel7.add(jScrollPane5);
+
         jTabbedPane3.addTab("Record", jPanel7);
 
-        jpnlHolidaySets.add(jTabbedPane3, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidaySets.add(jTabbedPane3, gridBagConstraints);
 
         jTabbedPane2.addTab("Holiday", jpnlHolidaySets);
 
@@ -1848,7 +1687,9 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private Quarter getFirstQuarterSchedule() {
         int sMonth, sDay, sYear, eMonth, eDay, eYear;
         String strSdate, strEdate;
-        Date startDate, endDate;
+        Date startDate;
+        Date endDate;
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
 
         sMonth = Integer.parseInt(jcmbFirstQuarterStartDateMonth.getSelectedItem().toString());
         sDay = Integer.parseInt(jcmbFirstQuarterStartDateDay.getSelectedItem().toString());
@@ -1873,7 +1714,9 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private Quarter getSecondQuarterSchedule() {
         int sMonth, sDay, sYear, eMonth, eDay, eYear;
         String strSdate, strEdate;
-        Date startDate, endDate;
+        Date startDate;
+        Date endDate;
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
 
         sMonth = Integer.parseInt(jcmbSecondQuarterStartDateMonth.getSelectedItem().toString());
         sDay = Integer.parseInt(jcmbSecondQuarterStartDateDay.getSelectedItem().toString());
@@ -1898,7 +1741,9 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private Quarter getThirdQuarterSchedule() {
         int sMonth, sDay, sYear, eMonth, eDay, eYear;
         String strSdate, strEdate;
-        Date startDate, endDate;
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        Date startDate;
+        Date endDate;
 
         sMonth = Integer.parseInt(jcmbThirdQuarterStartDateMonth.getSelectedItem().toString());
         sDay = Integer.parseInt(jcmbThirdQuarterStartDateDay.getSelectedItem().toString());
@@ -1923,7 +1768,9 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private Quarter getFourthQuarterSchedule() {
         int sMonth, sDay, sYear, eMonth, eDay, eYear;
         String strSdate, strEdate;
-        Date startDate, endDate;
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        Date startDate;
+        Date endDate;
 
         sMonth = Integer.parseInt(jcmbFourthQuarterStartDateMonth.getSelectedItem().toString());
         sDay = Integer.parseInt(jcmbFourthQuarterStartDateDay.getSelectedItem().toString());
@@ -1954,45 +1801,58 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please fill out all drop down.");
         } else {
             // SCHOOL YEAR START DATE
-            int schoolYearStartDateYear = Integer.parseInt(jcmbSchoolYearStartDateYear.getSelectedItem().toString());
-            int schoolYearStartDateMonth = Integer.parseInt(jcmbSchoolYearStartDateMonth.getSelectedItem().toString());
-            int schoolYearStartDateDay = Integer.parseInt(jcmbSchoolYearStartDateDay.getSelectedItem().toString());
-            String stringSchoolYearStartDate = schoolYearStartDateYear + "-" + schoolYearStartDateMonth + "-" + schoolYearStartDateDay;
-            JOptionPane.showMessageDialog(null, stringSchoolYearStartDate);
-            Date finalSchoolYearStartDate = java.sql.Date.valueOf(stringSchoolYearStartDate);
-            schoolYear.setStart_date(finalSchoolYearStartDate);
+            String syDate;
+            int syStartYear = Integer.parseInt(jcmbSchoolYearStartDateYear.getSelectedItem().toString());
+            int syStartMonth = Integer.parseInt(jcmbSchoolYearStartDateMonth.getSelectedItem().toString());
+            int syStartDay = Integer.parseInt(jcmbSchoolYearStartDateDay.getSelectedItem().toString());
+            syDate = syStartYear + "-" + syStartMonth + "-" + syStartDay;
+
+            System.out.println("@jbtnCreate: SyStartDate: " + syDate);
+            schoolYear.setStart_date(java.sql.Date.valueOf(syDate));
 
             // SCHOOL YEAR END DATE
-            int schoolYearEndDateYear = Integer.parseInt(jcmbSchoolYearClosingDateYear.getSelectedItem().toString());
-            int schoolYearEndDateMonth = Integer.parseInt(jcmbSchoolYearEndDateMonth.getSelectedItem().toString());
-            int schoolYearEndDateDay = Integer.parseInt(jcmbSchoolYearEndDateDay.getSelectedItem().toString());
-            String stringSchoolYearEndDate = schoolYearEndDateYear + "-" + schoolYearEndDateMonth + "-" + schoolYearEndDateDay;
-            Date finalSchoolYearEndDate = java.sql.Date.valueOf(stringSchoolYearEndDate);
-            schoolYear.setEnd_date(finalSchoolYearEndDate);
+            int syEndYear, syEndMonth, syEndDay;
+            String strEndDate;
+            Date endDate;
+
+            syEndYear = Integer.parseInt(jcmbSchoolYearClosingDateYear.getSelectedItem().toString());
+            syEndMonth = Integer.parseInt(jcmbSchoolYearEndDateMonth.getSelectedItem().toString());
+            syEndDay = Integer.parseInt(jcmbSchoolYearEndDateDay.getSelectedItem().toString());
+            strEndDate = syEndYear + "-" + syEndMonth + "-" + syEndDay;
+            endDate = java.sql.Date.valueOf(strEndDate);
+            schoolYear.setEnd_date(endDate);
         }
 
         if (JPanelGUIUtil.hasNullComboBox(jpnlEnrollmentSchedule)) {
             JOptionPane.showMessageDialog(null, "Please fill out all drop down.");
         } else {
             // SCHOOL YEAR ENROLLMENT OPENING DATE
+            DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
             Enrollment enrollment = new Enrollment();
+            int openingYear, openingMonth, openingDay;
+            String strOpenDate;
+            Date openDate;
 
-            int enrollmentOpeningDateYear = Integer.parseInt(jcmbEnrollmentOpeningDateYear.getSelectedItem().toString());
-            int enrollmentOpeningDateMonth = Integer.parseInt(jcmbEnrollmentOpeningDateMonth.getSelectedItem().toString());
-            int enrollmentOpeningDateDay = Integer.parseInt(jcmbEnrollmentOpeningDateDay.getSelectedItem().toString());
-            String stringEnrollmentOpeningDate = enrollmentOpeningDateYear + "-" + enrollmentOpeningDateMonth + "-" + enrollmentOpeningDateDay;
-            Date finalEnrollmentOpeningDate = java.sql.Date.valueOf(stringEnrollmentOpeningDate);
-            JOptionPane.showMessageDialog(null, finalEnrollmentOpeningDate);
-            enrollment.setOpeningDate(finalEnrollmentOpeningDate);
+            openingYear = Integer.parseInt(jcmbEnrollmentOpeningDateYear.getSelectedItem().toString());
+            openingMonth = Integer.parseInt(jcmbEnrollmentOpeningDateMonth.getSelectedItem().toString());
+            openingDay = Integer.parseInt(jcmbEnrollmentOpeningDateDay.getSelectedItem().toString());
+            strOpenDate = openingYear + "-" + openingMonth + "-" + openingDay;
+            openDate = java.sql.Date.valueOf(strOpenDate);
+            JOptionPane.showMessageDialog(null, openDate);
+            enrollment.setOpeningDate(openDate);
 
             // SCHOOL YEAR ENROLLMENT CLOSING DATE 
-            int enrollmentClosingDateYear = Integer.parseInt(jcmbEnrollmentClosingDateYear.getSelectedItem().toString());
-            int enrollmentClosingDateMonth = Integer.parseInt(jcmbEnrollmentClosingDateMonth.getSelectedItem().toString());
-            int enrollmentClosingDateDay = Integer.parseInt(jcmbEnrollmentClosingDateDay.getSelectedItem().toString());
-            String stringEnrollmentClosingDate = enrollmentClosingDateYear + "-" + enrollmentClosingDateMonth + "-" + enrollmentClosingDateDay;
-            Date finalEnrollmentClosingDate = java.sql.Date.valueOf(stringEnrollmentClosingDate);
-            JOptionPane.showMessageDialog(null, finalEnrollmentClosingDate);
-            enrollment.setClosingDate(finalEnrollmentClosingDate);
+            int closingYear, closingMonth, closingDay;
+            String strCloseDate;
+            Date closeDate;
+
+            closingYear = Integer.parseInt(jcmbEnrollmentClosingDateYear.getSelectedItem().toString());
+            closingMonth = Integer.parseInt(jcmbEnrollmentClosingDateMonth.getSelectedItem().toString());
+            closingDay = Integer.parseInt(jcmbEnrollmentClosingDateDay.getSelectedItem().toString());
+            strCloseDate = closingYear + "-" + closingMonth + "-" + closingDay;
+            closeDate = java.sql.Date.valueOf(strCloseDate);
+            JOptionPane.showMessageDialog(null, closeDate);
+            enrollment.setClosingDate(closeDate);
 
             schoolYear.setEnrollment(enrollment);
         }
@@ -2086,9 +1946,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
                 && (jcmbFirstQuarterStartDateYear.getSelectedIndex() > -1)) {
 
             int selectedFirstSemStartDateMonth = Integer.parseInt(jcmbFirstQuarterStartDateMonth.getSelectedItem().toString());
-//            JOptionPane.showMessageDialog(null,"1st Sem Month: "+selectedFirstSemStartDateMonth);
             int selectedFirstSemStartDateYear = Integer.parseInt(jcmbFirstQuarterStartDateYear.getSelectedItem().toString());
-//            JOptionPane.showMessageDialog(null,"1st Sem Year: "+selectedFirstSemStartDateYear);
             jcmbFirstQuarterStartDateDay.setModel(CalendarML.getDaysOfMonth(selectedFirstSemStartDateMonth, selectedFirstSemStartDateYear));
             jcmbFirstQuarterStartDateDay.setSelectedIndex(-1);
         }
@@ -2221,7 +2079,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jcmbSchoolYearStartDateYear.setSelectedIndex(-1);
         jcmbEnrollmentOpeningDateYear.setModel(enrollmentOpeningDateYearModel);
         jcmbEnrollmentOpeningDateYear.setSelectedIndex(-1);
-        jcmbSchoolYearClosingDateYear.setModel(CalendarML.getNYearToNYears(SYEND_MIN_YEAR, SYEND_MAX_YEAR+1));
+        jcmbSchoolYearClosingDateYear.setModel(CalendarML.getNYearToNYears(SYEND_MIN_YEAR, SYEND_MAX_YEAR + 1));
         jcmbSchoolYearClosingDateYear.setSelectedIndex(-1);
         jcmbEnrollmentClosingDateYear.setModel(CalendarML.getNYearToNYears(SYSTART_MIN_YEAR, SYSTART_MAX_YEAR));
         jcmbEnrollmentClosingDateYear.setSelectedIndex(-1);
@@ -2331,7 +2189,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
 
         if (jcmbEnrollmentOpeningDateYear.getSelectedIndex() > -1) {
             int selectedYear = Integer.parseInt(jcmbEnrollmentOpeningDateYear.getSelectedItem().toString());
-//            JOptionPane.showMessageDialog(null,"Selected Year: "+selectedYear);
             jcmbEnrollmentClosingDateYear.setSelectedItem(selectedYear);
         }
     }//GEN-LAST:event_jcmbEnrollmentOpeningDateYearItemStateChanged
@@ -2774,53 +2631,38 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jsprClassHoursStateChanged
 
-    private void jcmbHolidayStartDateMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbHolidayStartDateMonthItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbHolidayStartDateMonthItemStateChanged
+    private void loadJListHolidayRecord(){
+        DefaultListModel dlm = new DefaultListModel();
+        List<Holiday> holidays;
+        holidays = HOLIDAYDAOIMPL.get();
+        for(Holiday h : holidays){
+            dlm.addElement(h.getName());
+        }
+        jlstHolidayRecord.setModel(dlm);
+    }
+    
+    private void jbtnSaveHolidayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSaveHolidayActionPerformed
+        String holidayName = jtfHolidayName.getText();
+        String holidayDescription = jtaHolidayDescription.getText();
+        Holiday holiday = new Holiday();
+        holiday.setName(holidayName);
+        holiday.setDescription(holidayDescription);
+        boolean isAdded = HOLIDAYDAOIMPL.add(holiday);
+        if (isAdded) {
+            JOptionPane.showMessageDialog(null, "Successfully Added");
+            loadJListHolidayRecord();
+            jtfHolidayName.setText("");
+            jtaHolidayDescription.setText("");
+        }
+    }//GEN-LAST:event_jbtnSaveHolidayActionPerformed
 
-    private void jcmbHolidayStartDateMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbHolidayStartDateMonthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbHolidayStartDateMonthActionPerformed
-
-    private void jcmbHolidayStartDateDayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbHolidayStartDateDayItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbHolidayStartDateDayItemStateChanged
-
-    private void jcmbHolidayStartDateDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbHolidayStartDateDayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbHolidayStartDateDayActionPerformed
-
-    private void jcmbFirstQuarterEndDateMonth1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbFirstQuarterEndDateMonth1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbFirstQuarterEndDateMonth1ItemStateChanged
-
-    private void jcmbFirstQuarterEndDateMonth1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbFirstQuarterEndDateMonth1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbFirstQuarterEndDateMonth1ActionPerformed
-
-    private void jcmbFirstQuarterEndDateDay1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbFirstQuarterEndDateDay1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbFirstQuarterEndDateDay1ItemStateChanged
-
-    private void jcmbFirstQuarterEndDateDay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbFirstQuarterEndDateDay1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbFirstQuarterEndDateDay1ActionPerformed
-
-    private void jcmbHolidayStartDateYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbHolidayStartDateYearItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbHolidayStartDateYearItemStateChanged
-
-    private void jcmbHolidayStartDateYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbHolidayStartDateYearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbHolidayStartDateYearActionPerformed
-
-    private void jcmbFirstQuarterEndDateYear1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbFirstQuarterEndDateYear1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbFirstQuarterEndDateYear1ItemStateChanged
-
-    private void jcmbFirstQuarterEndDateYear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbFirstQuarterEndDateYear1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbFirstQuarterEndDateYear1ActionPerformed
+    private void jbtnAddHolidaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddHolidaysActionPerformed
+        AddHolidayToSchoolYear a = new AddHolidayToSchoolYear(null, true);
+        a.setPreferredSize(new Dimension(410,310));
+        a.pack();
+        a.setLocationRelativeTo(null);
+        a.setVisible(true);
+    }//GEN-LAST:event_jbtnAddHolidaysActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2838,6 +2680,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -2851,11 +2694,8 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcmbEnrollmentOpeningDateMonth;
     private javax.swing.JComboBox<String> jcmbEnrollmentOpeningDateYear;
     private javax.swing.JComboBox<String> jcmbFirstQuarterEndDateDay;
-    private javax.swing.JComboBox<String> jcmbFirstQuarterEndDateDay1;
     private javax.swing.JComboBox<String> jcmbFirstQuarterEndDateMonth;
-    private javax.swing.JComboBox<String> jcmbFirstQuarterEndDateMonth1;
     private javax.swing.JComboBox<String> jcmbFirstQuarterEndDateYear;
-    private javax.swing.JComboBox<String> jcmbFirstQuarterEndDateYear1;
     private javax.swing.JComboBox<String> jcmbFirstQuarterStartDateDay;
     private javax.swing.JComboBox<String> jcmbFirstQuarterStartDateMonth;
     private javax.swing.JComboBox<String> jcmbFirstQuarterStartDateYear;
@@ -2865,9 +2705,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcmbFourthQuarterStartDateDay;
     private javax.swing.JComboBox<String> jcmbFourthQuarterStartDateMonth;
     private javax.swing.JComboBox<String> jcmbFourthQuarterStartDateYear;
-    private javax.swing.JComboBox<String> jcmbHolidayStartDateDay;
-    private javax.swing.JComboBox<String> jcmbHolidayStartDateMonth;
-    private javax.swing.JComboBox<String> jcmbHolidayStartDateYear;
     private javax.swing.JComboBox<String> jcmbSchoolYearClosingDateYear;
     private javax.swing.JComboBox<String> jcmbSchoolYearEndDateDay;
     private javax.swing.JComboBox<String> jcmbSchoolYearEndDateMonth;
@@ -2898,27 +2735,22 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblEndDateDay3;
     private javax.swing.JLabel jlblEndDateDay4;
     private javax.swing.JLabel jlblEndDateDay5;
-    private javax.swing.JLabel jlblEndDateDay6;
     private javax.swing.JLabel jlblEndDateMonth;
     private javax.swing.JLabel jlblEndDateMonth1;
     private javax.swing.JLabel jlblEndDateMonth2;
     private javax.swing.JLabel jlblEndDateMonth3;
     private javax.swing.JLabel jlblEndDateMonth4;
     private javax.swing.JLabel jlblEndDateMonth5;
-    private javax.swing.JLabel jlblEndDateMonth6;
     private javax.swing.JLabel jlblEndDateYear;
     private javax.swing.JLabel jlblEndDateYear1;
     private javax.swing.JLabel jlblEndDateYear2;
     private javax.swing.JLabel jlblEndDateYear3;
     private javax.swing.JLabel jlblEndDateYear4;
     private javax.swing.JLabel jlblEndDateYear5;
-    private javax.swing.JLabel jlblEndDateYear6;
     private javax.swing.JLabel jlblEnrollmentClosingDate;
     private javax.swing.JLabel jlblEnrollmentOpeningDate;
     private javax.swing.JLabel jlblHolidayDescription;
-    private javax.swing.JLabel jlblHolidayEndDate;
     private javax.swing.JLabel jlblHolidayName;
-    private javax.swing.JLabel jlblHolidayStartDate;
     private javax.swing.JLabel jlblSchoolYearTo;
     private javax.swing.JLabel jlblStartDate;
     private javax.swing.JLabel jlblStartDate1;
@@ -2931,22 +2763,20 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblStartDateDay3;
     private javax.swing.JLabel jlblStartDateDay4;
     private javax.swing.JLabel jlblStartDateDay5;
-    private javax.swing.JLabel jlblStartDateDay6;
     private javax.swing.JLabel jlblStartDateMonth;
     private javax.swing.JLabel jlblStartDateMonth1;
     private javax.swing.JLabel jlblStartDateMonth2;
     private javax.swing.JLabel jlblStartDateMonth3;
     private javax.swing.JLabel jlblStartDateMonth4;
     private javax.swing.JLabel jlblStartDateMonth5;
-    private javax.swing.JLabel jlblStartDateMonth6;
     private javax.swing.JLabel jlblStartDateYear;
     private javax.swing.JLabel jlblStartDateYear1;
     private javax.swing.JLabel jlblStartDateYear2;
     private javax.swing.JLabel jlblStartDateYear3;
     private javax.swing.JLabel jlblStartDateYear4;
     private javax.swing.JLabel jlblStartDateYear5;
-    private javax.swing.JLabel jlblStartDateYear6;
-    private javax.swing.JList<String> jlstHolidays;
+    private javax.swing.JList<String> jlstHolidayRecord;
+    public static javax.swing.JList<String> jlstHolidays;
     private javax.swing.JPanel jpnlClassHours;
     private javax.swing.JPanel jpnlEnrollmentSchedule;
     private javax.swing.JPanel jpnlFirstQuarterSchedule;

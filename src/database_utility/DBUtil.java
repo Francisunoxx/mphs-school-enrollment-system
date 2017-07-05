@@ -92,7 +92,7 @@ public class DBUtil {
         File f = new File(".\\src\\dbConnection.cfg");
 
         if (f.exists() && !f.isDirectory()) {
-            JOptionPane.showMessageDialog(null, "Database connection configuration found. ");
+            System.out.println( "Database connection configuration found. ");
         } else {
             JOptionPane.showMessageDialog(null, "No database connection configuration found. ");
             DBConnectionForm databaseConnectionSettings = new DBConnectionForm(null, true);

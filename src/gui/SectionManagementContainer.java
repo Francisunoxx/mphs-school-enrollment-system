@@ -449,7 +449,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
         jpnlFilter.add(jLabel7, gridBagConstraints);
 
         jcmbSchoolYearFrom.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jcmbSchoolYearFrom.setModel(new SchoolYearML().getAllSchoolYearStart());
+        jcmbSchoolYearFrom.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearStart());
         jcmbSchoolYearFrom.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcmbSchoolYearFromItemStateChanged(evt);
@@ -466,7 +466,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
         jpnlFilter.add(jLabel8, gridBagConstraints);
 
         jcmbSchoolYearTo.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jcmbSchoolYearTo.setModel(new SchoolYearML().getAllSchoolYearEnd());
+        jcmbSchoolYearTo.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearEnd());
         jcmbSchoolYearTo.setEnabled(false);
         jcmbSchoolYearTo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -486,7 +486,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
         jpnlFilter.add(jLabel9, gridBagConstraints);
 
         jcmbGradeLevelFilter.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jcmbGradeLevelFilter.setModel(new GradeLevelML().getAllGradeLevels());
+        jcmbGradeLevelFilter.setModel(new component_model_loader.GradeLevelML().getAllGradeLevels());
         jcmbGradeLevelFilter.setRenderer(new JComboBoxRenderer_GradeLevel());
         jcmbGradeLevelFilter.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

@@ -85,7 +85,6 @@ public class PaySelectedForm extends javax.swing.JDialog {
         jlblDateText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(320, 398));
 
         jpnlPaySelected.setPreferredSize(new java.awt.Dimension(350, 398));
         jpnlPaySelected.setLayout(new java.awt.GridBagLayout());

@@ -247,7 +247,7 @@ public class ScheduleManagementContainer extends javax.swing.JPanel {
         jPanel7.add(jlblGradeLevel, gridBagConstraints);
 
         jcmbGradeLevel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcmbGradeLevel.setModel(new GradeLevelML().getAllGradeLevels());
+        jcmbGradeLevel.setModel(new component_model_loader.GradeLevelML().getAllGradeLevels());
         jcmbGradeLevel.setRenderer(new JComboBoxRenderer_GradeLevel());
         jcmbGradeLevel.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -271,7 +271,7 @@ public class ScheduleManagementContainer extends javax.swing.JPanel {
         jPanel7.add(jlblSection, gridBagConstraints);
 
         jcmbSection.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcmbSection.setModel(new SectionML().getSectionForJComboBox());
+        jcmbSection.setModel(new component_model_loader.SectionML().getSectionForJComboBox());
         jcmbSection.setMinimumSize(new java.awt.Dimension(100, 20));
         jcmbSection.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -306,7 +306,7 @@ public class ScheduleManagementContainer extends javax.swing.JPanel {
         jPanel7.add(jcmbSubject, gridBagConstraints);
 
         jcmbSchoolYearFrom.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcmbSchoolYearFrom.setModel(new SchoolYearML().getAllSchoolYearStart());
+        jcmbSchoolYearFrom.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearStart());
         jcmbSchoolYearFrom.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcmbSchoolYearFromItemStateChanged(evt);
@@ -338,7 +338,7 @@ public class ScheduleManagementContainer extends javax.swing.JPanel {
         jPanel7.add(jLabel9, gridBagConstraints);
 
         jcmbSchoolYearTo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcmbSchoolYearTo.setModel(new SchoolYearML().getAllSchoolYearEnd());
+        jcmbSchoolYearTo.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearEnd());
         jcmbSchoolYearTo.setEnabled(false);
         jcmbSchoolYearTo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

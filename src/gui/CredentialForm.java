@@ -339,7 +339,7 @@ public class CredentialForm extends javax.swing.JPanel {
         jlblYearCreated.setText("Year Created");
         jpnlSortCredentialList.add(jlblYearCreated, new java.awt.GridBagConstraints());
 
-        jcmbYearCreated.setModel(new SchoolYearML().getAllSchoolYearStart());
+        jcmbYearCreated.setModel(new component_model_loader.SchoolYearML().getAllSchoolYearStart());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jpnlSortCredentialList.add(jcmbYearCreated, gridBagConstraints);

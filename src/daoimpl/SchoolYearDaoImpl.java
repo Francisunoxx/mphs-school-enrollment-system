@@ -3,13 +3,18 @@ package daoimpl;
 import constants.SchoolYearTable;
 import database_utility.DBType;
 import database_utility.DBUtil;
-import java.sql.*;
+//import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.SchoolYear;
 import model.Quarter;
 import dao.ISchoolYear;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 
 
 public class SchoolYearDaoImpl implements ISchoolYear{
@@ -215,28 +220,41 @@ public class SchoolYearDaoImpl implements ISchoolYear{
             con.setAutoCommit(false); 
             
             //Add School Year
-            csa.setInt(1, aSchoolYear.getYearFrom());
-            csa.setInt(2, aSchoolYear.getYearTo());
-            csa.setDate(3, (Date) aSchoolYear.getStart_date());
-            csa.setDate(4, (Date) aSchoolYear.getEnd_date());
-            csa.setDate(5, (Date) aSchoolYear.getEnrollment().getOpeningDate());
-            csa.setDate(6, (Date) aSchoolYear.getEnrollment().getClosingDate());
-            csa.registerOutParameter(7, java.sql.Types.INTEGER); //schoolyear id of added sy
+                String syStartDate = aSchoolYear.getStart_date().toString();
+                String syEndDate = aSchoolYear.getEnd_date().toString();
+                String enrollmentOpenDate = aSchoolYear.getEnrollment().getOpeningDate().toString();
+                String enrollmentClosingDate = aSchoolYear.getEnrollment().getClosingDate().toString();
+                
+                System.out.println("@addSchoolYear StartDate :  "+syStartDate);
+                System.out.println("@addSchoolYear EndDate :  "+syEndDate);
+                System.out.println("@addSchoolYear enrollmentOpenDate :  "+enrollmentOpenDate);
+                System.out.println("@addSchoolYear enrollmentClosingDate :  "+enrollmentClosingDate);
+
+                csa.setInt(1, aSchoolYear.getYearFrom());
+                csa.setInt(2, aSchoolYear.getYearTo());
+                csa.setDate(3, java.sql.Date.valueOf(syStartDate));
+                csa.setDate(4, java.sql.Date.valueOf(syEndDate));
+                csa.setDate(5, java.sql.Date.valueOf(enrollmentOpenDate));
+                csa.setDate(6, (java.sql.Date.valueOf(enrollmentClosingDate)));
+                csa.registerOutParameter(7, java.sql.Types.INTEGER); //schoolyear id of added sy
             
             csa.executeUpdate();
             schoolYearId = csa.getInt(7);
             
             //Add Semesters of SchoolYear
-            for(int i=0; i<quarterCount; i++){
-                Quarter s = list.get(i);
-                csb.setInt(1, s.getQuarterNo());
-                csb.setString(2, s.getDescription());
-                csb.setDate(3, (Date) s.getStartDate());
-                csb.setDate(4, (Date) s.getEndDate());
-                csb.setInt(5, schoolYearId);
-                
-                csb.executeUpdate();
-            }
+                for (int i = 0; i < quarterCount; i++) {
+                    Quarter s = list.get(i);
+                    String quarterStartDate = s.getStartDate().toString().trim();
+                    String quarterEndDate = s.getEndDate().toString().trim();
+
+                    csb.setInt(1, s.getQuarterNo());
+                    csb.setString(2, s.getDescription());
+                    csb.setDate(3, java.sql.Date.valueOf(quarterStartDate));
+                    csb.setDate(4, java.sql.Date.valueOf(quarterEndDate));
+                    csb.setInt(5, schoolYearId);
+
+                    csb.executeUpdate();
+                }
             
             con.commit(); 
             //End Of Transaction

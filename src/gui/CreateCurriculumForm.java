@@ -121,7 +121,7 @@ public class CreateCurriculumForm extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel9.add(jLabel7, gridBagConstraints);
 
-        jcmbGradeLevel.setModel(new GradeLevelML().getAllGradeLevels());
+        jcmbGradeLevel.setModel(new component_model_loader.GradeLevelML().getAllGradeLevels());
         jcmbGradeLevel.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcmbGradeLevelItemStateChanged(evt);

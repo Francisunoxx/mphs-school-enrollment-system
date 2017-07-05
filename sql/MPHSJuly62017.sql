@@ -58,7 +58,7 @@ CREATE TABLE `balance_breakdown_fee` (
   `amount` decimal(10,2) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`balance_breakdown_fee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,6 @@ CREATE TABLE `balance_breakdown_fee` (
 
 LOCK TABLES `balance_breakdown_fee` WRITE;
 /*!40000 ALTER TABLE `balance_breakdown_fee` DISABLE KEYS */;
-INSERT INTO `balance_breakdown_fee` VALUES (47,'Cash',8923.50,'2017-06-30 12:24:20'),(48,'Field Trip',756.00,'2017-06-30 12:24:20'),(49,'Downpayment',5000.00,'2017-06-30 13:10:57'),(50,'Semester 1',2865.17,'2017-06-30 13:10:57'),(51,'Semester 2',2865.17,'2017-06-30 13:10:57'),(52,'Field Trip',756.00,'2017-06-30 13:10:57');
 /*!40000 ALTER TABLE `balance_breakdown_fee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,7 +503,7 @@ CREATE TABLE `fee_mt` (
   UNIQUE KEY `fee_name_UNIQUE` (`fee_name`),
   KEY `fk_fee_mtTABLE_fee_category_idCOL_idx` (`fee_category_id`),
   CONSTRAINT `fk_fee_mtTABLE_fee_category_idCOL` FOREIGN KEY (`fee_category_id`) REFERENCES `fee_category_mt` (`fee_category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1 COMMENT='MASTER';
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=latin1 COMMENT='MASTER';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -513,7 +512,7 @@ CREATE TABLE `fee_mt` (
 
 LOCK TABLES `fee_mt` WRITE;
 /*!40000 ALTER TABLE `fee_mt` DISABLE KEYS */;
-INSERT INTO `fee_mt` VALUES (90,'Downpayment','Downpayment amount for all grade levels',4),(91,'Tuition','Tuition Fee ',1),(92,'Energy Fee','Energy Fee',2),(93,'Field Trip','Field Trip',3),(94,'Sports Fee','Sports Fee',2),(95,'Clinic Fee','Clinic Fee',2),(96,'Bookk','Book',2),(97,'Sample','Sample Fee',2);
+INSERT INTO `fee_mt` VALUES (100,'Downpayment','Downpayment',4),(101,'Field Trip','Field Trip',2),(102,'Basic','Basic Fee',1),(103,'Sports Fee','Sports Fee',2),(104,'Energy Fee','Energy Fee',2),(105,'Club Fee','Club Fee',2),(106,'Comp Laboratory','Computer Laboratory',2),(107,'Tablet Fee','Tablet Fee',2);
 /*!40000 ALTER TABLE `fee_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -545,7 +544,7 @@ CREATE TABLE `fee_schoolyear_lt` (
 
 LOCK TABLES `fee_schoolyear_lt` WRITE;
 /*!40000 ALTER TABLE `fee_schoolyear_lt` DISABLE KEYS */;
-INSERT INTO `fee_schoolyear_lt` VALUES (90,5000.00,301,409,''),(90,5000.00,302,409,''),(90,5000.00,303,409,''),(90,5000.00,304,409,''),(90,5000.00,305,409,''),(90,5000.00,306,409,''),(90,5000.00,307,409,''),(90,5000.00,308,409,''),(90,5000.00,309,409,''),(90,5000.00,310,409,''),(90,5000.00,311,409,''),(91,8000.00,301,407,''),(91,8000.00,302,407,''),(91,8000.00,303,407,''),(91,8000.00,304,407,''),(91,8000.00,305,407,''),(91,8000.00,306,407,''),(91,8000.00,307,407,''),(91,8000.00,308,407,''),(91,8000.00,309,407,''),(91,8000.00,310,407,''),(91,8000.00,311,407,''),(92,2500.00,301,407,''),(92,2500.00,302,407,''),(92,2500.00,303,407,''),(92,2500.00,304,407,''),(92,2500.00,305,407,''),(92,2500.00,306,407,''),(92,2500.00,307,407,''),(92,2500.00,308,407,''),(92,2500.00,309,407,''),(92,2500.00,310,407,''),(92,2500.00,311,407,''),(93,756.00,301,407,''),(93,756.00,302,407,''),(93,756.00,303,407,''),(93,756.00,304,407,''),(93,756.00,305,407,''),(93,756.00,306,407,''),(93,756.00,307,407,''),(93,756.00,308,407,''),(93,756.00,309,407,''),(93,756.00,310,407,''),(93,756.00,311,407,''),(94,3566.00,308,407,''),(95,1150.00,302,407,''),(95,1150.00,303,407,''),(95,1150.00,304,407,''),(95,1150.00,305,407,''),(95,1150.00,306,407,''),(95,1150.00,307,407,''),(96,500.00,301,407,''),(96,500.00,302,407,''),(96,500.00,303,407,''),(96,500.00,304,407,''),(96,500.00,305,407,''),(96,500.00,306,407,''),(96,500.00,307,407,''),(96,500.00,308,407,''),(96,500.00,309,407,''),(96,500.00,310,407,''),(96,500.00,311,407,''),(97,500.00,301,407,''),(97,500.00,302,407,''),(97,500.00,303,407,''),(97,500.00,304,407,''),(97,500.00,305,407,''),(97,500.00,306,407,''),(97,500.00,307,407,'');
+INSERT INTO `fee_schoolyear_lt` VALUES (100,8000.00,301,407,''),(100,8000.00,302,407,''),(100,8000.00,303,407,''),(100,8000.00,304,407,''),(100,8000.00,305,407,''),(100,8000.00,306,407,''),(100,8000.00,307,407,''),(100,8000.00,308,407,''),(100,8000.00,309,407,''),(100,8000.00,310,407,''),(100,8000.00,311,407,''),(101,500.00,301,407,''),(101,250.00,302,407,''),(101,350.00,303,407,''),(101,400.00,304,407,''),(101,275.00,305,407,''),(101,500.00,306,407,''),(101,600.00,307,407,''),(101,390.00,308,407,''),(101,755.00,309,407,''),(101,233.00,310,407,''),(101,555.00,311,407,''),(102,10000.00,301,407,''),(102,12500.00,302,407,''),(102,12500.00,303,407,''),(102,12500.00,304,407,''),(102,12500.00,305,407,''),(102,12500.00,306,407,''),(102,12500.00,307,407,''),(102,12500.00,308,407,''),(102,12500.00,309,407,''),(102,12500.00,310,407,''),(102,12500.00,311,407,''),(103,250.00,301,407,''),(103,500.00,302,407,''),(103,500.00,303,407,''),(103,500.00,304,407,''),(103,500.00,305,407,''),(103,500.00,306,407,''),(103,650.00,307,407,''),(103,650.00,308,407,''),(103,650.00,309,407,''),(103,650.00,310,407,''),(103,650.00,311,407,''),(104,1200.00,301,407,''),(104,1200.00,302,407,''),(104,1200.00,303,407,''),(104,1200.00,304,407,''),(104,1200.00,305,407,''),(104,1200.00,306,407,''),(104,1200.00,307,407,''),(104,1200.00,308,407,''),(104,1200.00,309,407,''),(104,1200.00,310,407,''),(104,1200.00,311,407,''),(105,250.00,301,407,''),(105,500.00,302,407,''),(105,500.00,303,407,''),(105,500.00,304,407,''),(105,500.00,305,407,''),(105,500.00,306,407,''),(105,500.00,307,407,''),(105,500.00,308,407,''),(105,500.00,309,407,''),(105,500.00,310,407,''),(105,500.00,311,407,''),(106,3000.00,301,407,''),(106,3000.00,302,407,''),(106,3000.00,303,407,''),(106,3000.00,304,407,''),(106,3000.00,305,407,''),(106,3000.00,306,407,''),(106,3000.00,307,407,''),(106,3000.00,308,407,''),(106,3000.00,309,407,''),(106,3000.00,310,407,''),(106,3000.00,311,407,''),(107,500.00,301,407,''),(107,500.00,302,407,''),(107,500.00,303,407,''),(107,500.00,304,407,''),(107,500.00,305,407,''),(107,500.00,306,407,''),(107,500.00,307,407,''),(107,500.00,308,407,''),(107,500.00,309,407,''),(107,500.00,310,407,''),(107,500.00,311,407,'');
 /*!40000 ALTER TABLE `fee_schoolyear_lt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -572,6 +571,33 @@ LOCK TABLES `gradelevel_mt` WRITE;
 /*!40000 ALTER TABLE `gradelevel_mt` DISABLE KEYS */;
 INSERT INTO `gradelevel_mt` VALUES (301,0,''),(302,1,''),(303,2,''),(304,3,''),(305,4,''),(306,5,''),(307,6,''),(308,7,''),(309,8,''),(310,9,''),(311,10,'');
 /*!40000 ALTER TABLE `gradelevel_mt` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `holiday_mt`
+--
+
+DROP TABLE IF EXISTS `holiday_mt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `holiday_mt` (
+  `holiday_id` int(11) NOT NULL AUTO_INCREMENT,
+  `holiday_name` varchar(45) NOT NULL,
+  `description` text,
+  `date_created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `isActive` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`holiday_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `holiday_mt`
+--
+
+LOCK TABLES `holiday_mt` WRITE;
+/*!40000 ALTER TABLE `holiday_mt` DISABLE KEYS */;
+INSERT INTO `holiday_mt` VALUES (1,'Rizal Day','Rizal Day','2017-07-05 06:09:29',''),(2,'Independence Day','Independence Day','2017-07-05 06:26:44','');
+/*!40000 ALTER TABLE `holiday_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -753,6 +779,34 @@ INSERT INTO `room_mt` VALUES (1,'Room Test','Bldg 5',30),(2,'Room 2','302',40);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `schoolyear_holiday_lt`
+--
+
+DROP TABLE IF EXISTS `schoolyear_holiday_lt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schoolyear_holiday_lt` (
+  `schoolyear_id` int(11) NOT NULL,
+  `holiday_id` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  KEY `fk_schoolyear_holiday_ltTABLE_schoolyear_idCOL_idx` (`schoolyear_id`),
+  KEY `fk_schoolyear_holiday_ltTABLE_holiday_idCOL_idx` (`holiday_id`),
+  CONSTRAINT `fk_schoolyear_holiday_ltTABLE_holiday_idCOL` FOREIGN KEY (`holiday_id`) REFERENCES `holiday_mt` (`holiday_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_schoolyear_holiday_ltTABLE_schoolyear_idCOL` FOREIGN KEY (`schoolyear_id`) REFERENCES `schoolyear_mt` (`schoolyear_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `schoolyear_holiday_lt`
+--
+
+LOCK TABLES `schoolyear_holiday_lt` WRITE;
+/*!40000 ALTER TABLE `schoolyear_holiday_lt` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schoolyear_holiday_lt` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `schoolyear_mt`
 --
 
@@ -767,6 +821,7 @@ CREATE TABLE `schoolyear_mt` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `isCurrentSchoolYear` bit(1) DEFAULT b'0',
+  `total_class_hours` int(11) DEFAULT NULL,
   PRIMARY KEY (`schoolyear_id`),
   UNIQUE KEY `yearFrom_UNIQUE` (`yearFrom`),
   UNIQUE KEY `yearTo_UNIQUE` (`yearTo`)
@@ -779,7 +834,7 @@ CREATE TABLE `schoolyear_mt` (
 
 LOCK TABLES `schoolyear_mt` WRITE;
 /*!40000 ALTER TABLE `schoolyear_mt` DISABLE KEYS */;
-INSERT INTO `schoolyear_mt` VALUES (407,2017,2018,'\0','2017-06-01','2018-03-01',''),(408,2018,2019,'\0','2018-06-01','2019-03-01','\0'),(409,2016,2017,'\0','2016-06-01','2017-05-30','\0'),(414,2019,2020,'\0','2019-01-04','2020-04-04','\0');
+INSERT INTO `schoolyear_mt` VALUES (407,2017,2018,'\0','2017-06-01','2018-03-01','',NULL),(408,2018,2019,'\0','2018-06-01','2019-03-01','\0',NULL),(409,2016,2017,'\0','2016-06-01','2017-05-30','\0',NULL),(414,2019,2020,'\0','2019-01-04','2020-04-04','\0',NULL);
 /*!40000 ALTER TABLE `schoolyear_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -905,32 +960,6 @@ INSERT INTO `schoolyear_student_lt` VALUES (407,16,303,NULL,'\0'),(407,18,308,NU
 UNLOCK TABLES;
 
 --
--- Table structure for table `section_gradelevel_lt`
---
-
-DROP TABLE IF EXISTS `section_gradelevel_lt`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `section_gradelevel_lt` (
-  `section_id` int(11) NOT NULL,
-  `gradelevel_id` int(11) NOT NULL,
-  KEY `fk_section_gradelevel_ltTABLE_section_idCOL_idx` (`section_id`),
-  KEY `fk_section_gradelevel_ltTABLE_gradelevel_idCOL_idx` (`gradelevel_id`),
-  CONSTRAINT `fk_section_gradelevel_ltTABLE_gradelevel_idCOL` FOREIGN KEY (`gradelevel_id`) REFERENCES `gradelevel_mt` (`gradelevel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_section_gradelevel_ltTABLE_section_idCOL` FOREIGN KEY (`section_id`) REFERENCES `section_mt` (`section_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `section_gradelevel_lt`
---
-
-LOCK TABLES `section_gradelevel_lt` WRITE;
-/*!40000 ALTER TABLE `section_gradelevel_lt` DISABLE KEYS */;
-/*!40000 ALTER TABLE `section_gradelevel_lt` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `section_mt`
 --
 
@@ -958,6 +987,41 @@ INSERT INTO `section_mt` VALUES (30,'First Section','','2017-03-22 05:32:06'),(
 UNLOCK TABLES;
 
 --
+-- Table structure for table `section_settings_lt`
+--
+
+DROP TABLE IF EXISTS `section_settings_lt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `section_settings_lt` (
+  `section_settings_id` int(11) NOT NULL AUTO_INCREMENT,
+  `section_id` int(11) NOT NULL,
+  `schoolyear_id` int(11) NOT NULL,
+  `gradelevel_id` int(11) NOT NULL,
+  `capacity` int(11) NOT NULL,
+  `sectioncategory_id` int(11) NOT NULL,
+  PRIMARY KEY (`section_settings_id`),
+  KEY `fk_section_settings_ltTABLE_section_idCOL_idx` (`section_id`),
+  KEY `fk_section_settings_ltTABLE_schoolyear_idCOL_idx` (`schoolyear_id`),
+  KEY `fk_section_settings_ltTABLE_gradelevel_idCOL_idx` (`gradelevel_id`),
+  KEY `fk_section_settings_ltTABLE_sectioncategory_idCOL_idx` (`sectioncategory_id`),
+  CONSTRAINT `fk_section_settings_ltTABLE_gradelevel_idCOL` FOREIGN KEY (`gradelevel_id`) REFERENCES `gradelevel_mt` (`gradelevel_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_section_settings_ltTABLE_schoolyear_idCOL` FOREIGN KEY (`schoolyear_id`) REFERENCES `schoolyear_mt` (`schoolyear_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_section_settings_ltTABLE_section_idCOL` FOREIGN KEY (`section_id`) REFERENCES `section_mt` (`section_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_section_settings_ltTABLE_sectioncategory_idCOL` FOREIGN KEY (`sectioncategory_id`) REFERENCES `sectioncategory_mt` (`sectioncategory_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `section_settings_lt`
+--
+
+LOCK TABLES `section_settings_lt` WRITE;
+/*!40000 ALTER TABLE `section_settings_lt` DISABLE KEYS */;
+/*!40000 ALTER TABLE `section_settings_lt` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `section_student`
 --
 
@@ -965,9 +1029,11 @@ DROP TABLE IF EXISTS `section_student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `section_student` (
+  `section_student_id` int(11) NOT NULL AUTO_INCREMENT,
   `section_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `schoolyear_id` int(11) NOT NULL,
+  PRIMARY KEY (`section_student_id`),
   KEY `fk_students_sectionTABLE_section_idCOL_idx` (`section_id`),
   KEY `fk_students_sectionTABLE_schoolyear_idCOL_idx` (`schoolyear_id`),
   CONSTRAINT `fk_section_studentTABLE_schoolyear_idCOL` FOREIGN KEY (`schoolyear_id`) REFERENCES `schoolyear_mt` (`schoolyear_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -982,6 +1048,33 @@ CREATE TABLE `section_student` (
 LOCK TABLES `section_student` WRITE;
 /*!40000 ALTER TABLE `section_student` DISABLE KEYS */;
 /*!40000 ALTER TABLE `section_student` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sectioncategory_mt`
+--
+
+DROP TABLE IF EXISTS `sectioncategory_mt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sectioncategory_mt` (
+  `sectioncategory_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(45) NOT NULL,
+  `grade_range_from` int(11) NOT NULL,
+  `grade_range_to` int(11) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`sectioncategory_id`),
+  UNIQUE KEY `category_UNIQUE` (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='table to store grade range value from and to, to classify students';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sectioncategory_mt`
+--
+
+LOCK TABLES `sectioncategory_mt` WRITE;
+/*!40000 ALTER TABLE `sectioncategory_mt` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sectioncategory_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1091,7 +1184,6 @@ CREATE TABLE `student_discount_lt` (
 
 LOCK TABLES `student_discount_lt` WRITE;
 /*!40000 ALTER TABLE `student_discount_lt` DISABLE KEYS */;
-INSERT INTO `student_discount_lt` VALUES (24,10,407,'2017-06-30 12:24:20',0.00),(26,4,407,'2017-06-30 13:10:57',0.00);
 /*!40000 ALTER TABLE `student_discount_lt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1153,7 +1245,6 @@ CREATE TABLE `student_paymentterm_lt` (
 
 LOCK TABLES `student_paymentterm_lt` WRITE;
 /*!40000 ALTER TABLE `student_paymentterm_lt` DISABLE KEYS */;
-INSERT INTO `student_paymentterm_lt` VALUES (24,2,407),(26,4,407);
 /*!40000 ALTER TABLE `student_paymentterm_lt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1290,7 +1381,6 @@ CREATE TABLE `tuition_fee` (
 
 LOCK TABLES `tuition_fee` WRITE;
 /*!40000 ALTER TABLE `tuition_fee` DISABLE KEYS */;
-INSERT INTO `tuition_fee` VALUES (47,24,407,'2017-06-30 12:24:20'),(48,24,407,'2017-06-30 12:24:20'),(49,26,407,'2017-06-30 13:10:57'),(50,26,407,'2017-06-30 13:10:57'),(51,26,407,'2017-06-30 13:10:57'),(52,26,407,'2017-06-30 13:10:57');
 /*!40000 ALTER TABLE `tuition_fee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1325,7 +1415,7 @@ CREATE TABLE `user_mt` (
 
 LOCK TABLES `user_mt` WRITE;
 /*!40000 ALTER TABLE `user_mt` DISABLE KEYS */;
-INSERT INTO `user_mt` VALUES (3,'jordan','jordanjordanjoan',1,0,'Antonio','John Ferdinand','Maala','2017-06-30 15:07:51','2016-05-18 22:35:02','jordan');
+INSERT INTO `user_mt` VALUES (3,'jordan','jordanjordanjoan',1,0,'Antonio','John Ferdinand','Maala','2017-07-06 05:58:52','2016-05-18 22:35:02','jordan');
 /*!40000 ALTER TABLE `user_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1616,20 +1706,23 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addFaculty`(
-	IN p_faculty_id int,
-    IN p_firstName varchar(45),
+	IN p_firstName varchar(45),
     IN p_lastName varchar(45),
     IN p_middleName varchar(45),
-    IN p_civilStatus varchar(45),
     IN p_email varchar (45),
     IN p_contact varchar(45),
-    IN p_status bit(1)
+	IN p_civilStatus varchar(45),
+    IN p_degree varchar(45),
+    OUT p_aFacultyID INT
+    
+ 
     
 )
 BEGIN
 
-	INSERT INTO faculty_mt (faculty_id,firstName,lastName,middleName,civilStatus,email,contact,`status`)
-    VALUES(p_faculty_id,p_firstName,p_lastName,p_middleName,p_civilStatus,p_email,p_contact,p_status);
+	INSERT INTO faculty_mt (firstName,lastName,middleName,email,contact,civilStatus,degree)
+    VALUES(p_firstName,p_lastName,p_middleName,p_email,p_contact,p_civilStatus,p_degree);
+    SELECT LAST_INSERT_ID()INTO p_aFacultyId;
 
 END ;;
 DELIMITER ;
@@ -1637,7 +1730,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `addFacultyandSpecialization` */;
+/*!50003 DROP PROCEDURE IF EXISTS `addFacultyAndSpecialization` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1647,14 +1740,14 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addFacultyandSpecialization`(
-	IN p_faculty_specialization_id INT,
-    IN p_faculty_id INT,
-    IN p_specialization Varchar(45)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addFacultyAndSpecialization`(
+	IN p_faculty_id INT,
+    IN p_specialization_id INT
+    
 )
 BEGIN
-	INSERT INTO faculty_specialization(faculty_specialization_id,faculty_id,specialization)
-    VALUES(p_faculty_specialization_id,p_faculty_id,p_specialization);
+	INSERT INTO faculty_specialization(faculty_id,specialization_id)
+    VALUES(p_faculty_id,p_faculty_id,p_specialization_id);
 
 END ;;
 DELIMITER ;
@@ -1721,6 +1814,28 @@ BEGIN
 		INSERT INTO gradelevel_mt(grade_level)
 		VALUES(aGradeLevel);
 	COMMIT;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addHoliday` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addHoliday`(aHolidayName VARCHAR(255), aDescription TEXT)
+BEGIN
+
+INSERT INTO holiday_mt(holiday_name, description)
+VALUES(aHolidayName, aDescription);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2134,16 +2249,16 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addSpecialization`(
-	IN	p_id int,
+	
     IN	p_title varchar(45),
     IN	p_desciption text,
-    IN p_date DATETIME
-    
-   
+    OUT p_specializationId INT
 )
 BEGIN
-	INSERT into specialization(specialization_id,specialization_title,description,date_created)
-    VALUES(p_id,p_title,p_desciption,p_date);
+	INSERT into specialization(specialization_title,description)
+    VALUES(p_title,p_desciption);
+    
+    SELECT LAST_INSERT_ID() INTO p_specializationId;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2383,6 +2498,130 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `checkCurriculumChanges` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkCurriculumChanges`(IN pIN_curriculumId INT)
+BEGIN
+	
+    SELECT gradelevel_mt.grade_level, 
+		schoolyear_mt.yearFrom, schoolyear_mt.yearTo,
+        curriculum_mt.curriculum_title, curriculum_mt.description,
+        subject_mt.code, subject_mt.title
+			FROM curriculum_subject_lt
+            
+            INNER JOIN curriculum_mt ON curriculum_mt.curriculum_id = curriculum_subject_lt.curriculum_id
+            INNER JOIN subject_mt ON subject_mt.subject_id = curriculum_subject_lt.subject_id
+            INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = curriculum_mt.gradelevel_id
+            INNER JOIN schoolyear_mt ON schoolyear_mt.schoolyear_id = curriculum_mt.schoolyear_id
+		
+        WHERE curriculum_mt.curriculum_id = pIN_curriculumId;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `checkCurriculumExists` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkCurriculumExists`(
+	IN pIN_gradeLevelId INT, IN pIN_schoolyearId INT, IN pIN_curriculumTitle VARCHAR(250)
+)
+BEGIN
+	SELECT gradelevel_id, schoolyear_id, curriculum_title FROM curriculum_mt
+    WHERE gradelevel_id = pIN_gradeLevelId AND schoolyear_id = pIN_schoolyearId
+    AND curriculum_title = pIN_curriculumTitle;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `checkCurriculumSubjectExists` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkCurriculumSubjectExists`(IN pIN_curriculumId INT)
+BEGIN
+	
+    SELECT subject_id FROM curriculum_subject_lt WHERE curriculum_id = pIN_curriculumId;
+	
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `checkSubjectChanges` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkSubjectChanges`(IN pIN_subjectId INT)
+BEGIN
+	
+    SELECT subject_mt.code, subject_mt.title, subject_mt.description, 
+		gradelevel_mt.grade_level FROM subject_gradelevel_lt
+        
+		INNER JOIN subject_mt ON subject_mt.subject_id = subject_gradelevel_lt.subject_id
+		INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = subject_gradelevel_lt.gradelevel_id
+        
+        WHERE subject_mt.subject_id = pIN_subjectId;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `checkSubjectExists` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkSubjectExists`(IN pIN_subjectCode VARCHAR(150))
+BEGIN
+	
+    SELECT code FROM subject_mt WHERE code = pIN_subjectCode;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `completeAdmission` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2419,6 +2658,45 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `createCurriculum` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createCurriculum`(
+	IN pIN_gradeLevelId INT,
+    IN pIN_schoolYearId INT,
+    IN pIN_curriculumTitle VARCHAR(150),
+    IN pIN_description VARCHAR(150),
+    OUT pOUT_curriculumId INT
+)
+BEGIN
+    
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+			SELECT "Duplicate keys found";
+        RESIGNAL;
+    END;
+    
+	INSERT INTO curriculum_mt(gradelevel_id, schoolyear_id, curriculum_title, description, isActive, date_created)
+	VALUES(pIN_gradeLevelId, pIN_schoolYearId, pIN_curriculumTitle, pIN_description, TRUE, NOW());
+		
+	SET pOUT_curriculumId = LAST_INSERT_ID();
+    
+	SELECT 'Successfully added curriculum' AS msg;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `createCurriculumSubjects` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2429,21 +2707,39 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `createCurriculumSubjects`(OUT pOUT_gradeLevelId INT, IN pIN_gradeLevel VARCHAR(250), OUT pOUT_schoolYearId INT, IN pIN_schoolYear INT, IN pIN_description VARCHAR(250), IN pIN_isActive INT, IN pIN_dateCreated VARCHAR(250), OUT pOUT_curriculumId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createCurriculumSubjects`(
+	IN pIN_curriculumId INT,
+    IN pIN_subjectId INT
+)
 BEGIN
 	
-    START TRANSACTION;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING
+    BEGIN
+		ROLLBACK;
+			SELECT "Failed creating Curriculum with Subjects";
+        RESIGNAL;
+    END;
     
-	SELECT gradelevel_id INTO pOUT_gradeLevelId FROM gradelevel_mt WHERE grade_level = pIN_gradeLevel;
+    #START TRANSACTION;
     
-    SELECT schoolyear_id INTO pOUT_schoolYearId FROM schoolyear_mt WHERE yearFrom = pIN_schoolYear;
-
-	INSERT INTO curriculum_mt(gradelevel_id,schoolyear_id,description,isActive,date_created)
-    VALUES(pOUT_gradeLevelId,pOUT_schoolYearId,pIN_description,pIN_isActive,pIN_dateCreated);
+    #IF EXISTS (SELECT curriculum_id FROM curriculum_subject_lt WHERE curriculum_id = pIN_curriculumId) THEN
     
-    SET pOUT_curriculumId = LAST_INSERT_ID();
+		#SELECT "Curriculum id already exist";
+        
+        #ROLLBACK;
+	
+    #ELSE
+		
+		INSERT INTO curriculum_subject_lt(curriculum_id, subject_id)
+		VALUES(pIN_curriculumId, pIN_subjectId);
     
-    COMMIT;
+		#COMMIT;
+        
+		SELECT 'Successfully added curriculum with subject' AS msg;
+        
+    #END IF;
+    
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2460,26 +2756,35 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `createSubject`(IN p_subjCode VARCHAR(250), IN p_subjTitle VARCHAR(250), IN p_subjDescription VARCHAR(250), IN p_subjIsActive BOOLEAN, OUT p_subjId INT, OUT p_gradeLevelId INT, IN p_gradeLevel INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createSubject`(
+	IN pIN_subjectCode VARCHAR(250), 
+    IN pIN_subjectTitle VARCHAR(250), 
+    IN pIN_subjectDescription VARCHAR(250),
+    OUT pOUT_subjectId INT,
+    IN pIN_gradeLevelId INT
+)
 BEGIN
-
-	START TRANSACTION;
+	
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+			SELECT "Failed creating subject";
+        RESIGNAL;
+    END;
+	
+    START TRANSACTION;
     
-    INSERT INTO subject_mt(code,title,description,isActive)
-    VALUES(p_subjCode,p_subjTitle, p_subjDescription, p_subjIsActive);
-    
-    SET p_subjId = LAST_INSERT_ID();
-    
-    #SELECT gradelevel_id FROM gradelevel_mt WHERE grade_level = p_gradeLevelId;
-    
-    SELECT gradelevel_id INTO p_gradeLevelId FROM gradelevel_mt WHERE grade_level = p_gradeLevel;
+	INSERT INTO subject_mt(`code`,title,description,isActive)
+	VALUES(pIN_subjectCode, pIN_subjectTitle, pIN_subjectDescription, TRUE);
+			
+	SET pOUT_subjectId = LAST_INSERT_ID();
     
 	INSERT INTO subject_gradelevel_lt (subject_id, gradelevel_id)
-    VALUES (p_subjId,p_gradeLevelId);
+	VALUES (pOUT_subjectId,pIN_gradeLevelId);
+			
+	COMMIT;
+        
 
-
-    
-    COMMIT;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2657,6 +2962,27 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteAllCurriculumSubjectsOf`(p_curriculumId INT)
 BEGIN
 	DELETE FROM curriculum_subjects WHERE curriculumId = p_curriculumId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `deleteCreatedCurriculumById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteCreatedCurriculumById`(IN pIN_curriculumId INT)
+BEGIN
+	
+    DELETE FROM curriculum_subject_lt WHERE curriculum_id = pIN_curriculumId;
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2958,6 +3284,34 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllCreatedCurriculumInfo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllCreatedCurriculumInfo`()
+BEGIN
+
+	SELECT 
+		curriculum_mt.curriculum_id,
+		subject_mt.code, subject_mt.title, 
+        schoolyear_mt.yearFrom, schoolyear_mt.yearTo
+			FROM curriculum_subject_lt
+		INNER JOIN subject_mt ON subject_mt.subject_id = curriculum_subject_lt.subject_id
+        INNER JOIN curriculum_mt ON curriculum_mt.curriculum_id = curriculum_subject_lt.curriculum_id
+        INNER JOIN schoolyear_mt ON schoolyear_mt.schoolyear_id = curriculum_mt.schoolyear_id;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getAllCredentials` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2995,9 +3349,44 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllCurriculum`()
 BEGIN
-	SELECT schoolyear_mt.yearFrom, schoolyear_mt.yearTo, gradelevel_mt.grade_level, curriculum_mt.description, curriculum_mt.date_created FROM curriculum_mt
-	INNER JOIN schoolyear_mt ON schoolyear_mt.schoolyear_id = curriculum_mt.schoolyear_id
-	INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = curriculum_mt.gradelevel_id;
+	
+	SELECT 
+		curriculum_mt.curriculum_id,
+		schoolyear_mt.yearFrom, schoolyear_mt.yearTo, 
+        gradelevel_mt.grade_level, curriculum_mt.description, 
+        DATE_FORMAT(curriculum_mt.date_created, "%M %e %Y %h:%i %p") AS date_created, 
+        curriculum_mt.isActive
+			FROM curriculum_subject_lt
+				INNER JOIN curriculum_mt ON curriculum_mt.curriculum_id = curriculum_subject_lt.curriculum_id
+				INNER JOIN schoolyear_mt ON schoolyear_mt.schoolyear_id = curriculum_mt.schoolyear_id
+				INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = curriculum_mt.gradelevel_id
+                GROUP BY curriculum_mt.curriculum_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllCurriculumByStartYear` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllCurriculumByStartYear`(
+	IN pIN_schoolYearStart VARCHAR(50)
+)
+BEGIN
+	
+    SELECT curriculum_mt.curriculum_title FROM curriculum_subject_lt
+		INNER JOIN curriculum_mt ON curriculum_mt.curriculum_id = curriculum_subject_lt.curriculum_id
+		INNER JOIN schoolyear_mt ON schoolyear_mt.schoolyear_id = curriculum_mt.schoolyear_id
+			WHERE schoolyear_mt.yearFrom = pIN_schoolYearStart;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3046,6 +3435,27 @@ BEGIN
     ORDER BY `yearFrom`;
     
      
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllCurriculumNameByGradeLevel` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllCurriculumNameByGradeLevel`(IN pIN_gradeLevel INT)
+BEGIN
+	SELECT curriculum_title FROM curriculum_mt 
+    INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = curriculum_mt.gradelevel_id
+    WHERE gradelevel_mt.grade_level = pIN_gradeLevel;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3849,6 +4259,33 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllSubjectsOfCurriculumByName` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllSubjectsOfCurriculumByName`(
+	IN pIN_curriculumTitle VARCHAR(150)
+)
+BEGIN
+	
+    SELECT subject_mt.code, subject_mt.title, subject_mt.description, gradelevel_mt.grade_level FROM curriculum_subject_lt
+		INNER JOIN subject_mt ON subject_mt.subject_id = curriculum_subject_lt.subject_id
+		INNER JOIN curriculum_mt ON curriculum_mt.curriculum_id = curriculum_subject_lt.curriculum_id
+		INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = curriculum_mt.gradelevel_id
+			WHERE curriculum_mt.curriculum_title = pIN_curriculumTitle;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getAllUsersInfo` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3895,6 +4332,66 @@ INNER JOIN fee_category_mt fc ON f.fee_category_id = fc.fee_category_id
 WHERE fc.fee_category = 'Basic'
 AND fs.gradelevel_id = aGradeLevelId;
 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getCreatedCurriculumInfoById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCreatedCurriculumInfoById`(IN pIN_curriculumId INT)
+BEGIN
+	
+    SELECT 
+		curriculum_mt.curriculum_id,
+        curriculum_mt.curriculum_title, curriculum_mt.description,
+		subject_mt.code, subject_mt.title,
+        gradelevel_mt.grade_level,
+        schoolyear_mt.yearFrom, schoolyear_mt.yearTo
+			FROM curriculum_subject_lt
+            INNER JOIN curriculum_mt ON curriculum_mt.curriculum_id = curriculum_subject_lt.curriculum_id
+            INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = curriculum_mt.gradelevel_id
+            INNER JOIN subject_mt ON subject_mt.subject_id = curriculum_subject_lt.subject_id
+            INNER JOIN schoolyear_mt ON schoolyear_mt.schoolyear_id = curriculum_mt.schoolyear_id
+            WHERE curriculum_mt.curriculum_id = pIN_curriculumId;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getCreatedSubjectInfoById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCreatedSubjectInfoById`(IN pIN_subjectId INT)
+BEGIN
+	
+    SELECT 
+		subject_mt.title, subject_mt.code, subject_mt.description,
+        gradelevel_mt.grade_level
+			FROM subject_gradelevel_lt
+		INNER JOIN subject_mt ON subject_mt.subject_id = subject_gradelevel_lt.subject_id
+        INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = subject_gradelevel_lt.gradelevel_id
+        WHERE subject_mt.subject_id = pIN_subjectId;
+		
+    
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4017,11 +4514,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getCurriculumId`(IN aGradeLevelId INT, IN aSchoolYearId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCurriculumId`(IN pIN_curriculumName VARCHAR(150))
 BEGIN
-	SELECT curriculum_id FROM curriculum_mt 
-    WHERE gradelevel_id = aGradeLevelId 
-    AND schoolyear_id = aSchoolYearId;
+	SELECT curriculum_id FROM curriculum_mt WHERE curriculum_mt.curriculum_title = pIN_curriculumName;
     
 END ;;
 DELIMITER ;
@@ -4151,6 +4646,31 @@ BEGIN
     
     
     WHERE cs.curriculumId = p_curriculumId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getCurriculumYearStartEndByGradeLevel` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getCurriculumYearStartEndByGradeLevel`(IN pIN_gradeLevel INT)
+BEGIN
+	
+    SELECT schoolyear_mt.yearFrom, schoolyear_mt.yearTo FROM curriculum_subject_lt
+		INNER JOIN curriculum_mt ON curriculum_mt.curriculum_id = curriculum_subject_lt.curriculum_id
+		INNER JOIN schoolyear_mt ON curriculum_mt.schoolyear_id = schoolyear_mt.schoolyear_id
+		INNER JOIN gradelevel_mt ON gradelevel_mt.gradelevel_id = curriculum_mt.gradelevel_id
+			WHERE gradelevel_mt.grade_level = pIN_gradeLevel;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4449,7 +4969,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getFaculty`()
 BEGIN
-	SELECT * FROM faculty_mt;
+
+SELECT * FROM faculty_mt;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4558,6 +5080,33 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getFeeCategoryId`(IN aFeeCategory VARCHAR(255))
 BEGIN
 	SELECT fee_category_id FROM fee_category_mt WHERE fee_category = aFeeCategory;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getFeeGradeLevelAssignment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getFeeGradeLevelAssignment`(aFeeId INT)
+BEGIN
+
+SELECT g.* FROM 
+fee_schoolyear_lt fslt
+INNER JOIN gradelevel_mt g ON fslt.gradelevel_id = g.gradelevel_id
+INNER JOIN fee_mt f ON fslt.fee_id = f.fee_id
+WHERE f.fee_id = aFeeId
+GROUP BY g.grade_level;
+
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4885,6 +5434,27 @@ INNER JOIN gradelevel_mt gl ON cr.gradelevel_id = gl.gradelevel_id
 INNER JOIN schoolyear_mt sy ON cr.schoolyear_id = sy.schoolyear_id
 
 WHERE cr.credential_id = aCredentialId;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getHolidays` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getHolidays`()
+BEGIN
+
+SELECT * FROM holiday_mt;
 
 END ;;
 DELIMITER ;
@@ -5594,6 +6164,31 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecialization`()
 BEGIN
 	SELECT * FROM specialization;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getSpecializationID` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecializationID`(
+	IN p_title VARCHAR(45),
+    IN p_description TEXT
+ )
+BEGIN
+
+SELECT S.specialization_id FROM specialization S
+WHERE specialization_title = p_title AND description = p_description;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -6843,6 +7438,88 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `updateCreatedCurriculumById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCreatedCurriculumById`(
+	IN pIN_curriculumId INT,
+    IN pIN_subjectId INT,
+    IN pIN_gradeLevelId INT,
+    IN pIN_schoolYearId INT,
+    IN pIN_curriculumTitle VARCHAR(150),
+    IN pIN_curriculumDescription VARCHAR(150)
+)
+BEGIN
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING
+    BEGIN
+		ROLLBACK;
+			SELECT "Failed updating Curriculum with Subjects";
+        RESIGNAL;
+    END;
+    
+    #DELETE FROM curriculum_subject_lt WHERE curriculum_id = pIN_curriculumId;
+    
+    START TRANSACTION;
+
+    UPDATE curriculum_mt
+    SET gradelevel_id = pIN_gradeLevelId, schoolyear_id = pIN_schoolYearId,
+    curriculum_title = pIN_curriculumTitle, description = pIN_curriculumDescription
+    
+    WHERE curriculum_mt.curriculum_id = pIN_curriculumId;
+
+    INSERT INTO curriculum_subject_lt (curriculum_id, subject_id) 
+    VALUES (pIN_curriculumId, pIN_subjectId);
+    
+    COMMIT;
+    
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `updateCreatedSubjectById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCreatedSubjectById`(
+	IN pIN_subjectId INT,
+    IN pIN_gradeLevelId INT,
+    IN pIN_subjectCode VARCHAR(150),
+    IN pIN_subjectTitle VARCHAR(150),
+    IN pIN_subjectDescription VARCHAR(150)
+)
+BEGIN
+	
+    UPDATE subject_gradelevel_lt AS sglt
+    INNER JOIN subject_mt AS smt ON smt.subject_id = sglt.subject_id
+    INNER JOIN gradelevel_mt  AS glmt ON glmt.gradelevel_id = sglt.gradelevel_id
+    
+		SET smt.code = pIN_subjectCode, smt.title = pIN_subjectTitle, smt.description = pIN_subjectDescription,
+        sglt.gradelevel_id = pIN_gradeLevelId
+        
+        WHERE smt.subject_id = pIN_subjectId;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `updateCurriculumDetails` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -7199,4 +7876,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-30 21:12:43
+-- Dump completed on 2017-07-06  6:24:18

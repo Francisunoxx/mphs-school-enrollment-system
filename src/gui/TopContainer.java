@@ -302,7 +302,6 @@ public class TopContainer extends javax.swing.JFrame{
     setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     setTitle("Enrollment System");
     setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-    setMaximumSize(new java.awt.Dimension(1920, 900));
     setMinimumSize(new java.awt.Dimension(800, 600));
     getContentPane().setLayout(new java.awt.GridBagLayout());
 
