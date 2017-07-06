@@ -7,8 +7,10 @@ package gui;
 
 import daoimpl.HolidayDaoImpl;
 import static gui.SchoolYearManagementContainer.jlstHolidays;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import model.Holiday;
 
@@ -19,7 +21,7 @@ import model.Holiday;
 public class AddHolidayToSchoolYear extends javax.swing.JDialog {
 
     private HolidayDaoImpl hdi = new HolidayDaoImpl();
-    
+
     public AddHolidayToSchoolYear(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -77,6 +79,11 @@ public class AddHolidayToSchoolYear extends javax.swing.JDialog {
         jPanel1.add(jbtnAddHoliday, gridBagConstraints);
 
         jbtnRemoveHoliday.setText("Remove");
+        jbtnRemoveHoliday.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRemoveHolidayActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -138,27 +145,31 @@ public class AddHolidayToSchoolYear extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void loadExistingHolidays(){
+    private void loadExistingHolidays() {
         List<Holiday> holidays = hdi.get();
         DefaultListModel dlm = new DefaultListModel();
-        for(Holiday h : holidays){
+        for (Holiday h : holidays) {
             dlm.addElement(h.getName());
         }
         jlstHolidaySource.setModel(dlm);
     }
-    
+
     private void jbtnAddHolidayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddHolidayActionPerformed
-        int countOfSelected = jlstHolidaySource.getSelectedIndices().length;
-        DefaultListModel dlm = new DefaultListModel();
-        if (countOfSelected > 1) {
-            List<String> holidays = jlstHolidaySource.getSelectedValuesList();
-            for (String s : holidays) {
+        List<String> selected = jlstHolidaySource.getSelectedValuesList();
+
+        if(jlstHolidayDestination.getModel().getSize() > 0){
+            for (int i = 0; i < selected.size(); i++) {
+                for (int j = 0; j < jlstHolidayDestination.getModel().getSize(); j++) {
+                    if (selected.get(i).equals(jlstHolidayDestination.getModel().getElementAt(j))) {
+                        JOptionPane.showMessageDialog(null, "already on record.");
+                    } 
+                }
+            }
+        }else{
+            DefaultListModel dlm = new DefaultListModel();
+            for(String s : selected){
                 dlm.addElement(s);
             }
-            jlstHolidayDestination.setModel(dlm);
-        } else {
-            String selectedValue = jlstHolidaySource.getSelectedValue();
-            dlm.addElement(selectedValue);
             jlstHolidayDestination.setModel(dlm);
         }
         
@@ -166,15 +177,34 @@ public class AddHolidayToSchoolYear extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtnAddHolidayActionPerformed
 
     private void jbtnOkayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOkayActionPerformed
-        List<String> holidays = jlstHolidaySource.getSelectedValuesList();
-        DefaultListModel dlm = new DefaultListModel();
-        for(String s : holidays){
-            dlm.addElement(s);
+        
+        List<String> selected = jlstHolidayDestination.getSelectedValuesList();
+
+        if(jlstHolidays.getModel().getSize() > 0){
+            for (int i = 0; i < selected.size(); i++) {
+                for (int j = 0; j < jlstHolidays.getModel().getSize(); j++) {
+                    if (selected.get(i).equals(jlstHolidays.getModel().getElementAt(j))) {
+                        JOptionPane.showMessageDialog(null, "already on record.");
+                    } 
+                }
+            }
+        }else{
+            DefaultListModel dlm = new DefaultListModel();
+            for(String s : selected){
+                dlm.addElement(s);
+            }
+            jlstHolidays.setModel(dlm);
         }
         
-        jlstHolidays.setModel(dlm);
         this.dispose();
     }//GEN-LAST:event_jbtnOkayActionPerformed
+
+    private void jbtnRemoveHolidayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemoveHolidayActionPerformed
+        int[] toRemove = jlstHolidayDestination.getSelectedIndices();
+        for(int i : toRemove){
+            ((DefaultListModel)jlstHolidayDestination.getModel()).remove(i);
+        }
+    }//GEN-LAST:event_jbtnRemoveHolidayActionPerformed
 
     /**
      * @param args the command line arguments

@@ -16,4 +16,5 @@ public interface IHoliday {
     boolean add(Holiday holiday);
     boolean update(Holiday holiday);
     List<Holiday> get();
+    int getId(String holidayName);
 }

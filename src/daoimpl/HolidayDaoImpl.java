@@ -23,6 +23,24 @@ import model.Holiday;
 public class HolidayDaoImpl implements IHoliday{
 
     @Override
+    public int getId(String holidayName) {
+        Integer holidayId = null;
+        String SQL = "{CALL getHolidayIdByName(?)}";
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(SQL);){
+            cs.setString(1, holidayName.trim());
+            try(ResultSet rs = cs.executeQuery();){
+                while(rs.next()){
+                    holidayId = rs.getInt("holiday_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return holidayId;
+    }
+
+    @Override
     public boolean add(Holiday holiday) {
         boolean isAdded;
         String SQL = "{CALL addHoliday(?,?)}";
