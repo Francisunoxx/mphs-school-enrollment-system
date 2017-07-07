@@ -209,9 +209,9 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     public boolean addSchoolYear(SchoolYear aSchoolYear) {
         List<Quarter> list = aSchoolYear.getQuarters();
         int quarterCount = 4;
-        String SQLa = "{CALL addSchoolYear(?,?,?,?,?,?,?)}";
+        String SQLa = "{CALL addSchoolYear(?,?,?,?,?,?,?,?)}";
         String SQLb = "{CALL addQuarter(?,?,?,?,?)}";
-        String SQLc = "{CALL addSchoolYearHoliday()}";
+        String SQLc = "{CALL addSchoolYearHoliday(?,?)}";
         int schoolYearId;
         boolean isAdded;
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);) {
@@ -237,9 +237,12 @@ public class SchoolYearDaoImpl implements ISchoolYear{
                 csa.setDate(4, java.sql.Date.valueOf(syEndDate));
                 csa.setDate(5, java.sql.Date.valueOf(enrollmentOpenDate));
                 csa.setDate(6, (java.sql.Date.valueOf(enrollmentClosingDate)));
-                csa.registerOutParameter(7, java.sql.Types.INTEGER); //schoolyear id of added sy
+                csa.setInt(7, aSchoolYear.getClassHours());
+                csa.registerOutParameter(8, java.sql.Types.INTEGER); //schoolyear id of added sy
                 csa.executeUpdate();
-                schoolYearId = csa.getInt(7);
+                schoolYearId = csa.getInt(8);
+                
+                System.out.println("Class Hours: "+aSchoolYear.getClassHours());
 
                 //Add Semesters of SchoolYear
                 for (int i = 0; i < quarterCount; i++) {
