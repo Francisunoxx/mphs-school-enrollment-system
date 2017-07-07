@@ -162,6 +162,8 @@ public class AddHolidayToSchoolYear extends javax.swing.JDialog {
                 for (int j = 0; j < jlstHolidayDestination.getModel().getSize(); j++) {
                     if (selected.get(i).equals(jlstHolidayDestination.getModel().getElementAt(j))) {
                         JOptionPane.showMessageDialog(null, "already on record.");
+                    }else{
+                        ((DefaultListModel)jlstHolidayDestination.getModel()).addElement(selected.get(i));
                     } 
                 }
             }
@@ -178,23 +180,12 @@ public class AddHolidayToSchoolYear extends javax.swing.JDialog {
 
     private void jbtnOkayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOkayActionPerformed
         
-        List<String> selected = jlstHolidayDestination.getSelectedValuesList();
-
-        if(jlstHolidays.getModel().getSize() > 0){
-            for (int i = 0; i < selected.size(); i++) {
-                for (int j = 0; j < jlstHolidays.getModel().getSize(); j++) {
-                    if (selected.get(i).equals(jlstHolidays.getModel().getElementAt(j))) {
-                        JOptionPane.showMessageDialog(null, "already on record.");
-                    } 
-                }
-            }
-        }else{
-            DefaultListModel dlm = new DefaultListModel();
-            for(String s : selected){
-                dlm.addElement(s);
-            }
-            jlstHolidays.setModel(dlm);
+        DefaultListModel dlm = new DefaultListModel();
+        for(int i=0; i<jlstHolidayDestination.getModel().getSize(); i++){
+            String s = jlstHolidayDestination.getModel().getElementAt(i);
+            dlm.addElement(s);
         }
+        jlstHolidays.setModel(dlm);
         
         this.dispose();
     }//GEN-LAST:event_jbtnOkayActionPerformed

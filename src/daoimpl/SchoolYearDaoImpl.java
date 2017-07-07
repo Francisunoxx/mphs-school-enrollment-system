@@ -211,24 +211,25 @@ public class SchoolYearDaoImpl implements ISchoolYear{
         int quarterCount = 4;
         String SQLa = "{CALL addSchoolYear(?,?,?,?,?,?,?)}";
         String SQLb = "{CALL addQuarter(?,?,?,?,?)}";
+        String SQLc = "{CALL addSchoolYearHoliday()}";
         int schoolYearId;
         boolean isAdded;
-        try (Connection con = DBUtil.getConnection(DBType.MYSQL);){
-            try(CallableStatement csa = con.prepareCall(SQLa);
-                CallableStatement csb = con.prepareCall(SQLb);){
-            //Transaction 
-            con.setAutoCommit(false); 
-            
-            //Add School Year
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);) {
+            try (CallableStatement csa = con.prepareCall(SQLa);
+                    CallableStatement csb = con.prepareCall(SQLb);
+                    CallableStatement csc = con.prepareCall(SQLc);) {
+                con.setAutoCommit(false);
+
+                //Add School Year
                 String syStartDate = aSchoolYear.getStart_date().toString();
                 String syEndDate = aSchoolYear.getEnd_date().toString();
                 String enrollmentOpenDate = aSchoolYear.getEnrollment().getOpeningDate().toString();
                 String enrollmentClosingDate = aSchoolYear.getEnrollment().getClosingDate().toString();
-                
-                System.out.println("@addSchoolYear StartDate :  "+syStartDate);
-                System.out.println("@addSchoolYear EndDate :  "+syEndDate);
-                System.out.println("@addSchoolYear enrollmentOpenDate :  "+enrollmentOpenDate);
-                System.out.println("@addSchoolYear enrollmentClosingDate :  "+enrollmentClosingDate);
+
+                System.out.println("@addSchoolYear StartDate :  " + syStartDate);
+                System.out.println("@addSchoolYear EndDate :  " + syEndDate);
+                System.out.println("@addSchoolYear enrollmentOpenDate :  " + enrollmentOpenDate);
+                System.out.println("@addSchoolYear enrollmentClosingDate :  " + enrollmentClosingDate);
 
                 csa.setInt(1, aSchoolYear.getYearFrom());
                 csa.setInt(2, aSchoolYear.getYearTo());
@@ -237,11 +238,10 @@ public class SchoolYearDaoImpl implements ISchoolYear{
                 csa.setDate(5, java.sql.Date.valueOf(enrollmentOpenDate));
                 csa.setDate(6, (java.sql.Date.valueOf(enrollmentClosingDate)));
                 csa.registerOutParameter(7, java.sql.Types.INTEGER); //schoolyear id of added sy
-            
-            csa.executeUpdate();
-            schoolYearId = csa.getInt(7);
-            
-            //Add Semesters of SchoolYear
+                csa.executeUpdate();
+                schoolYearId = csa.getInt(7);
+
+                //Add Semesters of SchoolYear
                 for (int i = 0; i < quarterCount; i++) {
                     Quarter s = list.get(i);
                     String quarterStartDate = s.getStartDate().toString().trim();
@@ -252,23 +252,28 @@ public class SchoolYearDaoImpl implements ISchoolYear{
                     csb.setDate(3, java.sql.Date.valueOf(quarterStartDate));
                     csb.setDate(4, java.sql.Date.valueOf(quarterEndDate));
                     csb.setInt(5, schoolYearId);
-
                     csb.executeUpdate();
                 }
-            
-            con.commit(); 
-            //End Of Transaction
-            isAdded = true;
-            }catch(SQLException e){
+                
+                for(int i = 0; i<aSchoolYear.getHolidays().size(); i++){
+                    csc.setInt(1, schoolYearId);
+                    csc.setInt(2, aSchoolYear.getHolidays().get(i).getId());
+                    System.out.println("ID: "+aSchoolYear.getHolidays().get(i).getId());
+                    csc.executeUpdate();
+                }
+
+                con.commit();
+                isAdded = true;
+            } catch (SQLException e) {
                 isAdded = false;
                 con.rollback();
-                JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
-            isAdded=false;
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
+            isAdded = false;
         }
-        return isAdded; 
+        return isAdded;
     }
 
 }

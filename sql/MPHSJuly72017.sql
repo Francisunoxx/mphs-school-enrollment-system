@@ -299,6 +299,7 @@ DROP TABLE IF EXISTS `curriculum_subject_lt`;
 CREATE TABLE `curriculum_subject_lt` (
   `curriculum_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
+  `subject_hours` decimal(10,2) NOT NULL,
   KEY `fk_curriculum_subject_ltTABLE_curriculum_idCOL_idx` (`curriculum_id`),
   KEY `fk_curriculum_subject_ltTABLE_subject_idCOL_idx` (`subject_id`),
   CONSTRAINT `fk_curriculum_subject_ltTABLE_curriculum_idCOL` FOREIGN KEY (`curriculum_id`) REFERENCES `curriculum_mt` (`curriculum_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -586,8 +587,11 @@ CREATE TABLE `holiday_mt` (
   `description` text,
   `date_created` datetime DEFAULT CURRENT_TIMESTAMP,
   `isActive` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`holiday_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  PRIMARY KEY (`holiday_id`),
+  UNIQUE KEY `holiday_name_UNIQUE` (`holiday_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -596,7 +600,7 @@ CREATE TABLE `holiday_mt` (
 
 LOCK TABLES `holiday_mt` WRITE;
 /*!40000 ALTER TABLE `holiday_mt` DISABLE KEYS */;
-INSERT INTO `holiday_mt` VALUES (1,'Rizal Day','Rizal Day','2017-07-05 06:09:29',''),(2,'Independence Day','Independence Day','2017-07-05 06:26:44','');
+INSERT INTO `holiday_mt` VALUES (5,'Maundy Thursday','Maundy Thursday','2017-07-07 20:46:23','','2017-04-13','2017-04-13'),(6,'New Year\'s Day','New Year\'s Day','2017-07-07 20:48:01','','2017-01-01','2017-01-01'),(7,'Public Holiday','Public Holiday','2017-07-07 20:48:36','','2017-01-02','2017-01-02'),(8,'Chinese New Year','Chinese New Year','2017-07-07 20:49:21','','2017-01-28','2017-01-28'),(9,'People Power Revolution','People Power Revolution','2017-07-07 20:49:58','','2017-02-25','2017-02-25'),(10,'Labor Day','Labor Day','2017-07-07 20:50:37','','2017-05-01','2017-05-01'),(11,'National Heroes Day','National Heroes Day','2017-07-07 20:52:10','','2017-08-28','2017-08-28'),(12,'Eid Al Adha','Eid Al Adha','2017-07-07 20:53:31','','2017-09-01','2017-09-01');
 /*!40000 ALTER TABLE `holiday_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -786,10 +790,10 @@ DROP TABLE IF EXISTS `schoolyear_holiday_lt`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `schoolyear_holiday_lt` (
+  `schoolyear_holiday_id` int(11) NOT NULL AUTO_INCREMENT,
   `schoolyear_id` int(11) NOT NULL,
   `holiday_id` int(11) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
+  PRIMARY KEY (`schoolyear_holiday_id`),
   KEY `fk_schoolyear_holiday_ltTABLE_schoolyear_idCOL_idx` (`schoolyear_id`),
   KEY `fk_schoolyear_holiday_ltTABLE_holiday_idCOL_idx` (`holiday_id`),
   CONSTRAINT `fk_schoolyear_holiday_ltTABLE_holiday_idCOL` FOREIGN KEY (`holiday_id`) REFERENCES `holiday_mt` (`holiday_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -1415,7 +1419,7 @@ CREATE TABLE `user_mt` (
 
 LOCK TABLES `user_mt` WRITE;
 /*!40000 ALTER TABLE `user_mt` DISABLE KEYS */;
-INSERT INTO `user_mt` VALUES (3,'jordan','jordanjordanjoan',1,0,'Antonio','John Ferdinand','Maala','2017-07-06 05:58:52','2016-05-18 22:35:02','jordan');
+INSERT INTO `user_mt` VALUES (3,'jordan','jordanjordanjoan',1,0,'Antonio','John Ferdinand','Maala','2017-07-07 21:41:42','2016-05-18 22:35:02','jordan');
 /*!40000 ALTER TABLE `user_mt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1830,11 +1834,11 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addHoliday`(aHolidayName VARCHAR(255), aDescription TEXT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addHoliday`(aHolidayName VARCHAR(255), aDescription TEXT, aStartDate DATE, aEndDate DATE)
 BEGIN
 
-INSERT INTO holiday_mt(holiday_name, description)
-VALUES(aHolidayName, aDescription);
+INSERT INTO holiday_mt(holiday_name, description,start_date,end_date)
+VALUES(aHolidayName, aDescription,aStartDate, aEndDate);
 
 END ;;
 DELIMITER ;
@@ -2109,6 +2113,28 @@ BEGIN
     VALUES(aNewSchoolYearId, aEnrollmentDateOpen, aEnrollmentDateClosed);
     
     COMMIT;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addSchoolYearHoliday` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addSchoolYearHoliday`(aSchoolYearId INT, aHolidayId INT)
+BEGIN
+
+INSERT INTO schoolyear_holiday_lt(schoolyear_id, holiday_id)
+VALUES(aSchoolYearId, aHolidayId);
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -5441,6 +5467,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getHolidayIdByName` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getHolidayIdByName`(aHolidayName VARCHAR(255))
+BEGIN
+
+SELECT holiday_id FROM holiday_mt WHERE holiday_name = aHolidayName;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getHolidays` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -7876,4 +7923,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-06  6:24:18
+-- Dump completed on 2017-07-07 21:46:19

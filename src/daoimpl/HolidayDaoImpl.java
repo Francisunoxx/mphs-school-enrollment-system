@@ -43,11 +43,13 @@ public class HolidayDaoImpl implements IHoliday{
     @Override
     public boolean add(Holiday holiday) {
         boolean isAdded;
-        String SQL = "{CALL addHoliday(?,?)}";
+        String SQL = "{CALL addHoliday(?,?,?,?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
                 CallableStatement cs = con.prepareCall(SQL);) {
             cs.setString(1, holiday.getName());
             cs.setString(2, holiday.getDescription());
+            cs.setDate(3, java.sql.Date.valueOf(holiday.getStartDate().toString()));
+            cs.setDate(4, java.sql.Date.valueOf(holiday.getEndDate().toString()));
             cs.executeUpdate();
             isAdded = true;
         } catch (SQLException e) {
