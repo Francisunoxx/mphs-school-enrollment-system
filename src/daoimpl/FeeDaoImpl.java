@@ -387,15 +387,6 @@ public class FeeDaoImpl implements IFee {
                     csb.executeUpdate();
                 }
 
-//                for(int i = 0; i<fee.getGradeLevelAmount().size(); i++){
-//                    GradeLevel g = fee.getAssignedGradeLevels().get(i);
-//                    int gradeLevelId = gldi.getId(g);
-//                    csb.setInt(1,feeId);
-//                    csb.setDouble(2,fee.getAmount());
-//                    csb.setInt(3,gradeLevelId);
-//                    csb.setInt(4, fee.getSchoolYear().getSchoolYearId());
-//                    csb.executeUpdate();
-//                }
                 con.commit();
             } catch (SQLException e) {
                 con.rollback();
@@ -428,6 +419,22 @@ public class FeeDaoImpl implements IFee {
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
         return gradeLevelList;
+    }
+
+    @Override
+    public boolean update(Fee fee) {
+        boolean isUpdated = false;
+        
+        String SQL = "{CALL updateFee(?)}";
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(SQL);){
+            cs.executeUpdate();
+            isUpdated = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+        return isUpdated;
     }
 
     

@@ -271,270 +271,315 @@
 
                                                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                                                           <SubComponents>
-                                                            <Component class="javax.swing.JTextField" name="jtfKindergartenAmount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
+                                                            <Container class="javax.swing.JPanel" name="jPanel12">
                                                               <Constraints>
                                                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                  <GridBagConstraints gridX="-1" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
                                                                 </Constraint>
                                                               </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade1Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
+
+                                                              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+                                                              <SubComponents>
+                                                                <Component class="javax.swing.JTextField" name="jtfKindergartenAmount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade1Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade2Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade3Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="1" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade4Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="1" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade5Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="1" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade6Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade7Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="3" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade8Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="3" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade9Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="3" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfGrade10Amount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                    <Property name="enabled" type="boolean" value="false"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="3" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade1">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 1"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade1ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade2">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 2"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade2ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade3">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 3"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade3ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="0" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade4">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 4"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade4ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="0" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade5">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 5"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade5ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="0" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade6">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 6"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade6ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="2" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade7">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 7"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade7ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="2" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade8">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 8"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade8ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="2" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade9">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 9"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade9ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="2" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbGrade10">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Grade 10"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade10ItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="2" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbKindergarten">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Kindergarten"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbKindergartenItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                              </SubComponents>
+                                                            </Container>
+                                                            <Container class="javax.swing.JPanel" name="jPanel15">
                                                               <Constraints>
                                                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
+                                                                  <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                                                                 </Constraint>
                                                               </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade2Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade3Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="1" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade4Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="1" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade5Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="1" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade6Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade7Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="3" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade8Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="3" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade9Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="3" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JTextField" name="jtfGrade10Amount">
-                                                              <Properties>
-                                                                <Property name="columns" type="int" value="5"/>
-                                                                <Property name="enabled" type="boolean" value="false"/>
-                                                              </Properties>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="3" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="17" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade1">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 1"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade1ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade2">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 2"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade2ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade3">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 3"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade3ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="0" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade4">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 4"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade4ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="0" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade5">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 5"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade5ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="0" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade6">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 6"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade6ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="2" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade7">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 7"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade7ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="2" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade8">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 8"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade8ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="2" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade9">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 9"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade9ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="2" gridY="4" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbGrade10">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Grade 10"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbGrade10ItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="2" gridY="5" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
-                                                            <Component class="javax.swing.JCheckBox" name="jcbKindergarten">
-                                                              <Properties>
-                                                                <Property name="text" type="java.lang.String" value="Kindergarten"/>
-                                                              </Properties>
-                                                              <Events>
-                                                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbKindergartenItemStateChanged"/>
-                                                              </Events>
-                                                              <Constraints>
-                                                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                                                                  <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
-                                                                </Constraint>
-                                                              </Constraints>
-                                                            </Component>
+
+                                                              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+                                                              <SubComponents>
+                                                                <Component class="javax.swing.JCheckBox" name="jcbApplyAmountToAll">
+                                                                  <Properties>
+                                                                    <Property name="text" type="java.lang.String" value="Apply to all"/>
+                                                                  </Properties>
+                                                                  <Events>
+                                                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbApplyAmountToAllItemStateChanged"/>
+                                                                  </Events>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                                <Component class="javax.swing.JTextField" name="jtfApplyToAllAmount">
+                                                                  <Properties>
+                                                                    <Property name="columns" type="int" value="5"/>
+                                                                  </Properties>
+                                                                  <Constraints>
+                                                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                                                                      <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.0" weightY="0.0"/>
+                                                                    </Constraint>
+                                                                  </Constraints>
+                                                                </Component>
+                                                              </SubComponents>
+                                                            </Container>
                                                           </SubComponents>
                                                         </Container>
                                                         <Container class="javax.swing.JPanel" name="jPanel16">

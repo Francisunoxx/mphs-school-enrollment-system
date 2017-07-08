@@ -212,12 +212,14 @@ public class SchoolYearDaoImpl implements ISchoolYear{
         String SQLa = "{CALL addSchoolYear(?,?,?,?,?,?,?,?)}";
         String SQLb = "{CALL addQuarter(?,?,?,?,?)}";
         String SQLc = "{CALL addSchoolYearHoliday(?,?)}";
+        String SQLd = "{CALL addSchoolYearSummerSchedule(?,?,?)}";
         int schoolYearId;
         boolean isAdded;
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);) {
             try (CallableStatement csa = con.prepareCall(SQLa);
                     CallableStatement csb = con.prepareCall(SQLb);
-                    CallableStatement csc = con.prepareCall(SQLc);) {
+                    CallableStatement csc = con.prepareCall(SQLc);
+                    CallableStatement csd = con.prepareCall(SQLd);) {
                 con.setAutoCommit(false);
 
                 //Add School Year
@@ -242,8 +244,6 @@ public class SchoolYearDaoImpl implements ISchoolYear{
                 csa.executeUpdate();
                 schoolYearId = csa.getInt(8);
                 
-                System.out.println("Class Hours: "+aSchoolYear.getClassHours());
-
                 //Add Semesters of SchoolYear
                 for (int i = 0; i < quarterCount; i++) {
                     Quarter s = list.get(i);
@@ -264,7 +264,15 @@ public class SchoolYearDaoImpl implements ISchoolYear{
                     System.out.println("ID: "+aSchoolYear.getHolidays().get(i).getId());
                     csc.executeUpdate();
                 }
-
+                
+                String summerStartDate = aSchoolYear.getSummerClassSchedule().getStartDate().toString().trim();
+                String summerEndDate = aSchoolYear.getSummerClassSchedule().getEndDate().toString().trim();
+                
+                csd.setInt(1,schoolYearId);
+                csd.setDate(2,java.sql.Date.valueOf(summerStartDate));
+                csd.setDate(3,java.sql.Date.valueOf(summerEndDate));
+                csd.executeUpdate();
+                
                 con.commit();
                 isAdded = true;
             } catch (SQLException e) {

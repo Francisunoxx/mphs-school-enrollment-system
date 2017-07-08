@@ -32,6 +32,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.DefaultListModel;
 import model.Holiday;
+import model.SummerClassSchedule;
 
 /**
  *
@@ -54,13 +55,15 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         UIManager.put("ComboBox.disabledForeground", Color.BLACK);
         UIManager.put("TextField.disabledBackground", new Color(255, 255, 255));
         UIManager.put("TextField.inactiveForeground", Color.BLACK);
-        initComponents();
         
+        initComponents();
+        jspCreateSchoolYear.getVerticalScrollBar().setUnitIncrement(66);
         
         loadJListHolidayRecord();
         setHolidayJComboBoxModels();
         
-        jspCreateSchoolYear.getVerticalScrollBar().setUnitIncrement(36);
+        setSummerScheduleJComboBoxModel();
+        
         setSchoolYearStartDateDayJComboBoxModel();
         setYearJComboModel();
 
@@ -102,46 +105,28 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtblSchoolYearList = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtblEnrollmentSchedule = new javax.swing.JTable();
         jspCreateSchoolYear = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jsprSchoolYearFrom = new javax.swing.JSpinner();
-        jlblSchoolYearTo = new javax.swing.JLabel();
-        jsprSchoolYearTo = new javax.swing.JSpinner();
-        jpnlSchoolYearSchedule = new javax.swing.JPanel();
-        jlblStartDate = new javax.swing.JLabel();
-        jlblEndDate = new javax.swing.JLabel();
-        jcmbSchoolYearStartDateYear = new javax.swing.JComboBox<>();
-        jlblStartDateYear = new javax.swing.JLabel();
-        jcmbSchoolYearStartDateMonth = new javax.swing.JComboBox<>();
-        jlblStartDateMonth = new javax.swing.JLabel();
-        jcmbSchoolYearStartDateDay = new javax.swing.JComboBox<>();
-        jlblStartDateDay = new javax.swing.JLabel();
-        jcmbSchoolYearClosingDateYear = new javax.swing.JComboBox<>();
-        jcmbSchoolYearEndDateMonth = new javax.swing.JComboBox<>();
-        jcmbSchoolYearEndDateDay = new javax.swing.JComboBox<>();
-        jlblEndDateYear = new javax.swing.JLabel();
-        jlblEndDateMonth = new javax.swing.JLabel();
-        jlblEndDateDay = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jtbnClear = new javax.swing.JButton();
         jbtnCreate = new javax.swing.JButton();
-        jpnlEnrollmentSchedule = new javax.swing.JPanel();
-        jlblEnrollmentOpeningDate = new javax.swing.JLabel();
-        jcmbEnrollmentOpeningDateDay = new javax.swing.JComboBox<>();
-        jcmbEnrollmentOpeningDateMonth = new javax.swing.JComboBox<>();
-        jcmbEnrollmentOpeningDateYear = new javax.swing.JComboBox<>();
-        jlblStartDateDay1 = new javax.swing.JLabel();
-        jlblStartDateMonth1 = new javax.swing.JLabel();
-        jlblStartDateYear1 = new javax.swing.JLabel();
-        jlblEnrollmentClosingDate = new javax.swing.JLabel();
-        jcmbEnrollmentClosingDateDay = new javax.swing.JComboBox<>();
-        jcmbEnrollmentClosingDateMonth = new javax.swing.JComboBox<>();
-        jcmbEnrollmentClosingDateYear = new javax.swing.JComboBox<>();
-        jlblEndDateDay1 = new javax.swing.JLabel();
-        jlblEndDateMonth1 = new javax.swing.JLabel();
-        jlblEndDateYear1 = new javax.swing.JLabel();
+        jpnlClassHours = new javax.swing.JPanel();
+        jlblClassHours = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jsprClassHours = new javax.swing.JSpinner();
+        jpnlHolidays = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jlstHolidays = new javax.swing.JList<>();
+        jPanel6 = new javax.swing.JPanel();
+        jbtnAddHolidays = new javax.swing.JButton();
+        jpnlHolidaySchedule = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
         jpnlFirstQuarterSchedule = new javax.swing.JPanel();
         jlblStartDate1 = new javax.swing.JLabel();
         jcmbFirstQuarterStartDateDay = new javax.swing.JComboBox<>();
@@ -202,22 +187,58 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jlblEndDateMonth5 = new javax.swing.JLabel();
         jlblEndDateYear5 = new javax.swing.JLabel();
         jlblEndDate4 = new javax.swing.JLabel();
-        jpnlClassHours = new javax.swing.JPanel();
-        jlblClassHours = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jsprClassHours = new javax.swing.JSpinner();
-        jpnlHolidays = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jlstHolidays = new javax.swing.JList<>();
-        jPanel6 = new javax.swing.JPanel();
-        jbtnAddHolidays = new javax.swing.JButton();
-        jpnlHolidaySchedule = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtblSchoolYearList = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtblEnrollmentSchedule = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jsprSchoolYearFrom = new javax.swing.JSpinner();
+        jlblSchoolYearTo = new javax.swing.JLabel();
+        jsprSchoolYearTo = new javax.swing.JSpinner();
+        jpnlSchoolYearSchedule = new javax.swing.JPanel();
+        jlblStartDate = new javax.swing.JLabel();
+        jlblEndDate = new javax.swing.JLabel();
+        jcmbSchoolYearStartDateYear = new javax.swing.JComboBox<>();
+        jlblStartDateYear = new javax.swing.JLabel();
+        jcmbSchoolYearStartDateMonth = new javax.swing.JComboBox<>();
+        jlblStartDateMonth = new javax.swing.JLabel();
+        jcmbSchoolYearStartDateDay = new javax.swing.JComboBox<>();
+        jlblStartDateDay = new javax.swing.JLabel();
+        jcmbSchoolYearClosingDateYear = new javax.swing.JComboBox<>();
+        jcmbSchoolYearEndDateMonth = new javax.swing.JComboBox<>();
+        jcmbSchoolYearEndDateDay = new javax.swing.JComboBox<>();
+        jlblEndDateYear = new javax.swing.JLabel();
+        jlblEndDateMonth = new javax.swing.JLabel();
+        jlblEndDateDay = new javax.swing.JLabel();
+        jpnlEnrollmentSchedule = new javax.swing.JPanel();
+        jlblEnrollmentOpeningDate = new javax.swing.JLabel();
+        jcmbEnrollmentOpeningDateDay = new javax.swing.JComboBox<>();
+        jcmbEnrollmentOpeningDateMonth = new javax.swing.JComboBox<>();
+        jcmbEnrollmentOpeningDateYear = new javax.swing.JComboBox<>();
+        jlblStartDateDay1 = new javax.swing.JLabel();
+        jlblStartDateMonth1 = new javax.swing.JLabel();
+        jlblStartDateYear1 = new javax.swing.JLabel();
+        jlblEnrollmentClosingDate = new javax.swing.JLabel();
+        jcmbEnrollmentClosingDateDay = new javax.swing.JComboBox<>();
+        jcmbEnrollmentClosingDateMonth = new javax.swing.JComboBox<>();
+        jcmbEnrollmentClosingDateYear = new javax.swing.JComboBox<>();
+        jlblEndDateDay1 = new javax.swing.JLabel();
+        jlblEndDateMonth1 = new javax.swing.JLabel();
+        jlblEndDateYear1 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jlblSummerStartDate = new javax.swing.JLabel();
+        jcmbSummerStartDay = new javax.swing.JComboBox<>();
+        jcmbSummerStartMonth = new javax.swing.JComboBox<>();
+        jcmbSummerStartYear = new javax.swing.JComboBox<>();
+        jlblStartDateDay7 = new javax.swing.JLabel();
+        jlblStartDateMonth7 = new javax.swing.JLabel();
+        jlblStartDateYear7 = new javax.swing.JLabel();
+        jlblSummerEndDate = new javax.swing.JLabel();
+        jcmbSummerEndDay = new javax.swing.JComboBox<>();
+        jcmbSummerEndMonth = new javax.swing.JComboBox<>();
+        jcmbSummerEndYear = new javax.swing.JComboBox<>();
+        jlblEndDateYear7 = new javax.swing.JLabel();
+        jlblEndDateMonth7 = new javax.swing.JLabel();
+        jlblEndDateDay7 = new javax.swing.JLabel();
         jpnlHolidaySets = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -245,248 +266,98 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jlstHolidayRecord = new javax.swing.JList<>();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jcmbHolidayRecordAction = new javax.swing.JComboBox<>();
+        jPanel13 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jpnlHolidayDate1 = new javax.swing.JPanel();
+        jlblHolidayStartDate1 = new javax.swing.JLabel();
+        jlblHolidayEndDate1 = new javax.swing.JLabel();
+        jcmbStartHolidayYear1 = new javax.swing.JComboBox<>();
+        jlblStartDateYear8 = new javax.swing.JLabel();
+        jcmbStartHolidayMonth1 = new javax.swing.JComboBox<>();
+        jlblStartDateMonth8 = new javax.swing.JLabel();
+        jcmbStartHolidayDay1 = new javax.swing.JComboBox<>();
+        jlblStartDateDay8 = new javax.swing.JLabel();
+        jcmbEndHolidayYear1 = new javax.swing.JComboBox<>();
+        jcmbEndHolidayMonth1 = new javax.swing.JComboBox<>();
+        jcmbEndHolidayDay1 = new javax.swing.JComboBox<>();
+        jlblEndDateYear8 = new javax.swing.JLabel();
+        jlblEndDateMonth8 = new javax.swing.JLabel();
+        jlblEndDateDay8 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setLayout(new java.awt.GridBagLayout());
 
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "School Year List"));
+
+        jtblSchoolYearList.setAutoCreateRowSorter(true);
+        jtblSchoolYearList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "From", "To", "Start Date", "End Date", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtblSchoolYearList);
+
+        jTabbedPane1.addTab("School Year", jScrollPane2);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        jtblEnrollmentSchedule.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "S.Y. ID", "School Year", "Date Open", "Date Closed", "Enrollment Ended"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtblEnrollmentSchedule.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jtblEnrollmentSchedule);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel5.add(jScrollPane1, gridBagConstraints);
+
+        jTabbedPane1.addTab("Enrollment Schedule", jPanel5);
+
+        jTabbedPane2.addTab("Record", jTabbedPane1);
+
         jspCreateSchoolYear.setMinimumSize(new java.awt.Dimension(568, 500));
-        jspCreateSchoolYear.setPreferredSize(new java.awt.Dimension(720, 880));
+        jspCreateSchoolYear.setPreferredSize(new java.awt.Dimension(720, 700));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Create School Year"));
+        jPanel4.setPreferredSize(new java.awt.Dimension(1000, 675));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("School Year"));
-        jPanel3.setPreferredSize(new java.awt.Dimension(300, 150));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
-
-        jLabel3.setText("School Year");
-        jPanel3.add(jLabel3, new java.awt.GridBagConstraints());
-
-        jsprSchoolYearFrom.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jsprSchoolYearFromStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel3.add(jsprSchoolYearFrom, gridBagConstraints);
-
-        jlblSchoolYearTo.setText("to");
-        jPanel3.add(jlblSchoolYearTo, new java.awt.GridBagConstraints());
-
-        jsprSchoolYearTo.setEnabled(false);
-        jsprSchoolYearTo.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jsprSchoolYearToStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel3.add(jsprSchoolYearTo, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jPanel3, gridBagConstraints);
-
-        jpnlSchoolYearSchedule.setBorder(javax.swing.BorderFactory.createTitledBorder("School Year Schedule"));
-        jpnlSchoolYearSchedule.setPreferredSize(new java.awt.Dimension(300, 150));
-        jpnlSchoolYearSchedule.setLayout(new java.awt.GridBagLayout());
-
-        jlblStartDate.setText("Start Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblStartDate, gridBagConstraints);
-
-        jlblEndDate.setText("End Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblEndDate, gridBagConstraints);
-
-        jcmbSchoolYearStartDateYear.setEnabled(false);
-        jcmbSchoolYearStartDateYear.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbSchoolYearStartDateYearItemStateChanged(evt);
-            }
-        });
-        jcmbSchoolYearStartDateYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbSchoolYearStartDateYearActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jcmbSchoolYearStartDateYear, gridBagConstraints);
-
-        jlblStartDateYear.setText("Year");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblStartDateYear, gridBagConstraints);
-
-        jcmbSchoolYearStartDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbSchoolYearStartDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
-        jcmbSchoolYearStartDateMonth.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbSchoolYearStartDateMonthItemStateChanged(evt);
-            }
-        });
-        jcmbSchoolYearStartDateMonth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbSchoolYearStartDateMonthActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jcmbSchoolYearStartDateMonth, gridBagConstraints);
-
-        jlblStartDateMonth.setText("Month");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblStartDateMonth, gridBagConstraints);
-
-        jcmbSchoolYearStartDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbSchoolYearStartDateDay.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbSchoolYearStartDateDayItemStateChanged(evt);
-            }
-        });
-        jcmbSchoolYearStartDateDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbSchoolYearStartDateDayActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
-        jpnlSchoolYearSchedule.add(jcmbSchoolYearStartDateDay, gridBagConstraints);
-
-        jlblStartDateDay.setText("Day");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblStartDateDay, gridBagConstraints);
-
-        jcmbSchoolYearClosingDateYear.setEnabled(false);
-        jcmbSchoolYearClosingDateYear.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbSchoolYearClosingDateYearItemStateChanged(evt);
-            }
-        });
-        jcmbSchoolYearClosingDateYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbSchoolYearClosingDateYearActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jcmbSchoolYearClosingDateYear, gridBagConstraints);
-
-        jcmbSchoolYearEndDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbSchoolYearEndDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
-        jcmbSchoolYearEndDateMonth.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbSchoolYearEndDateMonthItemStateChanged(evt);
-            }
-        });
-        jcmbSchoolYearEndDateMonth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbSchoolYearEndDateMonthActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jcmbSchoolYearEndDateMonth, gridBagConstraints);
-
-        jcmbSchoolYearEndDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbSchoolYearEndDateDay.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbSchoolYearEndDateDayItemStateChanged(evt);
-            }
-        });
-        jcmbSchoolYearEndDateDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbSchoolYearEndDateDayActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jcmbSchoolYearEndDateDay, gridBagConstraints);
-
-        jlblEndDateYear.setText("Year");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblEndDateYear, gridBagConstraints);
-
-        jlblEndDateMonth.setText("Month");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblEndDateMonth, gridBagConstraints);
-
-        jlblEndDateDay.setText("Day");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlSchoolYearSchedule.add(jlblEndDateDay, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlSchoolYearSchedule, gridBagConstraints);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jtbnClear.setText("Clear");
@@ -513,7 +384,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
@@ -521,200 +392,99 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         jPanel4.add(jPanel1, gridBagConstraints);
 
-        jpnlEnrollmentSchedule.setBorder(javax.swing.BorderFactory.createTitledBorder("Enrollment Schedule"));
-        jpnlEnrollmentSchedule.setPreferredSize(new java.awt.Dimension(270, 150));
-        jpnlEnrollmentSchedule.setLayout(new java.awt.GridBagLayout());
+        jpnlClassHours.setBorder(javax.swing.BorderFactory.createTitledBorder("Class Hours"));
+        jpnlClassHours.setPreferredSize(new java.awt.Dimension(150, 150));
+        jpnlClassHours.setLayout(new java.awt.GridBagLayout());
 
-        jlblEnrollmentOpeningDate.setText("Opening Date");
+        jlblClassHours.setText("Total Hours");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblEnrollmentOpeningDate, gridBagConstraints);
-
-        jcmbEnrollmentOpeningDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbEnrollmentOpeningDateDay.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbEnrollmentOpeningDateDayItemStateChanged(evt);
-            }
-        });
-        jcmbEnrollmentOpeningDateDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbEnrollmentOpeningDateDayActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jcmbEnrollmentOpeningDateDay, gridBagConstraints);
+        jpnlClassHours.add(jlblClassHours, gridBagConstraints);
 
-        jcmbEnrollmentOpeningDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbEnrollmentOpeningDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
-        jcmbEnrollmentOpeningDateMonth.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbEnrollmentOpeningDateMonthItemStateChanged(evt);
-            }
-        });
-        jcmbEnrollmentOpeningDateMonth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbEnrollmentOpeningDateMonthActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jcmbEnrollmentOpeningDateMonth, gridBagConstraints);
-
-        jcmbEnrollmentOpeningDateYear.setEnabled(false);
-        jcmbEnrollmentOpeningDateYear.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbEnrollmentOpeningDateYearItemStateChanged(evt);
-            }
-        });
-        jcmbEnrollmentOpeningDateYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbEnrollmentOpeningDateYearActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jcmbEnrollmentOpeningDateYear, gridBagConstraints);
-
-        jlblStartDateDay1.setText("Day");
+        jLabel1.setText("(hrs)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblStartDateDay1, gridBagConstraints);
+        jpnlClassHours.add(jLabel1, gridBagConstraints);
 
-        jlblStartDateMonth1.setText("Month");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblStartDateMonth1, gridBagConstraints);
-
-        jlblStartDateYear1.setText("Year");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblStartDateYear1, gridBagConstraints);
-
-        jlblEnrollmentClosingDate.setText("Closing Date");
+        jsprClassHours.setPreferredSize(new java.awt.Dimension(50, 26));
+        jsprClassHours.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jsprClassHoursStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblEnrollmentClosingDate, gridBagConstraints);
-
-        jcmbEnrollmentClosingDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbEnrollmentClosingDateDay.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbEnrollmentClosingDateDayItemStateChanged(evt);
-            }
-        });
-        jcmbEnrollmentClosingDateDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbEnrollmentClosingDateDayActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jcmbEnrollmentClosingDateDay, gridBagConstraints);
-
-        jcmbEnrollmentClosingDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
-        jcmbEnrollmentClosingDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
-        jcmbEnrollmentClosingDateMonth.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbEnrollmentClosingDateMonthItemStateChanged(evt);
-            }
-        });
-        jcmbEnrollmentClosingDateMonth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbEnrollmentClosingDateMonthActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jcmbEnrollmentClosingDateMonth, gridBagConstraints);
-
-        jcmbEnrollmentClosingDateYear.setEnabled(false);
-        jcmbEnrollmentClosingDateYear.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcmbEnrollmentClosingDateYearItemStateChanged(evt);
-            }
-        });
-        jcmbEnrollmentClosingDateYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbEnrollmentClosingDateYearActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jcmbEnrollmentClosingDateYear, gridBagConstraints);
-
-        jlblEndDateDay1.setText("Day");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblEndDateDay1, gridBagConstraints);
-
-        jlblEndDateMonth1.setText("Month");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblEndDateMonth1, gridBagConstraints);
-
-        jlblEndDateYear1.setText("Year");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlEnrollmentSchedule.add(jlblEndDateYear1, gridBagConstraints);
+        jpnlClassHours.add(jsprClassHours, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel4.add(jpnlClassHours, gridBagConstraints);
+
+        jpnlHolidays.setBorder(javax.swing.BorderFactory.createTitledBorder("Holidays"));
+        jpnlHolidays.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(160, 200));
+
+        jScrollPane3.setViewportView(jlstHolidays);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidays.add(jScrollPane3, gridBagConstraints);
+
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        jbtnAddHolidays.setText("Add..");
+        jbtnAddHolidays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAddHolidaysActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jbtnAddHolidays, new java.awt.GridBagConstraints());
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidays.add(jPanel6, gridBagConstraints);
+
+        jpnlHolidaySchedule.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlEnrollmentSchedule, gridBagConstraints);
+        jpnlHolidays.add(jpnlHolidaySchedule, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel4.add(jpnlHolidays, gridBagConstraints);
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Quarters"));
+        jPanel9.setLayout(new java.awt.GridBagLayout());
 
         jpnlFirstQuarterSchedule.setBorder(javax.swing.BorderFactory.createTitledBorder("1st Quarter"));
         jpnlFirstQuarterSchedule.setPreferredSize(new java.awt.Dimension(300, 150));
@@ -906,10 +676,10 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlFirstQuarterSchedule, gridBagConstraints);
+        jPanel9.add(jpnlFirstQuarterSchedule, gridBagConstraints);
 
         jpnlSecondQuarterSchedule.setBorder(javax.swing.BorderFactory.createTitledBorder("2nd Quarter"));
         jpnlSecondQuarterSchedule.setPreferredSize(new java.awt.Dimension(300, 150));
@@ -1100,11 +870,11 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jpnlSecondQuarterSchedule.add(jlblEndDate2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlSecondQuarterSchedule, gridBagConstraints);
+        jPanel9.add(jpnlSecondQuarterSchedule, gridBagConstraints);
 
         jpnlThirdQuarterSchedule.setBorder(javax.swing.BorderFactory.createTitledBorder("3rd Quarter"));
         jpnlThirdQuarterSchedule.setPreferredSize(new java.awt.Dimension(300, 150));
@@ -1295,11 +1065,11 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jpnlThirdQuarterSchedule.add(jlblEndDate3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlThirdQuarterSchedule, gridBagConstraints);
+        jPanel9.add(jpnlThirdQuarterSchedule, gridBagConstraints);
 
         jpnlFourthQuarterSchedule.setBorder(javax.swing.BorderFactory.createTitledBorder("4th Quarter"));
         jpnlFourthQuarterSchedule.setPreferredSize(new java.awt.Dimension(300, 150));
@@ -1491,151 +1261,668 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jpnlFourthQuarterSchedule.add(jlblEndDate4, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlFourthQuarterSchedule, gridBagConstraints);
+        jPanel9.add(jpnlFourthQuarterSchedule, gridBagConstraints);
 
-        jpnlClassHours.setBorder(javax.swing.BorderFactory.createTitledBorder("Class Hours"));
-        jpnlClassHours.setPreferredSize(new java.awt.Dimension(150, 150));
-        jpnlClassHours.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel4.add(jPanel9, gridBagConstraints);
 
-        jlblClassHours.setText("Total Hours");
+        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel11.setLayout(new java.awt.GridBagLayout());
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("School Year"));
+        jPanel3.setPreferredSize(new java.awt.Dimension(300, 200));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        jPanel10.setLayout(new java.awt.GridBagLayout());
+
+        jLabel3.setText("School Year");
+        jPanel10.add(jLabel3, new java.awt.GridBagConstraints());
+
+        jsprSchoolYearFrom.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jsprSchoolYearFromStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel10.add(jsprSchoolYearFrom, gridBagConstraints);
+
+        jlblSchoolYearTo.setText("to");
+        jPanel10.add(jlblSchoolYearTo, new java.awt.GridBagConstraints());
+
+        jsprSchoolYearTo.setEnabled(false);
+        jsprSchoolYearTo.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jsprSchoolYearToStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel10.add(jsprSchoolYearTo, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel3.add(jPanel10, gridBagConstraints);
+
+        jpnlSchoolYearSchedule.setPreferredSize(new java.awt.Dimension(300, 150));
+        jpnlSchoolYearSchedule.setLayout(new java.awt.GridBagLayout());
+
+        jlblStartDate.setText("Start Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jlblStartDate, gridBagConstraints);
+
+        jlblEndDate.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jlblEndDate, gridBagConstraints);
+
+        jcmbSchoolYearStartDateYear.setEnabled(false);
+        jcmbSchoolYearStartDateYear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSchoolYearStartDateYearItemStateChanged(evt);
+            }
+        });
+        jcmbSchoolYearStartDateYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSchoolYearStartDateYearActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jcmbSchoolYearStartDateYear, gridBagConstraints);
+
+        jlblStartDateYear.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlClassHours.add(jlblClassHours, gridBagConstraints);
+        jpnlSchoolYearSchedule.add(jlblStartDateYear, gridBagConstraints);
 
-        jLabel1.setText("(hrs)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlClassHours.add(jLabel1, gridBagConstraints);
-
-        jsprClassHours.setPreferredSize(new java.awt.Dimension(50, 26));
-        jsprClassHours.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jsprClassHoursStateChanged(evt);
+        jcmbSchoolYearStartDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSchoolYearStartDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbSchoolYearStartDateMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSchoolYearStartDateMonthItemStateChanged(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlClassHours.add(jsprClassHours, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlClassHours, gridBagConstraints);
-
-        jpnlHolidays.setBorder(javax.swing.BorderFactory.createTitledBorder("Holidays"));
-        jpnlHolidays.setLayout(new java.awt.GridBagLayout());
-
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(160, 200));
-
-        jScrollPane3.setViewportView(jlstHolidays);
-
-        jpnlHolidays.add(jScrollPane3, new java.awt.GridBagConstraints());
-
-        jPanel6.setLayout(new java.awt.GridBagLayout());
-
-        jbtnAddHolidays.setText("Add..");
-        jbtnAddHolidays.addActionListener(new java.awt.event.ActionListener() {
+        jcmbSchoolYearStartDateMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnAddHolidaysActionPerformed(evt);
+                jcmbSchoolYearStartDateMonthActionPerformed(evt);
             }
         });
-        jPanel6.add(jbtnAddHolidays, new java.awt.GridBagConstraints());
-
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidays.add(jPanel6, gridBagConstraints);
+        jpnlSchoolYearSchedule.add(jcmbSchoolYearStartDateMonth, gridBagConstraints);
 
-        jpnlHolidaySchedule.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jpnlHolidays.add(jpnlHolidaySchedule, gridBagConstraints);
-
+        jlblStartDateMonth.setText("Month");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel4.add(jpnlHolidays, gridBagConstraints);
+        jpnlSchoolYearSchedule.add(jlblStartDateMonth, gridBagConstraints);
+
+        jcmbSchoolYearStartDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSchoolYearStartDateDay.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSchoolYearStartDateDayItemStateChanged(evt);
+            }
+        });
+        jcmbSchoolYearStartDateDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSchoolYearStartDateDayActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        jpnlSchoolYearSchedule.add(jcmbSchoolYearStartDateDay, gridBagConstraints);
+
+        jlblStartDateDay.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jlblStartDateDay, gridBagConstraints);
+
+        jcmbSchoolYearClosingDateYear.setEnabled(false);
+        jcmbSchoolYearClosingDateYear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSchoolYearClosingDateYearItemStateChanged(evt);
+            }
+        });
+        jcmbSchoolYearClosingDateYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSchoolYearClosingDateYearActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jcmbSchoolYearClosingDateYear, gridBagConstraints);
+
+        jcmbSchoolYearEndDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSchoolYearEndDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbSchoolYearEndDateMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSchoolYearEndDateMonthItemStateChanged(evt);
+            }
+        });
+        jcmbSchoolYearEndDateMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSchoolYearEndDateMonthActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jcmbSchoolYearEndDateMonth, gridBagConstraints);
+
+        jcmbSchoolYearEndDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSchoolYearEndDateDay.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSchoolYearEndDateDayItemStateChanged(evt);
+            }
+        });
+        jcmbSchoolYearEndDateDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSchoolYearEndDateDayActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jcmbSchoolYearEndDateDay, gridBagConstraints);
+
+        jlblEndDateYear.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jlblEndDateYear, gridBagConstraints);
+
+        jlblEndDateMonth.setText("Month");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jlblEndDateMonth, gridBagConstraints);
+
+        jlblEndDateDay.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlSchoolYearSchedule.add(jlblEndDateDay, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel3.add(jpnlSchoolYearSchedule, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel11.add(jPanel3, gridBagConstraints);
+
+        jpnlEnrollmentSchedule.setBorder(javax.swing.BorderFactory.createTitledBorder("Enrollment Schedule"));
+        jpnlEnrollmentSchedule.setPreferredSize(new java.awt.Dimension(270, 150));
+        jpnlEnrollmentSchedule.setLayout(new java.awt.GridBagLayout());
+
+        jlblEnrollmentOpeningDate.setText("Opening Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblEnrollmentOpeningDate, gridBagConstraints);
+
+        jcmbEnrollmentOpeningDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbEnrollmentOpeningDateDay.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEnrollmentOpeningDateDayItemStateChanged(evt);
+            }
+        });
+        jcmbEnrollmentOpeningDateDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEnrollmentOpeningDateDayActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jcmbEnrollmentOpeningDateDay, gridBagConstraints);
+
+        jcmbEnrollmentOpeningDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbEnrollmentOpeningDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbEnrollmentOpeningDateMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEnrollmentOpeningDateMonthItemStateChanged(evt);
+            }
+        });
+        jcmbEnrollmentOpeningDateMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEnrollmentOpeningDateMonthActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jcmbEnrollmentOpeningDateMonth, gridBagConstraints);
+
+        jcmbEnrollmentOpeningDateYear.setEnabled(false);
+        jcmbEnrollmentOpeningDateYear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEnrollmentOpeningDateYearItemStateChanged(evt);
+            }
+        });
+        jcmbEnrollmentOpeningDateYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEnrollmentOpeningDateYearActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jcmbEnrollmentOpeningDateYear, gridBagConstraints);
+
+        jlblStartDateDay1.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblStartDateDay1, gridBagConstraints);
+
+        jlblStartDateMonth1.setText("Month");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblStartDateMonth1, gridBagConstraints);
+
+        jlblStartDateYear1.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblStartDateYear1, gridBagConstraints);
+
+        jlblEnrollmentClosingDate.setText("Closing Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblEnrollmentClosingDate, gridBagConstraints);
+
+        jcmbEnrollmentClosingDateDay.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbEnrollmentClosingDateDay.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEnrollmentClosingDateDayItemStateChanged(evt);
+            }
+        });
+        jcmbEnrollmentClosingDateDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEnrollmentClosingDateDayActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jcmbEnrollmentClosingDateDay, gridBagConstraints);
+
+        jcmbEnrollmentClosingDateMonth.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbEnrollmentClosingDateMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbEnrollmentClosingDateMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEnrollmentClosingDateMonthItemStateChanged(evt);
+            }
+        });
+        jcmbEnrollmentClosingDateMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEnrollmentClosingDateMonthActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jcmbEnrollmentClosingDateMonth, gridBagConstraints);
+
+        jcmbEnrollmentClosingDateYear.setEnabled(false);
+        jcmbEnrollmentClosingDateYear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEnrollmentClosingDateYearItemStateChanged(evt);
+            }
+        });
+        jcmbEnrollmentClosingDateYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEnrollmentClosingDateYearActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jcmbEnrollmentClosingDateYear, gridBagConstraints);
+
+        jlblEndDateDay1.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblEndDateDay1, gridBagConstraints);
+
+        jlblEndDateMonth1.setText("Month");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblEndDateMonth1, gridBagConstraints);
+
+        jlblEndDateYear1.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlEnrollmentSchedule.add(jlblEndDateYear1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel11.add(jpnlEnrollmentSchedule, gridBagConstraints);
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Summer Class Schedule"));
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        jlblSummerStartDate.setText("Start Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblSummerStartDate, gridBagConstraints);
+
+        jcmbSummerStartDay.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSummerStartDay.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSummerStartDayItemStateChanged(evt);
+            }
+        });
+        jcmbSummerStartDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSummerStartDayActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jcmbSummerStartDay, gridBagConstraints);
+
+        jcmbSummerStartMonth.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSummerStartMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbSummerStartMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSummerStartMonthItemStateChanged(evt);
+            }
+        });
+        jcmbSummerStartMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSummerStartMonthActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jcmbSummerStartMonth, gridBagConstraints);
+
+        jcmbSummerStartYear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSummerStartYearItemStateChanged(evt);
+            }
+        });
+        jcmbSummerStartYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSummerStartYearActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jcmbSummerStartYear, gridBagConstraints);
+
+        jlblStartDateDay7.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblStartDateDay7, gridBagConstraints);
+
+        jlblStartDateMonth7.setText("Month");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblStartDateMonth7, gridBagConstraints);
+
+        jlblStartDateYear7.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblStartDateYear7, gridBagConstraints);
+
+        jlblSummerEndDate.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblSummerEndDate, gridBagConstraints);
+
+        jcmbSummerEndDay.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSummerEndDay.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSummerEndDayItemStateChanged(evt);
+            }
+        });
+        jcmbSummerEndDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSummerEndDayActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jcmbSummerEndDay, gridBagConstraints);
+
+        jcmbSummerEndMonth.setPreferredSize(new java.awt.Dimension(43, 26));
+        jcmbSummerEndMonth.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbSummerEndMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSummerEndMonthItemStateChanged(evt);
+            }
+        });
+        jcmbSummerEndMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSummerEndMonthActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jcmbSummerEndMonth, gridBagConstraints);
+
+        jcmbSummerEndYear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbSummerEndYearItemStateChanged(evt);
+            }
+        });
+        jcmbSummerEndYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbSummerEndYearActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jcmbSummerEndYear, gridBagConstraints);
+
+        jlblEndDateYear7.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblEndDateYear7, gridBagConstraints);
+
+        jlblEndDateMonth7.setText("Month");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblEndDateMonth7, gridBagConstraints);
+
+        jlblEndDateDay7.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel8.add(jlblEndDateDay7, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel11.add(jPanel8, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel4.add(jPanel11, gridBagConstraints);
 
         jspCreateSchoolYear.setViewportView(jPanel4);
 
-        jTabbedPane2.addTab("School Year Creation", jspCreateSchoolYear);
-
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "School Year List"));
-
-        jtblSchoolYearList.setAutoCreateRowSorter(true);
-        jtblSchoolYearList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "From", "To", "Start Date", "End Date", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jtblSchoolYearList);
-
-        jTabbedPane1.addTab("School Year", jScrollPane2);
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.setLayout(new java.awt.GridBagLayout());
-
-        jtblEnrollmentSchedule.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "S.Y. ID", "School Year", "Date Open", "Date Closed", "Enrollment Ended"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtblEnrollmentSchedule.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jtblEnrollmentSchedule);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel5.add(jScrollPane1, gridBagConstraints);
-
-        jTabbedPane1.addTab("Enrollment Schedule", jPanel5);
-
-        jTabbedPane2.addTab("School Year Record", jTabbedPane1);
+        jTabbedPane2.addTab("Creation", jspCreateSchoolYear);
 
         jpnlHolidaySets.setLayout(new java.awt.GridBagLayout());
 
@@ -1866,11 +2153,287 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
 
         jTabbedPane3.addTab("Creation", jPanel2);
 
+        jPanel7.setPreferredSize(new java.awt.Dimension(480, 171));
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
         jScrollPane5.setPreferredSize(new java.awt.Dimension(100, 147));
 
+        jlstHolidayRecord.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlstHolidayRecordMouseClicked(evt);
+            }
+        });
+        jlstHolidayRecord.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jlstHolidayRecordValueChanged(evt);
+            }
+        });
         jScrollPane5.setViewportView(jlstHolidayRecord);
 
-        jPanel7.add(jScrollPane5);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel7.add(jScrollPane5, gridBagConstraints);
+
+        jPanel12.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setText("Action");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel12.add(jLabel2, gridBagConstraints);
+
+        jcmbHolidayRecordAction.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Edit" }));
+        jcmbHolidayRecordAction.setSelectedIndex(-1);
+        jcmbHolidayRecordAction.setEnabled(false);
+        jcmbHolidayRecordAction.setPreferredSize(new java.awt.Dimension(70, 26));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel12.add(jcmbHolidayRecordAction, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel7.add(jPanel12, gridBagConstraints);
+
+        jPanel13.setLayout(new java.awt.GridBagLayout());
+
+        jCheckBox1.setText("Active");
+        jCheckBox1.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel13.add(jCheckBox1, gridBagConstraints);
+
+        jpnlHolidayDate1.setBorder(javax.swing.BorderFactory.createTitledBorder("Date"));
+        jpnlHolidayDate1.setLayout(new java.awt.GridBagLayout());
+
+        jlblHolidayStartDate1.setText("Start Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblHolidayStartDate1, gridBagConstraints);
+
+        jlblHolidayEndDate1.setText("End Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblHolidayEndDate1, gridBagConstraints);
+
+        jcmbStartHolidayYear1.setEnabled(false);
+        jcmbStartHolidayYear1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbStartHolidayYear1ItemStateChanged(evt);
+            }
+        });
+        jcmbStartHolidayYear1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbStartHolidayYear1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jcmbStartHolidayYear1, gridBagConstraints);
+
+        jlblStartDateYear8.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblStartDateYear8, gridBagConstraints);
+
+        jcmbStartHolidayMonth1.setEnabled(false);
+        jcmbStartHolidayMonth1.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbStartHolidayMonth1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbStartHolidayMonth1ItemStateChanged(evt);
+            }
+        });
+        jcmbStartHolidayMonth1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbStartHolidayMonth1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jcmbStartHolidayMonth1, gridBagConstraints);
+
+        jlblStartDateMonth8.setText("Month");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblStartDateMonth8, gridBagConstraints);
+
+        jcmbStartHolidayDay1.setEnabled(false);
+        jcmbStartHolidayDay1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbStartHolidayDay1ItemStateChanged(evt);
+            }
+        });
+        jcmbStartHolidayDay1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbStartHolidayDay1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        jpnlHolidayDate1.add(jcmbStartHolidayDay1, gridBagConstraints);
+
+        jlblStartDateDay8.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblStartDateDay8, gridBagConstraints);
+
+        jcmbEndHolidayYear1.setEnabled(false);
+        jcmbEndHolidayYear1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEndHolidayYear1ItemStateChanged(evt);
+            }
+        });
+        jcmbEndHolidayYear1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEndHolidayYear1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jcmbEndHolidayYear1, gridBagConstraints);
+
+        jcmbEndHolidayMonth1.setEnabled(false);
+        jcmbEndHolidayMonth1.setRenderer(new component_renderers.JComboBoxRenderer_Month("--"));
+        jcmbEndHolidayMonth1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEndHolidayMonth1ItemStateChanged(evt);
+            }
+        });
+        jcmbEndHolidayMonth1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEndHolidayMonth1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jcmbEndHolidayMonth1, gridBagConstraints);
+
+        jcmbEndHolidayDay1.setEnabled(false);
+        jcmbEndHolidayDay1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcmbEndHolidayDay1ItemStateChanged(evt);
+            }
+        });
+        jcmbEndHolidayDay1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbEndHolidayDay1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jcmbEndHolidayDay1, gridBagConstraints);
+
+        jlblEndDateYear8.setText("Year");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblEndDateYear8, gridBagConstraints);
+
+        jlblEndDateMonth8.setText("Month");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblEndDateMonth8, gridBagConstraints);
+
+        jlblEndDateDay8.setText("Day");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jpnlHolidayDate1.add(jlblEndDateDay8, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel13.add(jpnlHolidayDate1, gridBagConstraints);
+
+        jPanel14.setLayout(new java.awt.GridBagLayout());
+
+        jButton1.setText("Save");
+        jButton1.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel14.add(jButton1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel13.add(jPanel14, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        jPanel7.add(jPanel13, gridBagConstraints);
 
         jTabbedPane3.addTab("Record", jPanel7);
 
@@ -2126,6 +2689,20 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         Integer classHours = Integer.parseInt(jsprClassHours.getValue().toString());
         schoolYear.setClassHours(classHours);
 
+        int summerStartYear = Integer.parseInt(jcmbSummerStartYear.getSelectedItem().toString());
+        int summerStartMonth = Integer.parseInt(jcmbSummerStartMonth.getSelectedItem().toString());
+        int summerStartDay = Integer.parseInt(jcmbSummerStartDay.getSelectedItem().toString());
+        String summerStartDate = summerStartYear + "-" + (summerStartMonth+1) + "-" + summerStartDay;
+        int summerEndYear = Integer.parseInt(jcmbSummerEndYear.getSelectedItem().toString().trim());
+        int summerEndMonth = Integer.parseInt(jcmbSummerEndMonth.getSelectedItem().toString().trim());
+        int summerEndDay = Integer.parseInt(jcmbSummerEndDay.getSelectedItem().toString().trim());
+        String summerEndDate = summerEndYear + "-" + (summerEndMonth+1) + "-" + summerEndDay;
+
+        SummerClassSchedule sc = new SummerClassSchedule();
+        sc.setStartDate(java.sql.Date.valueOf(summerStartDate.trim()));
+        sc.setEndDate(java.sql.Date.valueOf(summerEndDate.trim()));
+        schoolYear.setSummerClassSchedule(sc);
+        
         int choice = JOptionPane.showConfirmDialog(null, "Add School Year? ", "Add School Year ", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
             boolean isAdded = SYDAOIMPL.addSchoolYear(schoolYear);
@@ -2196,6 +2773,27 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         jcmbFourthQuarterEndDateYear.setModel(CalendarML.getCurrentYearToNYears(10));
     }
     
+    private void setSummerScheduleJComboBoxModel(){
+        jcmbSummerStartYear.setModel(CalendarML.getCurrentYearToNYears(10));
+        jcmbSummerEndYear.setModel(CalendarML.getCurrentYearToNYears(10));
+        jcmbSummerStartMonth.setModel(CalendarML.getMonthsOfYear());
+        jcmbSummerEndMonth.setModel(CalendarML.getMonthsOfYear());
+    }
+    
+    private void setSummerScheduleStartDayJComboBoxModels(){
+        int summerStartMonth = Integer.parseInt(jcmbSummerStartMonth.getSelectedItem().toString());
+        int summerStartYear = Integer.parseInt(jcmbSummerStartYear.getSelectedItem().toString());
+        jcmbSummerStartDay.setModel(CalendarML.getDaysOfMonth(summerStartMonth, summerStartYear));
+//        jcmbSummerStartDay.setSelectedIndex(-1);
+    }
+    
+    private void setSummerScheduleEndDayJComboBoxModels(){
+        int summerEndMonth = Integer.parseInt(jcmbSummerEndMonth.getSelectedItem().toString());
+        int summerEndYear = Integer.parseInt(jcmbSummerEndYear.getSelectedItem().toString());
+        jcmbSummerEndDay.setModel(CalendarML.getDaysOfMonth(summerEndMonth, summerEndYear));
+//        jcmbSummerEndDay.setSelectedIndex(-1);
+    }
+    
     private void setHolidayJComboBoxModels(){
         jcmbStartHolidayYear.setModel(CalendarML.getCurrentYearToNYears(10));
         jcmbEndHolidayYear.setModel(CalendarML.getCurrentYearToNYears(10));
@@ -2234,7 +2832,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             int selectedFirstSemStartDateMonth = Integer.parseInt(jcmbFirstQuarterStartDateMonth.getSelectedItem().toString());
             int selectedFirstSemStartDateYear = Integer.parseInt(jcmbFirstQuarterStartDateYear.getSelectedItem().toString());
             jcmbFirstQuarterStartDateDay.setModel(CalendarML.getDaysOfMonth(selectedFirstSemStartDateMonth, selectedFirstSemStartDateYear));
-//            jcmbFirstQuarterStartDateDay.setSelectedIndex(-1);
         }
     }
 
@@ -2245,7 +2842,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             int selectedFirstSemEndDateMonth = Integer.parseInt(jcmbFirstQuarterEndDateMonth.getSelectedItem().toString());
             int selectedFirstSemEndDateYear = Integer.parseInt(jcmbFirstQuarterEndDateYear.getSelectedItem().toString());
             jcmbFirstQuarterEndDateDay.setModel(CalendarML.getDaysOfMonth(selectedFirstSemEndDateMonth, selectedFirstSemEndDateYear));
-            jcmbFirstQuarterEndDateDay.setSelectedIndex(-1);
         }
     }
 
@@ -2266,7 +2862,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             int selectedSecondSemEndDateMonth = Integer.parseInt(jcmbSecondQuarterEndDateMonth.getSelectedItem().toString());
             int selectedSecondSemEndDateYear = Integer.parseInt(jcmbSecondQuarterEndDateYear.getSelectedItem().toString());
             jcmbSecondQuarterEndDateDay.setModel(CalendarML.getDaysOfMonth(selectedSecondSemEndDateMonth, selectedSecondSemEndDateYear));
-            jcmbSecondQuarterEndDateDay.setSelectedIndex(-1);
         }
     }
 
@@ -2277,7 +2872,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             int selectedThirdSemStartDateMonth = Integer.parseInt(jcmbThirdQuarterStartDateMonth.getSelectedItem().toString());
             int selectedThirdSemStartDateYear = Integer.parseInt(jcmbThirdQuarterStartDateYear.getSelectedItem().toString());
             jcmbThirdQuarterStartDateDay.setModel(CalendarML.getDaysOfMonth(selectedThirdSemStartDateMonth, selectedThirdSemStartDateYear));
-//            jcmbFirstQuarterStartDateDay.setSelectedIndex(-1);
         }
     }
 
@@ -2288,7 +2882,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             int selectedThirdSemEndDateMonth = Integer.parseInt(jcmbThirdQuarterEndDateMonth.getSelectedItem().toString());
             int selectedThirdSemEndDateYear = Integer.parseInt(jcmbThirdQuarterEndDateYear.getSelectedItem().toString());
             jcmbThirdQuarterEndDateDay.setModel(CalendarML.getDaysOfMonth(selectedThirdSemEndDateMonth, selectedThirdSemEndDateYear));
-            jcmbThirdQuarterEndDateDay.setSelectedIndex(-1);
         }
     }
 
@@ -2299,7 +2892,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             int selectedFourthSemStartDateMonth = Integer.parseInt(jcmbFourthQuarterStartDateMonth.getSelectedItem().toString());
             int selectedFourthSemStartDateYear = Integer.parseInt(jcmbFourthQuarterStartDateYear.getSelectedItem().toString());
             jcmbFourthQuarterStartDateDay.setModel(CalendarML.getDaysOfMonth(selectedFourthSemStartDateMonth, selectedFourthSemStartDateYear));
-//            jcmbFirstQuarterStartDateDay.setSelectedIndex(-1);
         }
     }
 
@@ -2310,7 +2902,6 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
             int selectedFourthSemEndDateMonth = Integer.parseInt(jcmbFourthQuarterEndDateMonth.getSelectedItem().toString());
             int selectedFourthSemEndDateYear = Integer.parseInt(jcmbFourthQuarterEndDateYear.getSelectedItem().toString());
             jcmbFourthQuarterEndDateDay.setModel(CalendarML.getDaysOfMonth(selectedFourthSemEndDateMonth, selectedFourthSemEndDateYear));
-            jcmbFourthQuarterEndDateDay.setSelectedIndex(-1);
         }
     }
 
@@ -3013,17 +3604,134 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcmbEndHolidayDayActionPerformed
 
+    private void jcmbSummerStartDayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSummerStartDayItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerStartDayItemStateChanged
+
+    private void jcmbSummerStartDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSummerStartDayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerStartDayActionPerformed
+
+    private void jcmbSummerStartMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSummerStartMonthItemStateChanged
+        setSummerScheduleStartDayJComboBoxModels();
+    }//GEN-LAST:event_jcmbSummerStartMonthItemStateChanged
+
+    private void jcmbSummerStartMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSummerStartMonthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerStartMonthActionPerformed
+
+    private void jcmbSummerStartYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSummerStartYearItemStateChanged
+        setSummerScheduleStartDayJComboBoxModels();
+    }//GEN-LAST:event_jcmbSummerStartYearItemStateChanged
+
+    private void jcmbSummerStartYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSummerStartYearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerStartYearActionPerformed
+
+    private void jcmbSummerEndDayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSummerEndDayItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerEndDayItemStateChanged
+
+    private void jcmbSummerEndDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSummerEndDayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerEndDayActionPerformed
+
+    private void jcmbSummerEndMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSummerEndMonthItemStateChanged
+        setSummerScheduleEndDayJComboBoxModels();
+    }//GEN-LAST:event_jcmbSummerEndMonthItemStateChanged
+
+    private void jcmbSummerEndMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSummerEndMonthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerEndMonthActionPerformed
+
+    private void jcmbSummerEndYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSummerEndYearItemStateChanged
+        setSummerScheduleEndDayJComboBoxModels();
+    }//GEN-LAST:event_jcmbSummerEndYearItemStateChanged
+
+    private void jcmbSummerEndYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbSummerEndYearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbSummerEndYearActionPerformed
+
+    private void jcmbStartHolidayYear1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbStartHolidayYear1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbStartHolidayYear1ItemStateChanged
+
+    private void jcmbStartHolidayYear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbStartHolidayYear1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbStartHolidayYear1ActionPerformed
+
+    private void jcmbStartHolidayMonth1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbStartHolidayMonth1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbStartHolidayMonth1ItemStateChanged
+
+    private void jcmbStartHolidayMonth1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbStartHolidayMonth1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbStartHolidayMonth1ActionPerformed
+
+    private void jcmbStartHolidayDay1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbStartHolidayDay1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbStartHolidayDay1ItemStateChanged
+
+    private void jcmbStartHolidayDay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbStartHolidayDay1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbStartHolidayDay1ActionPerformed
+
+    private void jcmbEndHolidayYear1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbEndHolidayYear1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbEndHolidayYear1ItemStateChanged
+
+    private void jcmbEndHolidayYear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEndHolidayYear1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbEndHolidayYear1ActionPerformed
+
+    private void jcmbEndHolidayMonth1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbEndHolidayMonth1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbEndHolidayMonth1ItemStateChanged
+
+    private void jcmbEndHolidayMonth1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEndHolidayMonth1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbEndHolidayMonth1ActionPerformed
+
+    private void jcmbEndHolidayDay1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbEndHolidayDay1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbEndHolidayDay1ItemStateChanged
+
+    private void jcmbEndHolidayDay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEndHolidayDay1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbEndHolidayDay1ActionPerformed
+
+    private void jlstHolidayRecordValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlstHolidayRecordValueChanged
+    }//GEN-LAST:event_jlstHolidayRecordValueChanged
+
+    private void jlstHolidayRecordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlstHolidayRecordMouseClicked
+        if(jlstHolidayRecord.getSelectedIndex() > -1){
+            jcmbHolidayRecordAction.setEnabled(true);
+        }else{
+            jcmbHolidayRecordAction.setEnabled(false);
+        }
+    }//GEN-LAST:event_jlstHolidayRecordMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3036,8 +3744,11 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JButton jbtnCreate;
     private javax.swing.JButton jbtnSaveHoliday;
     private javax.swing.JComboBox<String> jcmbEndHolidayDay;
+    private javax.swing.JComboBox<String> jcmbEndHolidayDay1;
     private javax.swing.JComboBox<String> jcmbEndHolidayMonth;
+    private javax.swing.JComboBox<String> jcmbEndHolidayMonth1;
     private javax.swing.JComboBox<String> jcmbEndHolidayYear;
+    private javax.swing.JComboBox<String> jcmbEndHolidayYear1;
     private javax.swing.JComboBox<String> jcmbEnrollmentClosingDateDay;
     private javax.swing.JComboBox<String> jcmbEnrollmentClosingDateMonth;
     private javax.swing.JComboBox<String> jcmbEnrollmentClosingDateYear;
@@ -3056,6 +3767,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcmbFourthQuarterStartDateDay;
     private javax.swing.JComboBox<String> jcmbFourthQuarterStartDateMonth;
     private javax.swing.JComboBox<String> jcmbFourthQuarterStartDateYear;
+    private javax.swing.JComboBox<String> jcmbHolidayRecordAction;
     private javax.swing.JComboBox<String> jcmbSchoolYearClosingDateYear;
     private javax.swing.JComboBox<String> jcmbSchoolYearEndDateDay;
     private javax.swing.JComboBox<String> jcmbSchoolYearEndDateMonth;
@@ -3069,8 +3781,17 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcmbSecondQuarterStartDateMonth;
     private javax.swing.JComboBox<String> jcmbSecondQuarterStartDateYear;
     private javax.swing.JComboBox<String> jcmbStartHolidayDay;
+    private javax.swing.JComboBox<String> jcmbStartHolidayDay1;
     private javax.swing.JComboBox<String> jcmbStartHolidayMonth;
+    private javax.swing.JComboBox<String> jcmbStartHolidayMonth1;
     private javax.swing.JComboBox<String> jcmbStartHolidayYear;
+    private javax.swing.JComboBox<String> jcmbStartHolidayYear1;
+    private javax.swing.JComboBox<String> jcmbSummerEndDay;
+    private javax.swing.JComboBox<String> jcmbSummerEndMonth;
+    private javax.swing.JComboBox<String> jcmbSummerEndYear;
+    private javax.swing.JComboBox<String> jcmbSummerStartDay;
+    private javax.swing.JComboBox<String> jcmbSummerStartMonth;
+    private javax.swing.JComboBox<String> jcmbSummerStartYear;
     private javax.swing.JComboBox<String> jcmbThirdQuarterEndDateDay;
     private javax.swing.JComboBox<String> jcmbThirdQuarterEndDateMonth;
     private javax.swing.JComboBox<String> jcmbThirdQuarterEndDateYear;
@@ -3090,6 +3811,8 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblEndDateDay4;
     private javax.swing.JLabel jlblEndDateDay5;
     private javax.swing.JLabel jlblEndDateDay6;
+    private javax.swing.JLabel jlblEndDateDay7;
+    private javax.swing.JLabel jlblEndDateDay8;
     private javax.swing.JLabel jlblEndDateMonth;
     private javax.swing.JLabel jlblEndDateMonth1;
     private javax.swing.JLabel jlblEndDateMonth2;
@@ -3097,6 +3820,8 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblEndDateMonth4;
     private javax.swing.JLabel jlblEndDateMonth5;
     private javax.swing.JLabel jlblEndDateMonth6;
+    private javax.swing.JLabel jlblEndDateMonth7;
+    private javax.swing.JLabel jlblEndDateMonth8;
     private javax.swing.JLabel jlblEndDateYear;
     private javax.swing.JLabel jlblEndDateYear1;
     private javax.swing.JLabel jlblEndDateYear2;
@@ -3104,12 +3829,16 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblEndDateYear4;
     private javax.swing.JLabel jlblEndDateYear5;
     private javax.swing.JLabel jlblEndDateYear6;
+    private javax.swing.JLabel jlblEndDateYear7;
+    private javax.swing.JLabel jlblEndDateYear8;
     private javax.swing.JLabel jlblEnrollmentClosingDate;
     private javax.swing.JLabel jlblEnrollmentOpeningDate;
     private javax.swing.JLabel jlblHolidayDescription;
     private javax.swing.JLabel jlblHolidayEndDate;
+    private javax.swing.JLabel jlblHolidayEndDate1;
     private javax.swing.JLabel jlblHolidayName;
     private javax.swing.JLabel jlblHolidayStartDate;
+    private javax.swing.JLabel jlblHolidayStartDate1;
     private javax.swing.JLabel jlblSchoolYearTo;
     private javax.swing.JLabel jlblStartDate;
     private javax.swing.JLabel jlblStartDate1;
@@ -3123,6 +3852,8 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblStartDateDay4;
     private javax.swing.JLabel jlblStartDateDay5;
     private javax.swing.JLabel jlblStartDateDay6;
+    private javax.swing.JLabel jlblStartDateDay7;
+    private javax.swing.JLabel jlblStartDateDay8;
     private javax.swing.JLabel jlblStartDateMonth;
     private javax.swing.JLabel jlblStartDateMonth1;
     private javax.swing.JLabel jlblStartDateMonth2;
@@ -3130,6 +3861,8 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblStartDateMonth4;
     private javax.swing.JLabel jlblStartDateMonth5;
     private javax.swing.JLabel jlblStartDateMonth6;
+    private javax.swing.JLabel jlblStartDateMonth7;
+    private javax.swing.JLabel jlblStartDateMonth8;
     private javax.swing.JLabel jlblStartDateYear;
     private javax.swing.JLabel jlblStartDateYear1;
     private javax.swing.JLabel jlblStartDateYear2;
@@ -3137,6 +3870,10 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JLabel jlblStartDateYear4;
     private javax.swing.JLabel jlblStartDateYear5;
     private javax.swing.JLabel jlblStartDateYear6;
+    private javax.swing.JLabel jlblStartDateYear7;
+    private javax.swing.JLabel jlblStartDateYear8;
+    private javax.swing.JLabel jlblSummerEndDate;
+    private javax.swing.JLabel jlblSummerStartDate;
     private javax.swing.JList<String> jlstHolidayRecord;
     public static javax.swing.JList<String> jlstHolidays;
     private javax.swing.JPanel jpnlClassHours;
@@ -3144,6 +3881,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
     private javax.swing.JPanel jpnlFirstQuarterSchedule;
     private javax.swing.JPanel jpnlFourthQuarterSchedule;
     private javax.swing.JPanel jpnlHolidayDate;
+    private javax.swing.JPanel jpnlHolidayDate1;
     private javax.swing.JPanel jpnlHolidaySchedule;
     private javax.swing.JPanel jpnlHolidaySets;
     private javax.swing.JPanel jpnlHolidays;

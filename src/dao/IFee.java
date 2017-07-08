@@ -43,6 +43,7 @@ public interface IFee {
     Fee getById(int feeId);
     int getId(String feeName);
     boolean add(Fee fee);
+    boolean update(Fee fee);
     boolean delete(int feeId);
     boolean exists(String feeName);
 }

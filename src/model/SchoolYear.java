@@ -23,7 +23,16 @@ public class SchoolYear {
     private boolean isCurrentSchoolYear;
     private List<Holiday> holidays;
     private Enrollment enrollment;
+    private SummerClassSchedule summerClassSchedule;
     private List<Quarter> quarters;
+
+    public SummerClassSchedule getSummerClassSchedule() {
+        return summerClassSchedule;
+    }
+
+    public void setSummerClassSchedule(SummerClassSchedule summerClassSchedule) {
+        this.summerClassSchedule = summerClassSchedule;
+    }
 
     public List<Holiday> getHolidays() {
         return holidays;
