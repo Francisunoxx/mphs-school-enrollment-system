@@ -1,6 +1,6 @@
 package database_utility;
 
-import gui.DBConnectionForm;
+import view.DBConnectionForm;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
