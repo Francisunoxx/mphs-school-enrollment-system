@@ -12,8 +12,8 @@ public class SectionsListGui extends javax.swing.JPanel {
     public SectionsListGui() {
         initComponents();
         SchoolYearDaoImpl sy = new SchoolYearDaoImpl();
-//        schoolYearStartJcb.setModel(sy.getAllSchoolYearStart());
-//        schoolYearEndJcb.setModel(sy.getAllSchoolYearEnd());
+//        schoolYearStartJcb.setModel(sy.getAllStart());
+//        schoolYearEndJcb.setModel(sy.getAllEnd());
         sectionsListJtbl.setModel(SectionDaoImpl_OLD.getAll(sectionsListJtbl));
     }
 

@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/FeesManagementContainer.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/gui/SchoolYearManagementContainer.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/view/PaymentSchedule.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/model/PaymentTerm.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/view/CreatePaymentSchedule.java</file>
+            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/MphsEnrollmentSystem/src/controller/paymentschedule/CreateController.java</file>
         </group>
     </open-files>
 </project-private>

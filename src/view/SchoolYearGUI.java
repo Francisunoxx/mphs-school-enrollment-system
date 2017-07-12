@@ -14,8 +14,8 @@ public class SchoolYearGUI extends javax.swing.JPanel {
         initComponents();
         
         SchoolYearDaoImpl sy = new SchoolYearDaoImpl();
-       // schoolYearStartJcbx.setModel(sy.getAllSchoolYearStart());
-        //schoolYearEndJcbx.setModel(new DefaultComboBoxModel(schoolyear.getAllSchoolYearEnd().toArray()));
+       // schoolYearStartJcbx.setModel(sy.getAllStart());
+        //schoolYearEndJcbx.setModel(new DefaultComboBoxModel(schoolyear.getAllEnd().toArray()));
     }
 
     

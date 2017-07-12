@@ -33,7 +33,7 @@ public class PaymentTermDaoImpl implements IPaymentTerm{
                 while(rs.next()){
                     PaymentTerm paymentTerm = new PaymentTerm();
                         paymentTerm.setId(rs.getInt("paymentterm_id"));
-                        paymentTerm.setPaymentTerm(rs.getString("paymentterm"));
+                        paymentTerm.setName(rs.getString("paymentterm"));
                         paymentTerm.setIsActive(rs.getBoolean("isActive"));
                     list.add(paymentTerm);
                 }
@@ -54,7 +54,7 @@ public class PaymentTermDaoImpl implements IPaymentTerm{
                 while(rs.next()){
                     PaymentTerm paymentTerm = new PaymentTerm();
                         paymentTerm.setId(rs.getInt("paymentterm_id"));
-                        paymentTerm.setPaymentTerm(rs.getString("paymentterm"));
+                        paymentTerm.setName(rs.getString("paymentterm"));
                         paymentTerm.setIsActive(rs.getBoolean("isActive"));
                     list.add(paymentTerm);
                 }
@@ -75,7 +75,7 @@ public class PaymentTermDaoImpl implements IPaymentTerm{
                 while(rs.next()){
                     PaymentTerm paymentTerm = new PaymentTerm();
                         paymentTerm.setId(rs.getInt("paymentterm_id"));
-                        paymentTerm.setPaymentTerm(rs.getString("paymentterm"));
+                        paymentTerm.setName(rs.getString("paymentterm"));
                         paymentTerm.setIsActive(rs.getBoolean("isActive"));
                     list.add(paymentTerm);
                 }
@@ -96,7 +96,7 @@ public class PaymentTermDaoImpl implements IPaymentTerm{
             try(ResultSet rs = cs.executeQuery();){
                 while(rs.next()){
                     paymentTerm.setId(rs.getInt("paymentterm_id"));
-                    paymentTerm.setPaymentTerm(rs.getString("paymentterm"));
+                    paymentTerm.setName(rs.getString("paymentterm"));
                     paymentTerm.setIsActive(rs.getBoolean("isActive"));
                 }
             }
@@ -130,7 +130,7 @@ public class PaymentTermDaoImpl implements IPaymentTerm{
         String SQL = "{addNewPaymentTerm(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
                 CallableStatement cs = con.prepareCall(SQL);){
-            cs.setString(1,aPaymentTerm.getPaymentTerm());
+            cs.setString(1,aPaymentTerm.getName());
             isAdded = cs.executeUpdate() == 1;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());

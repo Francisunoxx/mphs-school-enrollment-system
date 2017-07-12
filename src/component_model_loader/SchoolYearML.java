@@ -38,7 +38,7 @@ public class SchoolYearML {
 
     public DefaultComboBoxModel getAllSchoolYearStart() {
         DefaultComboBoxModel dcm = new DefaultComboBoxModel();
-        List<SchoolYear> syList = schoolYearDaoImpl.getAllSchoolYearStart();
+        List<SchoolYear> syList = schoolYearDaoImpl.getAllStart();
         Object[] oArr = syList.toArray();
         for (Object o : oArr) {
             SchoolYear s = (SchoolYear) o;
@@ -46,16 +46,15 @@ public class SchoolYearML {
         }
         return dcm;
     }
-    
+
     public DefaultComboBoxModel getAllSchoolYearEnd() {
         DefaultComboBoxModel dcm = new DefaultComboBoxModel();
-        List<SchoolYear> syList = schoolYearDaoImpl.getAllSchoolYearEnd();
+        List<SchoolYear> syList = schoolYearDaoImpl.getAllEnd();
         Object[] oArr = syList.toArray();
         for (Object o : oArr) {
             SchoolYear s = (SchoolYear) o;
             dcm.addElement(s.getYearTo());
         }
-        
         return dcm;
     }
 }

@@ -488,7 +488,7 @@ public class UpdateCurriculum extends javax.swing.JFrame {
         cbCreatedSchoolYearEnd.setSelectedIndex(selectedYearFrom);
             
         //Setter call from SchoolYear
-        schoolYear.setSchoolYearId(sydi.getSchoolYearId((int) cbCreatedSchoolYearStart.getSelectedItem()));
+        schoolYear.setSchoolYearId(sydi.getId((int) cbCreatedSchoolYearStart.getSelectedItem()));
     }//GEN-LAST:event_cbCreatedSchoolYearStartItemStateChanged
 
     private void cbCreatedGradeLevelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCreatedGradeLevelItemStateChanged

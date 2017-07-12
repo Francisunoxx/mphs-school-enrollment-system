@@ -35,6 +35,7 @@ public class ManagementPanel extends javax.swing.JPanel {
         initComponents();
         setCredentialsJList();
         addFacultyPanel();
+        addPaymentAndPenaltySchedule();
     }
 
     @SuppressWarnings("unchecked")
@@ -94,6 +95,8 @@ public class ManagementPanel extends javax.swing.JPanel {
         jbtnDeleteCredential = new javax.swing.JButton();
         jspFacultyManagement = new javax.swing.JScrollPane();
         jpnlFacultyContainer = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jpnlPaymentAndPenalty = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jbtnExitManagement = new javax.swing.JButton();
 
@@ -450,6 +453,11 @@ public class ManagementPanel extends javax.swing.JPanel {
 
         jtpManagementTabbedPane.addTab("Faculty", jspFacultyManagement);
 
+        jpnlPaymentAndPenalty.setLayout(new java.awt.BorderLayout());
+        jScrollPane1.setViewportView(jpnlPaymentAndPenalty);
+
+        jtpManagementTabbedPane.addTab("Payment Schedule", jScrollPane1);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
@@ -482,6 +490,10 @@ public class ManagementPanel extends javax.swing.JPanel {
         jpnlFacultyContainer.add(nf);
     }
     
+    private void addPaymentAndPenaltySchedule(){
+        PaymentSchedule ps = new PaymentSchedule();
+        jpnlPaymentAndPenalty.add(ps);
+    }
     
     private void jtpManagementTabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtpManagementTabbedPaneMouseClicked
         if (evt.getClickCount() == 1) {
@@ -689,6 +701,7 @@ public class ManagementPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnClear;
     private javax.swing.JButton jbtnCreateCredential;
     private javax.swing.JButton jbtnDeleteCredential;
@@ -720,6 +733,7 @@ public class ManagementPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jpnlFacultyContainer;
     private javax.swing.JPanel jpnlFeesAndDiscountsManagement;
     private javax.swing.JPanel jpnlGradeLevelSelection;
+    private javax.swing.JPanel jpnlPaymentAndPenalty;
     private javax.swing.JPanel jpnlRoomManagement;
     private javax.swing.JPanel jpnlScheduleManagement;
     private javax.swing.JPanel jpnlSchoolYearManagement;

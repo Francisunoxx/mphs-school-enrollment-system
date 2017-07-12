@@ -100,7 +100,7 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
         
         List<BalanceBreakDownFee> balanceBreakDownFeeList = new ArrayList<>();
         boolean exists = false;
-        SchoolYear schoolYear = schoolYearDaoImpl.getSchoolYearById(schoolyearId);
+        SchoolYear schoolYear = schoolYearDaoImpl.getById(schoolyearId);
         Student student = studentDaoImpl.getStudentById(studentId);
         PaymentTerm paymentTerm = new PaymentTerm();
         Discount discount = new Discount();
@@ -161,7 +161,7 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
                 try(ResultSet rsD = csD.executeQuery();){
                     while(rsD.next()){
                         paymentTerm.setId(rsD.getInt("paymentterm_id"));
-                        paymentTerm.setPaymentTerm(rsD.getString("paymentterm"));
+                        paymentTerm.setName(rsD.getString("paymentterm"));
                         paymentTerm.setIsActive(rsD.getBoolean("isActive"));
                     }
                 }

@@ -1107,14 +1107,14 @@ public class StudentInformationJDialog extends javax.swing.JDialog {
     
     private void setSchoolYearJComboBoxModel(){
         SchoolYearDaoImpl sydi = new SchoolYearDaoImpl();
-        Object[] syStart = sydi.getAllSchoolYearStart().toArray();
+        Object[] syStart = sydi.getAllStart().toArray();
         DefaultComboBoxModel syStartModel = new DefaultComboBoxModel();
         for(Object o : syStart){
             SchoolYear s = (SchoolYear)o;
             syStartModel.addElement(s.getYearFrom());
         }
         
-        Object[] syEnd = sydi.getAllSchoolYearEnd().toArray();
+        Object[] syEnd = sydi.getAllEnd().toArray();
         DefaultComboBoxModel syEndModel = new DefaultComboBoxModel();
         for(Object o : syEnd){
             SchoolYear s = (SchoolYear)o;

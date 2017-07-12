@@ -19,7 +19,6 @@ import java.util.Date;
 
 public class SchoolYearDaoImpl implements ISchoolYear{
 
-    
     public static int getCurrentSchoolYearFrom() {
         int aYearFrom = 0;
         String SQL = "{CALL getCurrentSchoolYearFrom()}";
@@ -81,7 +80,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     }
     
     @Override
-    public boolean isCurrentSchoolYear(SchoolYear schoolyear) {
+    public boolean isCurrent(SchoolYear schoolyear) {
         boolean isCurrent = false;
         int rowCount = 0;
         String SQL = "{CALL isCurrentSchoolYear(?)}";
@@ -99,7 +98,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     }
 
     @Override
-    public List<SchoolYear> getAllSchoolYearInfo() {
+    public List<SchoolYear> get() {
         List<SchoolYear> list = new ArrayList<>();
         String SQL = "{CALL  getAllSchoolYearInfo()}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -123,7 +122,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     }
 
     @Override
-    public List<SchoolYear> getAllSchoolYearStart() {
+    public List<SchoolYear> getAllStart() {
         List<SchoolYear> list = new ArrayList<>();
         
         String SQL = "{CALL getAllSchoolYearInfo()}";
@@ -144,7 +143,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     }
 
     @Override
-    public List<SchoolYear> getAllSchoolYearEnd() {
+    public List<SchoolYear> getAllEnd() {
         List<SchoolYear> list = new ArrayList<>();
         
         String SQL = "{CALL getAllSchoolYearInfo()}";
@@ -154,7 +153,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
                 while(rs.next()){
                     SchoolYear schoolYear = new SchoolYear();
                     schoolYear.setYearTo(rs.getInt(SchoolYearTable.YEARTO));
-                    //JOptionPane.showMessageDialog(null,"@StudentDaoImpl->getAllSchoolYearEnd()"+rs.getInt("yearTo"));
+                    //JOptionPane.showMessageDialog(null,"@StudentDaoImpl->getAllEnd()"+rs.getInt("yearTo"));
                     list.add(schoolYear);
                 }
             }
@@ -165,7 +164,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     }
 
     @Override
-    public SchoolYear getSchoolYearById(int aSchoolYearId) {
+    public SchoolYear getById(int aSchoolYearId) {
         String SQL = "{CALL getSchoolYearById(?)}";
         SchoolYear schoolYear = new SchoolYear();
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -188,7 +187,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     }
 
     @Override
-    public int getSchoolYearId(int aSchoolYearStart) {
+    public int getId(int aSchoolYearStart) {
         int schoolYearId = 0;
         String SQL = "{CALL getSchoolYearIdByYearFrom(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
@@ -206,7 +205,7 @@ public class SchoolYearDaoImpl implements ISchoolYear{
     }
 
     @Override
-    public boolean addSchoolYear(SchoolYear aSchoolYear) {
+    public boolean add(SchoolYear aSchoolYear) {
         List<Quarter> list = aSchoolYear.getQuarters();
         int quarterCount = 4;
         String SQLa = "{CALL addSchoolYear(?,?,?,?,?,?,?,?)}";

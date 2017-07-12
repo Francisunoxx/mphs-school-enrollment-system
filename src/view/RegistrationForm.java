@@ -1383,7 +1383,7 @@ public class RegistrationForm extends javax.swing.JPanel {
         registration.setIsGuardianContactInCaseEmergency(jcbGuardianContactInCaseOfEmergency.isSelected());
         registration.setSchoolLastAttended(jtfSchoolLastAttended.getText().trim());
         registration.setSchoolLastAttendedAddress(jtfSchoolLastAttendedAddress.getText().trim());
-        registration.setPaymentTerm( ((PaymentTerm)jcmbPaymentTerm.getSelectedItem()).getPaymentTerm() );
+        registration.setPaymentTerm( ((PaymentTerm)jcmbPaymentTerm.getSelectedItem()).getName() );
 //        JOptionPane.showMessageDialog(null,"Test 1: "+((PaymentTerm)jcmbPaymentTerm.getSelectedItem()).getPaymentTerm());
         
         int gradeLevelNo = Integer.parseInt(jcmbGradeLevel.getSelectedItem().toString());
@@ -1427,7 +1427,7 @@ public class RegistrationForm extends javax.swing.JPanel {
     private void jcmbSchoolYearStartItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbSchoolYearStartItemStateChanged
         if(jcmbSchoolYearStart.getSelectedIndex() > -1){
            int schoolYearFrom = Integer.parseInt(jcmbSchoolYearStart.getSelectedItem().toString());
-           int aSchoolYearId = new SchoolYearDaoImpl().getSchoolYearId(schoolYearFrom);
+           int aSchoolYearId = new SchoolYearDaoImpl().getId(schoolYearFrom);
 //           JOptionPane.showMessageDialog(null,aSchoolYearId);
         }
     }//GEN-LAST:event_jcmbSchoolYearStartItemStateChanged

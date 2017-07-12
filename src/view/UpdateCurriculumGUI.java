@@ -59,8 +59,8 @@ public class UpdateCurriculumGUI extends javax.swing.JDialog {
         SchoolYearDaoImpl sy = new SchoolYearDaoImpl();
         
 //        gradeLevelJcbx.setModel(GradeLevelDaoImpl.getAll());
-//        yearFromJcbx.setModel(sy.getAllSchoolYearStart());
-//        yearToJcbx.setModel(sy.getAllSchoolYearEnd());
+//        yearFromJcbx.setModel(sy.getAllStart());
+//        yearToJcbx.setModel(sy.getAllEnd());
         educationalStageJcbx.setModel(EducationalStageDaoImpl.getStages());
 
 //        curriculumSubjectsJtbl.setModel(curriculum.getSubjects(CurriculumId, curriculumSubjectsJtbl));

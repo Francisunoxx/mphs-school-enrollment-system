@@ -5,14 +5,43 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author Acer
  */
 public class PaymentTerm {
-    int id;
-    String paymentTerm;
-    boolean isActive;
+    private List<Division> divisions; //Sem1, Sem2, Q1,Q1,Q3,Q4, Mo1, Mo2, Mo3....
+    private int id;
+    private String name;
+    private boolean isActive;
+    private double lateFeeAmount;
+    private int divisor;
+
+    public List<Division> getDivisions() {
+        return divisions;
+    }
+
+    public void setDivisions(List<Division> divisions) {
+        this.divisions = divisions;
+    }
+
+    public int getDivisor() {
+        return divisor;
+    }
+
+    public void setDivisor(int divisor) {
+        this.divisor = divisor;
+    }
+    
+    public double getLateFeeAmount() {
+        return lateFeeAmount;
+    }
+
+    public void setLateFeeAmount(double lateFeeAmount) {
+        this.lateFeeAmount = lateFeeAmount;
+    }
 
     public int getId() {
         return id;
@@ -22,15 +51,15 @@ public class PaymentTerm {
         this.id = id;
     }
 
-    public String getPaymentTerm() {
-        return paymentTerm;
+    public String getName() {
+        return name;
     }
 
-    public void setPaymentTerm(String paymentTerm) {
-        this.paymentTerm = paymentTerm;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean isIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 

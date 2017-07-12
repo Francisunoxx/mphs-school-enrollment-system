@@ -35,9 +35,9 @@ public class UpdateFeesGUI extends javax.swing.JDialog {
         
         SchoolYearDaoImpl sy = new SchoolYearDaoImpl();
         
-//        yearFromJcbx.setModel(sy.getAllSchoolYearStart());
+//        yearFromJcbx.setModel(sy.getAllStart());
 //        yearFromJcbx.setSelectedIndex(-1);
-//        yearToJcbx.setModel(sy.getAllSchoolYearEnd());
+//        yearToJcbx.setModel(sy.getAllEnd());
         yearToJcbx.setSelectedIndex(-1);
 //        gradeLevelJcbx.setModel(GradeLevelDaoImpl.getAll());
         gradeLevelJcbx.setSelectedIndex(-1);

@@ -13,12 +13,12 @@ import model.SchoolYear;
  * @author Acer
  */
 public interface ISchoolYear {
-    List<SchoolYear> getAllSchoolYearInfo();
-    List<SchoolYear> getAllSchoolYearStart();
-    List<SchoolYear> getAllSchoolYearEnd();
-    SchoolYear getSchoolYearById(int aSchoolYearId);
-    int getSchoolYearId(int aSchoolYearStart);
+    List<SchoolYear> get();
+    List<SchoolYear> getAllStart();
+    List<SchoolYear> getAllEnd();
+    SchoolYear getById(int aSchoolYearId);
+    int getId(int aSchoolYearStart);
     int getCurrentSchoolYearId();
-    boolean addSchoolYear(SchoolYear schoolyear);
-    boolean isCurrentSchoolYear(SchoolYear schoolyear);
+    boolean add(SchoolYear schoolyear);
+    boolean isCurrent(SchoolYear schoolyear);
 }

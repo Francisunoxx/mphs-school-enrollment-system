@@ -22,8 +22,8 @@ public class CreateSection extends javax.swing.JPanel {
         initComponents();
         
         SchoolYearDaoImpl sydi = new SchoolYearDaoImpl();
-        DefaultComboBoxModel schoolYearStartModel = new DefaultComboBoxModel(sydi.getAllSchoolYearStart().toArray());
-        DefaultComboBoxModel schoolYearEndModel = new DefaultComboBoxModel(sydi.getAllSchoolYearEnd().toArray());
+        DefaultComboBoxModel schoolYearStartModel = new DefaultComboBoxModel(sydi.getAllStart().toArray());
+        DefaultComboBoxModel schoolYearEndModel = new DefaultComboBoxModel(sydi.getAllEnd().toArray());
         GradeLevelDaoImpl gldi = new GradeLevelDaoImpl();
         DefaultComboBoxModel gradeLevelModel = new DefaultComboBoxModel(gldi.getAllGradeLevelsInfo().toArray());
         

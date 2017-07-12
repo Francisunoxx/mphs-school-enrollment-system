@@ -626,7 +626,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
 
         SchoolYear aSchoolYear = new SchoolYear();
         aSchoolYear.setYearFrom(currentSchoolYearFrom);
-        aSchoolYear.setSchoolYearId(schoolYearDaoImpl.getSchoolYearId(currentSchoolYearFrom));
+        aSchoolYear.setSchoolYearId(schoolYearDaoImpl.getId(currentSchoolYearFrom));
 
         String aSectionName = jtfSectionNameCreate.getText();
 
@@ -691,7 +691,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
         boolean schoolYearIsSelected = jcmbSchoolYearFrom.getSelectedIndex() > -1;
         if (schoolYearIsSelected && !gradeLevelIsSelected) {
             String aSchoolYearFrom = jcmbSchoolYearFrom.getSelectedItem().toString();
-            Integer aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(Integer.parseInt(aSchoolYearFrom));
+            Integer aSchoolYearId = schoolYearDaoImpl.getId(Integer.parseInt(aSchoolYearFrom));
             jlstSectionList.setModel(sectionGUIUtil.getSectionBySchoolYearForJList(aSchoolYearId));
         }
 //        else if (gradeLevelIsSelected) {
@@ -704,7 +704,7 @@ public class SectionManagementContainer extends javax.swing.JPanel {
 //        }
         else if (gradeLevelIsSelected) {
             String aSchoolYearFrom = jcmbSchoolYearFrom.getSelectedItem().toString();
-            Integer aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(Integer.parseInt(aSchoolYearFrom));
+            Integer aSchoolYearId = schoolYearDaoImpl.getId(Integer.parseInt(aSchoolYearFrom));
             Integer aGradeLevel = Integer.parseInt(jcmbGradeLevelFilter.getSelectedItem().toString());
             GradeLevel gradeLevel = new GradeLevel();
             gradeLevel.setLevel(aGradeLevel);

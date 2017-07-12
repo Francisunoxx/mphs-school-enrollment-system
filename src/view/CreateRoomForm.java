@@ -23,8 +23,8 @@ public class CreateRoomForm extends javax.swing.JPanel {
         initComponents();
         SchoolYearDaoImpl sy = new SchoolYearDaoImpl();
         
-//        yearFromJcbx.setModel(sy.getAllSchoolYearStart());
-//        yearToJcbx.setModel(sy.getAllSchoolYearEnd());
+//        yearFromJcbx.setModel(sy.getAllStart());
+//        yearToJcbx.setModel(sy.getAllEnd());
     }
 
     /**

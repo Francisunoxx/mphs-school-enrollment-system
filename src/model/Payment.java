@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Jordan
  */
 public class Payment {
+    
     private double amountTendered;
     private double change;
     private Date dateOfPayment;

@@ -32,8 +32,8 @@ public class SetPaymentScheduleGUI extends javax.swing.JPanel {
         setAllJSpinnerEditorToDate();
         
         SchoolYearDaoImpl sy = new SchoolYearDaoImpl();
-//        yearFromJcbx.setModel(sy.getAllSchoolYearStart());
-//        yearToJcbx.setModel(sy.getAllSchoolYearEnd());
+//        yearFromJcbx.setModel(sy.getAllStart());
+//        yearToJcbx.setModel(sy.getAllEnd());
     }
 
     /**

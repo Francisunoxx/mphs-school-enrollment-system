@@ -5,19 +5,32 @@
  */
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author John Ferdinand Antonio
  */
-public class SchoolYearController implements ActionListener{
+public class SchoolYearController implements ItemListener{
+
+    private final JComboBox yearFrom;
+    private final JComboBox yearTo;
+    
+    public SchoolYearController(
+            JComboBox yearFrom,
+            JComboBox yearTo) {
+        this.yearFrom = yearFrom;
+        this.yearTo = yearTo;
+        this.yearTo.setEnabled(false);
+    }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getSource() == yearFrom) {
+            int selectedIndex = yearFrom.getSelectedIndex();
+            yearTo.setSelectedIndex(selectedIndex);
+        }
     }
-    
-    
 }

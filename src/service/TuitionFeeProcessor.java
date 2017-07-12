@@ -63,7 +63,7 @@ public class TuitionFeeProcessor {
         dp.setBalance(downPaymentFee.getAmount());
         dp.setDescription("Downpayment");
         
-        switch(paymentTerm.getPaymentTerm()){
+        switch(paymentTerm.getName()){
             case "Cash":
                 BalanceBreakDownFee cashFee = new BalanceBreakDownFee();
                 cashFee.setAmount(finalTuitionAmount - otherFees.getSum());

@@ -103,7 +103,7 @@ public class CurriculumDaoImpl implements ICurriculum {
     @Override
     public boolean curriculumExists(Curriculum aCurriculum) {
         boolean exists = false;
-        int schoolYearId = sydi.getSchoolYearId(aCurriculum.getSchoolYear().getYearFrom());
+        int schoolYearId = sydi.getId(aCurriculum.getSchoolYear().getYearFrom());
         int gradelevelId = gldi.getId(aCurriculum.getGradeLevel());
 
         JOptionPane.showMessageDialog(null, "test: " + schoolYearId + " " + gradelevelId);

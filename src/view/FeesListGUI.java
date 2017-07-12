@@ -36,9 +36,9 @@ public class FeesListGUI extends javax.swing.JPanel {
         
         UIManager.put( "ComboBox.disabledBackground", new Color(212,212,210) );
         UIManager.put( "ComboBox.disabledForeground", Color.BLACK );
-//        tuitionAssignmentYearFromJcbx.setModel(sy.getAllSchoolYearStart());
+//        tuitionAssignmentYearFromJcbx.setModel(sy.getAllStart());
         tuitionAssignmentYearFromJcbx.setSelectedIndex(-1);
-//        tuitionAssignmentYearToJcbx.setModel(sy.getAllSchoolYearEnd());
+//        tuitionAssignmentYearToJcbx.setModel(sy.getAllEnd());
         tuitionAssignmentYearToJcbx.setSelectedIndex(-1);
 //        tuitionAssignmentGradeLevelJcbx.setModel(GradeLevelDaoImpl.getAll());
         tuitionAssignmentGradeLevelJcbx.setSelectedIndex(-1);

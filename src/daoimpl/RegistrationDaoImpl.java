@@ -380,7 +380,7 @@ public class RegistrationDaoImpl implements IRegistration{
             cs.setInt(39, gradeLevelId );
             
             int schoolYearNo = aRegistration.getSchoolYear().getYearFrom();
-            int schoolYearId = new SchoolYearDaoImpl().getSchoolYearId(schoolYearNo);
+            int schoolYearId = new SchoolYearDaoImpl().getId(schoolYearNo);
 //            JOptionPane.showMessageDialog(null,"School Year Id: "+schoolYearId);
             cs.setInt(40, schoolYearId);
             

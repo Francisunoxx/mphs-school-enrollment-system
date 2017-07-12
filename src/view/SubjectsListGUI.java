@@ -14,8 +14,8 @@ public class SubjectsListGUI extends javax.swing.JPanel {
         SchoolYearDaoImpl sy = new SchoolYearDaoImpl();
         
         subjectsListJtbl.setModel(SubjectDaoImpl_OLD.getAll(subjectsListJtbl));
-//        schoolYearStartJcb.setModel(sy.getAllSchoolYearStart());
-//        schoolYearEndJcb.setModel(sy.getAllSchoolYearEnd());
+//        schoolYearStartJcb.setModel(sy.getAllStart());
+//        schoolYearEndJcb.setModel(sy.getAllEnd());
         JTableGUIUtil.setCellsAlignment(subjectsListJtbl, SwingConstants.LEFT);
     }
 

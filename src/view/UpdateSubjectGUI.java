@@ -49,8 +49,8 @@ public class UpdateSubjectGUI extends javax.swing.JDialog {
         UIManager.put( "ComboBox.disabledBackground", new Color(212,212,210) );
         UIManager.put( "ComboBox.disabledForeground", Color.BLACK );
 //        subjectGradeLevelJcbx.setModel(GradeLevelDaoImpl.getAll());
-//        subjectSyYearFROMJcbx.setModel(schoolYearDaoImpl.getAllSchoolYearStart());
-//        subjectSyYearTOJcbx.setModel(schoolYearDaoImpl.getAllSchoolYearEnd());
+//        subjectSyYearFROMJcbx.setModel(schoolYearDaoImpl.getAllStart());
+//        subjectSyYearTOJcbx.setModel(schoolYearDaoImpl.getAllEnd());
         
         
         subjectNameJtf.setText(subjectName);

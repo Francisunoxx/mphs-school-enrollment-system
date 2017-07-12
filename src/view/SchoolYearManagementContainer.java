@@ -2474,7 +2474,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
 
     private void setjtblSchoolYearList() {
         SchoolYearDaoImpl sydi = new SchoolYearDaoImpl();
-        Object[] schoolYearRowData = sydi.getAllSchoolYearInfo().toArray();
+        Object[] schoolYearRowData = sydi.get().toArray();
         DefaultTableModel tModel = (DefaultTableModel) jtblSchoolYearList.getModel();
         tModel.setRowCount(0);
         for (Object syrd : schoolYearRowData) {
@@ -2705,7 +2705,7 @@ public class SchoolYearManagementContainer extends javax.swing.JPanel {
         
         int choice = JOptionPane.showConfirmDialog(null, "Add School Year? ", "Add School Year ", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
-            boolean isAdded = SYDAOIMPL.addSchoolYear(schoolYear);
+            boolean isAdded = SYDAOIMPL.add(schoolYear);
             if (isAdded) {
                 JOptionPane.showMessageDialog(null, "Successfully added schoolyear.");
             } else {

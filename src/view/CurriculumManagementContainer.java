@@ -959,7 +959,7 @@ public class CurriculumManagementContainer extends javax.swing.JPanel {
             cbSchoolYearTo.setSelectedIndex(selectedYearFrom);
             
             //Setter call from SchoolYear
-            schoolYear.setSchoolYearId(sydi.getSchoolYearId((int) cbSchoolYearFrom.getSelectedItem()));
+            schoolYear.setSchoolYearId(sydi.getId((int) cbSchoolYearFrom.getSelectedItem()));
             
 //        }
     }//GEN-LAST:event_cbSchoolYearFromItemStateChanged

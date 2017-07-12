@@ -391,7 +391,7 @@ public class EnrollmentPanel extends javax.swing.JPanel {
 
     public static void loadAllStudentsToJTable(){
         int currentSchoolYearFrom = SchoolYearDaoImpl.getCurrentSchoolYearFrom();
-        int aSchoolYearId = SCHOOLYEAR_DAO_IMPL.getSchoolYearId(currentSchoolYearFrom);
+        int aSchoolYearId = SCHOOLYEAR_DAO_IMPL.getId(currentSchoolYearFrom);
         SchoolYear schoolYear = new SchoolYear();
         schoolYear.setSchoolYearId(aSchoolYearId);
 

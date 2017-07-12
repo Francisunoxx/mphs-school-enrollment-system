@@ -1197,7 +1197,7 @@ public class PaymentForm extends javax.swing.JPanel {
     public static void setStudentPanelFields() {
         int schoolYearFrom = Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString());
         int aStudentId = getValidatedStudentIdFromTextField();
-        int aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(schoolYearFrom);
+        int aSchoolYearId = schoolYearDaoImpl.getId(schoolYearFrom);
         Student student = studentDaoImpl.getStudentById(aStudentId);
         jlblAdmissionGradeLevelText.setText(student.getAdmissionGradeLevel().getLevel() == 0 ? "Kindergarten" : "Grade " + student.getAdmissionGradeLevel().getLevel());
         jlblStudentTypeText.setText(student.getStudentType() == 1 ? "New" : "Old");
@@ -1326,7 +1326,7 @@ public class PaymentForm extends javax.swing.JPanel {
             Object[] paymentTerm = ptdi.getAllActivePaymentTerms().toArray();
             for (Object o : paymentTerm) {
                 PaymentTerm pt = (PaymentTerm) o;
-                paymentTermModel.addElement(pt.getPaymentTerm());
+                paymentTermModel.addElement(pt.getName());
             }
             jcmbPaymentTerm.setModel(paymentTermModel);
             jcmbPaymentTerm.setSelectedIndex(-1);
@@ -1387,7 +1387,7 @@ public class PaymentForm extends javax.swing.JPanel {
             String totalFees = decimalFormatter.format(tuitionFee.getSum());
             String totalPaid = decimalFormatter.format(tuitionFee.getTotalPaid());
             String remainingBalance = decimalFormatter.format(tuitionFee.getBalance());
-            String paymentTerm = tuitionFee.getPaymentTerm().getPaymentTerm();
+            String paymentTerm = tuitionFee.getPaymentTerm().getName();
             String discount = tuitionFee.getDiscount().getDiscountName();
             String discountPercentage = tuitionFee.hasDiscount()? 
                     tuitionFee.getDiscount().getPercentOfDiscount()+"" : "";
@@ -1523,7 +1523,7 @@ public class PaymentForm extends javax.swing.JPanel {
             String totalFees = decimalFormatter.format(tuitionFee.getSum());
             String totalPaid = decimalFormatter.format(tuitionFee.getTotalPaid());
             String remainingBalance = decimalFormatter.format(tuitionFee.getBalance());
-            String paymentTerm = tuitionFee.getPaymentTerm().getPaymentTerm();
+            String paymentTerm = tuitionFee.getPaymentTerm().getName();
             String discountPercentage = tuitionFee.getDiscount().getPercentOfDiscount()+"";
             
             TuitionFeeProcessor tuitionFeeProcessor = new TuitionFeeProcessor(tuitionFee, schoolFees);
@@ -1579,7 +1579,7 @@ public class PaymentForm extends javax.swing.JPanel {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             this.setStudentId(Integer.parseInt(jtfStudentID.getText().trim()));
             int aStudentId = this.getStudentId();
-            int aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
+            int aSchoolYearId = schoolYearDaoImpl.getId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
             Student aStudent = studentDaoImpl.getStudentById(aStudentId);
             
             if (aStudent.getRegistration().exists()) {
@@ -1600,7 +1600,7 @@ public class PaymentForm extends javax.swing.JPanel {
                     double totalFees = aSchoolFee.getSum();
                     double remainingBalance = aSchoolFee.getSum();
                     PaymentTerm paymentTerm = new PaymentTerm();
-                    paymentTerm.setPaymentTerm(aStudent.getRegistration().getPaymentTerm());
+                    paymentTerm.setName(aStudent.getRegistration().getPaymentTerm());
                     
                     Discount discount = new Discount();
                     discount.setDiscountName(null);
@@ -1633,7 +1633,7 @@ public class PaymentForm extends javax.swing.JPanel {
     private void jcmbPaymentTermItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbPaymentTermItemStateChanged
         if (jcmbPaymentTerm.getSelectedIndex() > -1) {
             int aStudentId = this.getStudentId();
-            int aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
+            int aSchoolYearId = schoolYearDaoImpl.getId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
             Student aStudent = studentDaoImpl.getStudentById(aStudentId);
             
             if (aStudent.getRegistration().exists()) {
@@ -1651,7 +1651,7 @@ public class PaymentForm extends javax.swing.JPanel {
                     double totalFees = aSchoolFee.getSum();
                     double remainingBalance = aSchoolFee.getSum();
                     PaymentTerm aPaymentTerm = new PaymentTerm();
-                    aPaymentTerm.setPaymentTerm(jcmbPaymentTerm.getSelectedItem().toString().trim());
+                    aPaymentTerm.setName(jcmbPaymentTerm.getSelectedItem().toString().trim());
                     Discount aDiscount = new Discount();
                     aDiscount.setDiscountName(null);
                     aDiscount.setPercentOfDiscount(0);
@@ -1683,12 +1683,12 @@ public class PaymentForm extends javax.swing.JPanel {
     private void jbtnPaySelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPaySelectedActionPerformed
         if (jtblBalanceBreakdown.getSelectedRow() > -1) {
             int aSchoolYearStart = Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString());
-            int aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(aSchoolYearStart);
+            int aSchoolYearId = schoolYearDaoImpl.getId(aSchoolYearStart);
             int aStudentId = this.getStudentId();
 
             Discount discount = null;
             PaymentTerm paymentTerm = new PaymentTerm();
-            SchoolYear schoolYear = schoolYearDaoImpl.getSchoolYearById(aSchoolYearId);
+            SchoolYear schoolYear = schoolYearDaoImpl.getById(aSchoolYearId);
             TuitionFee tuitionFee = new TuitionFee();
             Particulars particulars = new Particulars();
             List<BalanceBreakDownFee> balanceBreakDownFeeList = new ArrayList<>();
@@ -1736,7 +1736,7 @@ public class PaymentForm extends javax.swing.JPanel {
                     int discountId = discountDaoImpl.getId(discountName);
                     discount = discountDaoImpl.get(discountId);
                 }
-                paymentTerm.setPaymentTerm(jcmbPaymentTerm.getSelectedItem().toString().trim());
+                paymentTerm.setName(jcmbPaymentTerm.getSelectedItem().toString().trim());
                 paymentTerm.setId(paymentTermDaoImpl.getId(jcmbPaymentTerm.getSelectedItem().toString().trim()));
                 
                 tuitionFee.setExists(false);
@@ -1774,7 +1774,7 @@ public class PaymentForm extends javax.swing.JPanel {
     private void jcmbDiscountItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcmbDiscountItemStateChanged
         if (jcmbDiscount.getSelectedIndex() > -1) {
             int aStudentId = this.getStudentId();
-            int aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
+            int aSchoolYearId = schoolYearDaoImpl.getId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
             Student aStudent = studentDaoImpl.getStudentById(aStudentId);
 
             if (aStudent.getRegistration().exists()) {
@@ -1792,7 +1792,7 @@ public class PaymentForm extends javax.swing.JPanel {
                     double totalFees = aSchoolFee.getSum();
                     double remainingBalance = aSchoolFee.getSum();
                     PaymentTerm aPaymentTerm = new PaymentTerm();
-                    aPaymentTerm.setPaymentTerm(jcmbPaymentTerm.getSelectedItem().toString().trim());
+                    aPaymentTerm.setName(jcmbPaymentTerm.getSelectedItem().toString().trim());
 
                     String discountName = jcmbDiscount.getSelectedItem().toString().trim();
                     int discountId = discountDaoImpl.getId(discountName);
@@ -1819,7 +1819,7 @@ public class PaymentForm extends javax.swing.JPanel {
 
     private void jbtnResetDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnResetDiscountActionPerformed
             int aStudentId = this.getStudentId();
-            int aSchoolYearId = schoolYearDaoImpl.getSchoolYearId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
+            int aSchoolYearId = schoolYearDaoImpl.getId(Integer.parseInt(jcmbSchoolYearFrom.getSelectedItem().toString()));
             Student aStudent = studentDaoImpl.getStudentById(aStudentId);
             
             if (aStudent.getRegistration().exists()) {
@@ -1837,7 +1837,7 @@ public class PaymentForm extends javax.swing.JPanel {
                     double totalFees = aSchoolFee.getSum();
                     double remainingBalance = aSchoolFee.getSum();
                     PaymentTerm paymentTerm = new PaymentTerm();
-                    paymentTerm.setPaymentTerm(aStudent.getRegistration().getPaymentTerm());
+                    paymentTerm.setName(aStudent.getRegistration().getPaymentTerm());
                     Discount discount = new Discount();
                     discount.setDiscountName(null);
                     discount.setPercentOfDiscount(0);
