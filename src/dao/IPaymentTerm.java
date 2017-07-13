@@ -13,10 +13,11 @@ import model.PaymentTerm;
  * @author Acer
  */
 public interface IPaymentTerm {
-    List<PaymentTerm> getAllPaymentTermsInfo();
-    List<PaymentTerm> getAllActivePaymentTerms();
-    List<PaymentTerm> getAllInActivePaymentTerms();
+    List<PaymentTerm> getAll();
+    List<PaymentTerm> getAllActive();
+    List<PaymentTerm> getAllInactive();
     PaymentTerm getById(int aPaymentTermId);
     int getId(String aPaymentTerm);
     boolean add(PaymentTerm aPaymentTerm);
+    boolean addPaymentDeadline(PaymentTerm aPaymentTerm);
 }

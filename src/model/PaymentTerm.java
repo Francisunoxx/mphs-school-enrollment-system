@@ -12,19 +12,29 @@ import java.util.List;
  * @author Acer
  */
 public class PaymentTerm {
-    private List<Division> divisions; //Sem1, Sem2, Q1,Q1,Q3,Q4, Mo1, Mo2, Mo3....
-    private int id;
+
+    private List<Period> periods; //Sem1, Sem2, Q1,Q1,Q3,Q4, Mo1, Mo2, Mo3....
+    private int paymentTermId;
     private String name;
     private boolean isActive;
-    private double lateFeeAmount;
+    private double penaltyAmount;
     private int divisor;
+    private int schoolYearId;
 
-    public List<Division> getDivisions() {
-        return divisions;
+    public int getSchoolYearId() {
+        return schoolYearId;
     }
 
-    public void setDivisions(List<Division> divisions) {
-        this.divisions = divisions;
+    public void setSchoolYearId(int schoolYearId) {
+        this.schoolYearId = schoolYearId;
+    }
+
+    public List<Period> getPeriods() {
+        return periods;
+    }
+
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
     }
 
     public int getDivisor() {
@@ -34,21 +44,21 @@ public class PaymentTerm {
     public void setDivisor(int divisor) {
         this.divisor = divisor;
     }
-    
-    public double getLateFeeAmount() {
-        return lateFeeAmount;
+
+    public double getPenaltyAmount() {
+        return penaltyAmount;
     }
 
-    public void setLateFeeAmount(double lateFeeAmount) {
-        this.lateFeeAmount = lateFeeAmount;
+    public void setPenaltyAmount(double penaltyAmount) {
+        this.penaltyAmount = penaltyAmount;
     }
 
-    public int getId() {
-        return id;
+    public int getPaymentTermId() {
+        return paymentTermId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPaymentTermId(int paymentTermId) {
+        this.paymentTermId = paymentTermId;
     }
 
     public String getName() {
@@ -66,6 +76,5 @@ public class PaymentTerm {
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
-    
-    
+
 }

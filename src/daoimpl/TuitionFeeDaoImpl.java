@@ -36,7 +36,7 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
     public boolean add(TuitionFee tuitionFee) {
         boolean isAdded = true;
         PaymentTerm paymentTerm = tuitionFee.getPaymentTerm();
-        int paymentTermId = paymentTerm.getId();
+        int paymentTermId = paymentTerm.getPaymentTermId();
 
         Discount discount = tuitionFee.getDiscount();
         int studentId = tuitionFee.getStudent().getStudentId();
@@ -160,7 +160,7 @@ public class TuitionFeeDaoImpl implements ITuitionFee {
                 csD.setInt(2, schoolyearId);
                 try(ResultSet rsD = csD.executeQuery();){
                     while(rsD.next()){
-                        paymentTerm.setId(rsD.getInt("paymentterm_id"));
+                        paymentTerm.setPaymentTermId(rsD.getInt("paymentterm_id"));
                         paymentTerm.setName(rsD.getString("paymentterm"));
                         paymentTerm.setIsActive(rsD.getBoolean("isActive"));
                     }

@@ -3,7 +3,6 @@ package daoimpl;
 
 import database_utility.DBType;
 import database_utility.DBUtil;
-import daoimpl.GradeLevelDaoImpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,9 +11,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import daoimpl.LoginDaoImpl;
-import daoimpl.SchoolYearDaoImpl;
-import daoimpl.SubjectDaoImpl_OLD;
 
 
 public class ScheduleDaoImpl {
@@ -79,7 +75,6 @@ public class ScheduleDaoImpl {
             cs.setInt(2,endTime);
             cs.setInt(3,Days.getId(day));
             cs.setInt(4,RoomDaoImpl.getId(roomNameOrNum));
-            cs.setInt(5,SubjectDaoImpl_OLD.getId(subjectCode));
             cs.setInt(6,LoginDaoImpl.getUserId());
 //            cs.setInt(7,GradeLevelDaoImpl.getId(gradeLevel));
             cs.setInt(8,SectionDaoImpl_OLD.getId(sectionName));

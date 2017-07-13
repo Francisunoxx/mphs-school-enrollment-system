@@ -1,6 +1,6 @@
 package database_utility;
 
-import view.DBConnectionForm;
+import view.lan.DBConnectionForm;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,7 +33,7 @@ public class DBUtil {
 
     private static String getURL() {
         Properties dbConfiguration = new Properties();
-        File f = new File(".\\src\\dbConnection.cfg");
+        File f = new File(".\\src\\configuration\\dbConnection.cfg");
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(f);
@@ -52,7 +52,7 @@ public class DBUtil {
 
     private static String getUserName() {
         Properties dbConfiguration = new Properties();
-        File f = new File(".\\src\\dbConnection.cfg");
+        File f = new File(".\\src\\configuration\\dbConnection.cfg");
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(f);
@@ -71,7 +71,7 @@ public class DBUtil {
 
     private static String getPassword() {
         Properties dbConfiguration = new Properties();
-        File f = new File(".\\src\\dbConnection.cfg");
+        File f = new File(".\\src\\configuration\\dbConnection.cfg");
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(f);
@@ -89,7 +89,7 @@ public class DBUtil {
     }
 
     public static void verifySettings() {
-        File f = new File(".\\src\\dbConnection.cfg");
+        File f = new File(".\\src\\configuration\\dbConnection.cfg");
 
         if (f.exists() && !f.isDirectory()) {
             System.out.println( "Database connection configuration found. ");

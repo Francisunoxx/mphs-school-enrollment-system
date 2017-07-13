@@ -55,7 +55,7 @@ public class DBConfigurationCreator {
     public boolean create() {
         boolean isCreated = false;
         try {
-            File f = new File(".\\src\\dbConnection.cfg");
+            File f = new File(".\\src\\configuration\\dbConnection.cfg");
             Properties dbConfiguration = new Properties();
             dbConfiguration.setProperty("ConnectionURL", getConnectionURL());
             dbConfiguration.setProperty("username", databaseConnectionProperty.getUserName());

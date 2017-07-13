@@ -27,12 +27,12 @@ public class JTableRenderer_SchoolYear extends DefaultTableCellRenderer{
         Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
         
         if(row%2 == 0){
-            cellComponent.setBackground(Color.YELLOW);
-            ((JLabel)cellComponent).setForeground(Color.BLACK);
+//            cellComponent.setBackground(Color.YELLOW);
+//            ((JLabel)cellComponent).setForeground(Color.BLACK);
         }
         else{
-            cellComponent.setBackground(new Color(20, 190, 214));
-            ((JLabel)cellComponent).setForeground(Color.BLACK);
+//            cellComponent.setBackground(new Color(20, 190, 214));
+//            ((JLabel)cellComponent).setForeground(Color.BLACK);
         }
         
         if(table.getSelectedRow()==row){
