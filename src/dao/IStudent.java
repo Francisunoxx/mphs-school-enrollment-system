@@ -2,6 +2,7 @@
 package dao;
 
 import java.util.List;
+import model.GradeLevel;
 import model.SchoolYear;
 import model.Student;
 
@@ -24,4 +25,8 @@ public interface IStudent {
     Student getStudentById(int aStudentId);
     
     boolean isEnrolledInSchoolYear(Integer aStudentId, Integer aSchoolYearId);
+    
+    
+    Integer getRegistrationIdByStudentId(Integer aStudentId);
+    List<Student> getAllRegisteredStudentsByGradeId(GradeLevel aGradeLevel);
 }

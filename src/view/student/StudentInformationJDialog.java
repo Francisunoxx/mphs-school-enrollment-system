@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import daoimpl.SchoolYearDaoImpl;
 import daoimpl.StudentDaoImpl;
-import component_model_loader.ImageGUIUtil;
+import component_utility.ImageGUIUtil;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

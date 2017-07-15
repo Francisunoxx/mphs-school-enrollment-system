@@ -1,26 +1,25 @@
+package view.subject;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.subject;
+
 
 import component_model_loader.GradeLevelML;
 import daoimpl.GradeLevelDaoImpl;
 import daoimpl.SubjectDaoImpl;
-import static view.subject.SubjectManagementContainer.getTblSubjectList;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import model.GradeLevel;
 import model.Subject;
 import validation.SubjectValidation;
-import validation.Validation;
+import static view.subject.SubjectManagementContainer.getTblSubjectList;
 
 
 /**
@@ -229,18 +228,18 @@ public class UpdateSubject extends javax.swing.JFrame {
             subject.setSubjectCode(jtfSubjectCode.getText());
             
             //If subject exist
-            if(sdi.checkSubjectExists(subject) == true)
-            {
-                JOptionPane.showMessageDialog(null, "Subject code "+jtfSubjectCode.getText() + " already exist");
+//            if(sdi.checkSubjectExists(subject) == true)
+//            {
+//                JOptionPane.showMessageDialog(null, "Subject code "+jtfSubjectCode.getText() + " already exist");
             
                 //Validation
-                jtfSubjectCode.setName("tfSubjectCode");
-                jtfSubjectCode.setBackground(Color.pink);
-                jtfSubjectCode.setInputVerifier(new Validation());
-            }
+//                jtfSubjectCode.setName("tfSubjectCode");
+//                jtfSubjectCode.setBackground(Color.pink);
+//                jtfSubjectCode.setInputVerifier(new Validation());
+//            }
             //If doesn't exist
-            else
-            {
+//            else
+//            {
                 //Setter call from Subject & while getting the id from table
                 subject.setSubjectId((int) getTblSubjectList().getValueAt(getTblSubjectList().getSelectedRow(), 0));
         
@@ -255,7 +254,7 @@ public class UpdateSubject extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(null, "Successfully updating subject "+jtfSubjectName.getText());
                 }
-            }
+//            }
         }
         
         

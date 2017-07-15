@@ -4,6 +4,8 @@ package view.payment;
 import component_model_loader.CalendarML;
 import controller.global.DateScheduleController;
 import controller.paymentsetting.DisplayCreateScheduleController;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -30,6 +32,7 @@ public class PaymentSchedule extends javax.swing.JPanel {
     
     public PaymentSchedule() {
         initComponents();
+        remove_title_bar();
         
         setYearsModel();
         setMonthsModel();
@@ -1632,22 +1635,30 @@ public class PaymentSchedule extends javax.swing.JPanel {
     }
     
     private void setMonthsModel(){
-        jcmbSem1DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbSem2DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbQ1DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbQ2DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbQ3DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbQ4DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo1DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo2DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo3DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo4DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo5DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo6DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo7DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo8DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo9DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
-        jcmbMo10DeadlineMonth.setModel(CalendarML.getMonthsOfYear());
+        DefaultComboBoxModel months = CalendarML.getMonthsOfYear();
+        
+        jcmbSem1DeadlineMonth.setModel(months);
+        jcmbSem2DeadlineMonth.setModel(months);
+        jcmbQ1DeadlineMonth.setModel(months);
+        jcmbQ2DeadlineMonth.setModel(months);
+        jcmbQ3DeadlineMonth.setModel(months);
+        jcmbQ4DeadlineMonth.setModel(months);
+        jcmbMo1DeadlineMonth.setModel(months);
+        jcmbMo2DeadlineMonth.setModel(months);
+        jcmbMo3DeadlineMonth.setModel(months);
+        jcmbMo4DeadlineMonth.setModel(months);
+        jcmbMo5DeadlineMonth.setModel(months);
+        jcmbMo6DeadlineMonth.setModel(months);
+        jcmbMo7DeadlineMonth.setModel(months);
+        jcmbMo8DeadlineMonth.setModel(months);
+        jcmbMo9DeadlineMonth.setModel(months);
+        jcmbMo10DeadlineMonth.setModel(months);
+    }
+    
+     private void remove_title_bar(){
+        putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
+        ((BasicInternalFrameUI) jifPaymentSchedule.getUI()).setNorthPane(null);
+        this.setBorder(null);
     }
     
     
@@ -1778,7 +1789,7 @@ public class PaymentSchedule extends javax.swing.JPanel {
     private javax.swing.JLabel jlblEndDateYear7;
     private javax.swing.JLabel jlblEndDateYear8;
     private javax.swing.JLabel jlblEndDateYear9;
-    private javax.swing.JList<String> jlstSchoolYear;
+    public static javax.swing.JList<String> jlstSchoolYear;
     private javax.swing.JMenuBar jmbPaymentSchedule;
     private javax.swing.JMenuItem jmiCreate;
     private javax.swing.JMenuItem jmiEdit;

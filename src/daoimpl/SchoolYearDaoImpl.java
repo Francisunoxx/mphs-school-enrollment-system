@@ -172,12 +172,12 @@ public class SchoolYearDaoImpl implements ISchoolYear{
             cs.setInt(1, aSchoolYearId);
             try(ResultSet rs = cs.executeQuery();){
                 while(rs.next()){
-                    schoolYear.setSchoolYearId(rs.getInt(SchoolYearTable.SCHOOLYEARID));
-                    schoolYear.setYearFrom(rs.getInt(SchoolYearTable.YEARFROM));
-                    schoolYear.setYearTo(rs.getInt(SchoolYearTable.YEARTO));
-                    schoolYear.setStart_date(rs.getDate(SchoolYearTable.STARTDATE));
-                    schoolYear.setEnd_date(rs.getDate(SchoolYearTable.ENDDATE));
-                    schoolYear.setIsActive((rs.getInt(SchoolYearTable.ISACTIVE)==1));
+                    schoolYear.setSchoolYearId(rs.getInt("schoolyear_id"));
+                    schoolYear.setYearFrom(rs.getInt("yearFrom"));
+                    schoolYear.setYearTo(rs.getInt("yearTo"));
+                    schoolYear.setStart_date(rs.getDate("start_date"));
+                    schoolYear.setEnd_date(rs.getDate("end_date"));
+                    schoolYear.setIsActive((rs.getBoolean("isActive")));
                 }
             }
         } catch (SQLException e) {
@@ -285,5 +285,12 @@ public class SchoolYearDaoImpl implements ISchoolYear{
         }
         return isAdded;
     }
+
+    
+
+    
+
+    
+
 
 }

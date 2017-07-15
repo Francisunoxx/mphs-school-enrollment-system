@@ -29,10 +29,10 @@ public class StudentDaoImpl implements IStudent {
         List<Student> studentList = new ArrayList<>();
         String SQL = "{CALL getAllStudentsByWildCard(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
-            cs.setString(1,aKeyword);
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
+                CallableStatement cs = con.prepareCall(SQL);) {
+            cs.setString(1, aKeyword);
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     Admission admission = new Admission();
                     Registration registration = new Registration();
                     Student student = new Student();
@@ -87,12 +87,12 @@ public class StudentDaoImpl implements IStudent {
 
                     student.setAdmission(admission);
                     student.setRegistration(registration);
-                    
+
                     studentList.add(student);
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getErrorCode()+"\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
         }
         return studentList;
     }
@@ -125,7 +125,7 @@ public class StudentDaoImpl implements IStudent {
         String SQLa = "{CALL getStudentRecordById(?)}";
         String SQLb = "{CALL registrationExists(?)}";
         String SQLc = "{CALL getRegistrationPaymentTermByStudentId(?)}";
-        
+
         Student student = new Student();
         Admission admission = new Admission();
         Registration registration = new Registration();
@@ -135,125 +135,124 @@ public class StudentDaoImpl implements IStudent {
         PromotedGradeLevel promotedGradeLevel = new PromotedGradeLevel();
         SchoolYear schoolYear = new SchoolYear();
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);) {
-            try(CallableStatement csa = con.prepareCall(SQLa);
+            try (CallableStatement csa = con.prepareCall(SQLa);
                     CallableStatement csb = con.prepareCall(SQLb);
-                    CallableStatement csc = con.prepareCall(SQLc);){
+                    CallableStatement csc = con.prepareCall(SQLc);) {
                 csa.setInt(1, aStudentId);
-                csb.setInt(1,aStudentId);
-                csc.setInt(1,aStudentId);
-            try (ResultSet rsa = csa.executeQuery();) {
-                while (rsa.next()) {
-                    admission.setAdmissionId(rsa.getInt(AdmissionTable.ADMISSIONID));
-                    admission.setIsCompleted(rsa.getBoolean(AdmissionTable.ISCOMPLETE));
-                    admission.setCompletionDate(rsa.getDate(AdmissionTable.COMPLETIONDATE));
-                    registration.setRegistrationId(rsa.getInt(RegistrationTable.REGISTRATION_ID));
-                    registration.setRegisteredStudentType(rsa.getString(RegistrationTable.STUDENT_TYPE));
-                    registration.setLastName(rsa.getString(RegistrationTable.LASTNAME));
-                    registration.setFirstName(rsa.getString(RegistrationTable.FIRSTNAME));
-                    registration.setMiddleName(rsa.getString(RegistrationTable.MIDDLENAME));
-                    registration.setDateOfBirth(rsa.getString(RegistrationTable.DOB));
-                    registration.setPlaceOfBirth(rsa.getString(RegistrationTable.POB));
-                    registration.setNationality(rsa.getString(RegistrationTable.NATIONALITY));
-                    registration.setGender(rsa.getInt(RegistrationTable.GENDER) == 1 ? "Male" : "Female");
-                    registration.setFatherFirstName(rsa.getString(RegistrationTable.FATHER_FIRSTNAME));
-                    registration.setFatherMiddleName(rsa.getString(RegistrationTable.FATHER_MIDDLENAME));
-                    registration.setFatherLastName(rsa.getString(RegistrationTable.FATHER_LASTNAME));
-                    registration.setFatherOccupation(rsa.getString(RegistrationTable.FATHER_OCCUPATION));
-                    registration.setFatherOfficePhoneNo(rsa.getString(RegistrationTable.FATHER_OFFICEPHONE_NO));
-                    registration.setFatherMobileNo(rsa.getString(RegistrationTable.FATHER_MOBILE_NO));
-                    registration.setIsFatherContactInCaseEmergency(rsa.getBoolean(RegistrationTable.ISFATHERCONTACTINCASEEMERGENCY));
-                    registration.setMotherFirstName(rsa.getString(RegistrationTable.MOTHER_FIRSTNAME));
-                    registration.setMotherMiddleName(rsa.getString(RegistrationTable.MOTHER_MIDDLENAME));
-                    registration.setMotherLastName(rsa.getString(RegistrationTable.MOTHER_LASTNAME));
-                    registration.setMotherOccupation(rsa.getString(RegistrationTable.MOTHER_OCCUPATION));
-                    registration.setMotherOfficePhoneNo(rsa.getString(RegistrationTable.MOTHER_OFFICEPHONE_NO));
-                    registration.setMotherMobileNo(rsa.getString(RegistrationTable.MOTHER_MOBILE_NO));
-                    registration.setIsMotherContactInCaseEmergency(rsa.getBoolean(RegistrationTable.ISMOTHERCONTACTINCASEEMERGENCY));
-                    registration.setGuardianLastName(rsa.getString(RegistrationTable.GUARDIAN_LASTNAME));
-                    registration.setGuardianFirstName(rsa.getString(RegistrationTable.GUARDIAN_FIRSTNAME));
-                    registration.setGuardianMiddleName(rsa.getString(RegistrationTable.GUARDIAN_MIDDLENAME));
-                    registration.setGuardianOccupation(rsa.getString(RegistrationTable.GUARDIAN_OCCUPATION));
-                    registration.setGuardianOfficePhoneNo(rsa.getString(RegistrationTable.GUARDIAN_OFFICEPHONE_NO));
-                    registration.setGuardianMobileNo(rsa.getString(RegistrationTable.GUARDIAN_MOBILE_NO));
-                    registration.setGuardianRelationToStudent(rsa.getString(RegistrationTable.GUARDIAN_RELATION_TO_STUDENT));
-                    registration.setIsGuardianContactInCaseEmergency(rsa.getBoolean(RegistrationTable.ISGUARDIANCONTACTINCASEEMERGENCY));
-                    registration.setSchoolLastAttended(rsa.getString(RegistrationTable.SCHOOL_LAST_ATTENDED));
-                    registration.setSchoolLastAttendedAddress(rsa.getString(RegistrationTable.SCHOOL_LAST_ATTENDED_ADDRESS));
-                    registration.setAddressRoomOrHouseNo(rsa.getString(RegistrationTable.ROOM_OR_HOUSE_NO));
-                    registration.setAddressStreet(rsa.getString(RegistrationTable.STREET));
-                    registration.setAddressBrgyOrSubd(rsa.getString(RegistrationTable.BRGY_OR_SUBD));
-                    registration.setAddressCity(rsa.getString(RegistrationTable.CITY));
-                    registration.setProvince(rsa.getString(RegistrationTable.PROVINCE));
-                    registration.setRegistrationDate(rsa.getDate("date_registered"));
-                    
-                    registration.setGradeLevel(rsa.getInt("registeredGradeLevel"));
-                    
-                    student.setStudentId(rsa.getInt(StudentTable.STUDENTID));
-                    student.setEntryDate(rsa.getDate(StudentTable.ENTRYDATE));
-                    student.setIsGraduated(rsa.getBoolean(StudentTable.ISGRADUATED));
-                    student.setDateGraduated(rsa.getDate(StudentTable.DATEGRADUATED));
-                    student.setIsActive(rsa.getBoolean(StudentTable.ISACTIVE));
-                    
-                    student.setStudentType(rsa.getInt("studentType"));
-                    
-                    admissionGradeLevel.setLevel(rsa.getInt("admissionGradeLevel"));
-                    if(rsa.getObject("aPassed")==null){
-                        presentGradeLevel.setIsPassed(null);
-                    }else{
-                        presentGradeLevel.setIsPassed(rsa.getBoolean("aPassed"));
-                    }
-                    
-                    
-                    presentGradeLevel.setLevel(rsa.getInt("presentGradeLevel")); //ALIAS field
-                    int pg = rsa.getInt("promotedGradeLevel");
-                    if (rsa.wasNull()) {} 
-                    else {
-                        promotedGradeLevel.setLevel(pg);
-                    }
+                csb.setInt(1, aStudentId);
+                csc.setInt(1, aStudentId);
+                try (ResultSet rsa = csa.executeQuery();) {
+                    while (rsa.next()) {
+                        admission.setAdmissionId(rsa.getInt(AdmissionTable.ADMISSIONID));
+                        admission.setIsCompleted(rsa.getBoolean(AdmissionTable.ISCOMPLETE));
+                        admission.setCompletionDate(rsa.getDate(AdmissionTable.COMPLETIONDATE));
+                        registration.setRegistrationId(rsa.getInt(RegistrationTable.REGISTRATION_ID));
+                        registration.setRegisteredStudentType(rsa.getString(RegistrationTable.STUDENT_TYPE));
+                        registration.setLastName(rsa.getString(RegistrationTable.LASTNAME));
+                        registration.setFirstName(rsa.getString(RegistrationTable.FIRSTNAME));
+                        registration.setMiddleName(rsa.getString(RegistrationTable.MIDDLENAME));
+                        registration.setDateOfBirth(rsa.getString(RegistrationTable.DOB));
+                        registration.setPlaceOfBirth(rsa.getString(RegistrationTable.POB));
+                        registration.setNationality(rsa.getString(RegistrationTable.NATIONALITY));
+                        registration.setGender(rsa.getInt(RegistrationTable.GENDER) == 1 ? "Male" : "Female");
+                        registration.setFatherFirstName(rsa.getString(RegistrationTable.FATHER_FIRSTNAME));
+                        registration.setFatherMiddleName(rsa.getString(RegistrationTable.FATHER_MIDDLENAME));
+                        registration.setFatherLastName(rsa.getString(RegistrationTable.FATHER_LASTNAME));
+                        registration.setFatherOccupation(rsa.getString(RegistrationTable.FATHER_OCCUPATION));
+                        registration.setFatherOfficePhoneNo(rsa.getString(RegistrationTable.FATHER_OFFICEPHONE_NO));
+                        registration.setFatherMobileNo(rsa.getString(RegistrationTable.FATHER_MOBILE_NO));
+                        registration.setIsFatherContactInCaseEmergency(rsa.getBoolean(RegistrationTable.ISFATHERCONTACTINCASEEMERGENCY));
+                        registration.setMotherFirstName(rsa.getString(RegistrationTable.MOTHER_FIRSTNAME));
+                        registration.setMotherMiddleName(rsa.getString(RegistrationTable.MOTHER_MIDDLENAME));
+                        registration.setMotherLastName(rsa.getString(RegistrationTable.MOTHER_LASTNAME));
+                        registration.setMotherOccupation(rsa.getString(RegistrationTable.MOTHER_OCCUPATION));
+                        registration.setMotherOfficePhoneNo(rsa.getString(RegistrationTable.MOTHER_OFFICEPHONE_NO));
+                        registration.setMotherMobileNo(rsa.getString(RegistrationTable.MOTHER_MOBILE_NO));
+                        registration.setIsMotherContactInCaseEmergency(rsa.getBoolean(RegistrationTable.ISMOTHERCONTACTINCASEEMERGENCY));
+                        registration.setGuardianLastName(rsa.getString(RegistrationTable.GUARDIAN_LASTNAME));
+                        registration.setGuardianFirstName(rsa.getString(RegistrationTable.GUARDIAN_FIRSTNAME));
+                        registration.setGuardianMiddleName(rsa.getString(RegistrationTable.GUARDIAN_MIDDLENAME));
+                        registration.setGuardianOccupation(rsa.getString(RegistrationTable.GUARDIAN_OCCUPATION));
+                        registration.setGuardianOfficePhoneNo(rsa.getString(RegistrationTable.GUARDIAN_OFFICEPHONE_NO));
+                        registration.setGuardianMobileNo(rsa.getString(RegistrationTable.GUARDIAN_MOBILE_NO));
+                        registration.setGuardianRelationToStudent(rsa.getString(RegistrationTable.GUARDIAN_RELATION_TO_STUDENT));
+                        registration.setIsGuardianContactInCaseEmergency(rsa.getBoolean(RegistrationTable.ISGUARDIANCONTACTINCASEEMERGENCY));
+                        registration.setSchoolLastAttended(rsa.getString(RegistrationTable.SCHOOL_LAST_ATTENDED));
+                        registration.setSchoolLastAttendedAddress(rsa.getString(RegistrationTable.SCHOOL_LAST_ATTENDED_ADDRESS));
+                        registration.setAddressRoomOrHouseNo(rsa.getString(RegistrationTable.ROOM_OR_HOUSE_NO));
+                        registration.setAddressStreet(rsa.getString(RegistrationTable.STREET));
+                        registration.setAddressBrgyOrSubd(rsa.getString(RegistrationTable.BRGY_OR_SUBD));
+                        registration.setAddressCity(rsa.getString(RegistrationTable.CITY));
+                        registration.setProvince(rsa.getString(RegistrationTable.PROVINCE));
+                        registration.setRegistrationDate(rsa.getDate("date_registered"));
 
-                    int lastGLevel = rsa.getInt("last_gradelevel_enrolled");
-                    if (rsa.wasNull()) {
+                        registration.setGradeLevel(rsa.getInt("registeredGradeLevel"));
 
-                    } else {
-                        lastGradeLevelEnrolled.setLevel(lastGLevel);
+                        student.setStudentId(rsa.getInt(StudentTable.STUDENTID));
+                        student.setEntryDate(rsa.getDate(StudentTable.ENTRYDATE));
+                        student.setIsGraduated(rsa.getBoolean(StudentTable.ISGRADUATED));
+                        student.setDateGraduated(rsa.getDate(StudentTable.DATEGRADUATED));
+                        student.setIsActive(rsa.getBoolean(StudentTable.ISACTIVE));
+
+                        student.setStudentType(rsa.getInt("studentType"));
+
+                        admissionGradeLevel.setLevel(rsa.getInt("admissionGradeLevel"));
+                        if (rsa.getObject("aPassed") == null) {
+                            presentGradeLevel.setIsPassed(null);
+                        } else {
+                            presentGradeLevel.setIsPassed(rsa.getBoolean("aPassed"));
+                        }
+
+                        presentGradeLevel.setLevel(rsa.getInt("presentGradeLevel")); //ALIAS field
+                        int pg = rsa.getInt("promotedGradeLevel");
+                        if (rsa.wasNull()) {
+                        } else {
+                            promotedGradeLevel.setLevel(pg);
+                        }
+
+                        int lastGLevel = rsa.getInt("last_gradelevel_enrolled");
+                        if (rsa.wasNull()) {
+
+                        } else {
+                            lastGradeLevelEnrolled.setLevel(lastGLevel);
+                        }
+
+                        schoolYear.setSchoolYearId(rsa.getInt("last_gradelevel_enrolled_schoolyear_id")); //ALIAS field
+
+                        int yFrom = rsa.getInt("last_gradelevel_enrolled_schoolyear_yearFrom");
+                        if (rsa.wasNull()) {
+
+                        } else {
+                            schoolYear.setYearFrom(yFrom);
+                        }
+
+                        int yTo = rsa.getInt("last_gradelevel_enrolled_schoolyear_yearTo");
+                        if (rsa.wasNull()) {
+
+                        } else {
+                            schoolYear.setYearTo(yTo);
+                        }
+
+                        SchoolYear registeredSchoolYear = new SchoolYear();
+                        registeredSchoolYear.setSchoolYearId(rsa.getInt("schoolyear_id"));
+                        registeredSchoolYear.setYearFrom(rsa.getInt("yearFrom"));
+                        registeredSchoolYear.setYearTo(rsa.getInt("yearTo"));
+                        registration.setSchoolYear(registeredSchoolYear);
                     }
-                    
-                    schoolYear.setSchoolYearId(rsa.getInt("last_gradelevel_enrolled_schoolyear_id")); //ALIAS field
-                    
-                    int yFrom = rsa.getInt("last_gradelevel_enrolled_schoolyear_yearFrom");
-                    if(rsa.wasNull()){
-                        
-                    }else{
-                        schoolYear.setYearFrom(yFrom);
+                }
+
+                try (ResultSet rsb = csb.executeQuery();) {
+                    while (rsb.next()) {
+                        registration.setExists(rsb.getBoolean("registrationExists"));
                     }
-                    
-                    int yTo = rsa.getInt("last_gradelevel_enrolled_schoolyear_yearTo");
-                    if(rsa.wasNull()){
-                        
-                    }else{
-                        schoolYear.setYearTo(yTo);
+                }
+
+                try (ResultSet rsc = csc.executeQuery();) {
+                    while (rsc.next()) {
+                        registration.setPaymentTerm(rsc.getString("paymentterm"));
                     }
-                    
-                    SchoolYear registeredSchoolYear = new SchoolYear();
-                    registeredSchoolYear.setSchoolYearId(rsa.getInt("schoolyear_id"));
-                    registeredSchoolYear.setYearFrom(rsa.getInt("yearFrom"));
-                    registeredSchoolYear.setYearTo(rsa.getInt("yearTo"));
-                    registration.setSchoolYear(registeredSchoolYear);
                 }
-            }
-            
-            try(ResultSet rsb = csb.executeQuery();){
-                while(rsb.next()){
-                    registration.setExists(rsb.getBoolean("registrationExists"));
-                }
-            }
-            
-            try(ResultSet rsc = csc.executeQuery();){
-                while(rsc.next()){
-                    registration.setPaymentTerm(rsc.getString("paymentterm"));
-                }
-            }
-            
+
                 student.setAdmission(admission);
                 student.setRegistration(registration);
                 student.setAdmissionGradeLevel(admissionGradeLevel);
@@ -261,9 +260,9 @@ public class StudentDaoImpl implements IStudent {
                 student.setLastGradeLevelEnrolledSchoolYear(schoolYear);
 
                 student.setPromotedGradeLevel(promotedGradeLevel); // int level only
-            
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(null,e.getMessage());
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
@@ -283,7 +282,7 @@ public class StudentDaoImpl implements IStudent {
         PresentGradeLevel presentGradeLevel = new PresentGradeLevel();
         PromotedGradeLevel promotedGradeLevel = new PromotedGradeLevel();
         SchoolYear schoolYear = new SchoolYear();
-        
+
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
                 CallableStatement cs = con.prepareCall(SQL);) {
             cs.setInt(1, aStudentId);
@@ -330,23 +329,23 @@ public class StudentDaoImpl implements IStudent {
                     registration.setAddressBrgyOrSubd(rs.getString(RegistrationTable.BRGY_OR_SUBD));
                     registration.setAddressCity(rs.getString(RegistrationTable.CITY));
                     registration.setProvince(rs.getString(RegistrationTable.PROVINCE));
-                    
+
                     registration.setGradeLevel(rs.getInt("registeredGradeLevel"));
-                    
+
                     student.setStudentId(rs.getInt(StudentTable.STUDENTID));
                     student.setEntryDate(rs.getDate(StudentTable.ENTRYDATE));
                     student.setIsGraduated(rs.getBoolean(StudentTable.ISGRADUATED));
                     student.setDateGraduated(rs.getDate(StudentTable.DATEGRADUATED));
                     student.setIsActive(rs.getBoolean(StudentTable.ISACTIVE));
-                    
+
                     student.setStudentType(rs.getInt("studentType"));
-                    
+
                     admissionGradeLevel.setLevel(rs.getInt("admissionGradeLevel"));
                     presentGradeLevel.setIsPassed(rs.getBoolean("has_passed_last_gradelevel"));
                     presentGradeLevel.setLevel(rs.getInt("presentGradeLevel")); //ALIAS field
                     promotedGradeLevel.setLevel(rs.getInt("promotedGradeLevel"));
                     lastGradeLevelEnrolled.setLevel(rs.getInt("last_gradelevel_enrolled"));
-                    
+
                     schoolYear.setSchoolYearId(rs.getInt("last_gradelevel_enrolled_schoolyear_id")); //ALIAS field
                     schoolYear.setYearFrom(rs.getInt("last_gradelevel_enrolled_schoolyear_yearFrom")); //ALIAS field
                     schoolYear.setYearTo(rs.getInt("last_gradelevel_enrolled_schoolyear_yearTo")); //ALIAS field
@@ -424,7 +423,7 @@ public class StudentDaoImpl implements IStudent {
                     student.setIsGraduated(rs.getBoolean(StudentTable.ISGRADUATED));
                     student.setDateGraduated(rs.getDate(StudentTable.DATEGRADUATED));
                     student.setIsActive(rs.getBoolean("aStudentStatus"));
-                    
+
                     student.setAdmission(admission);
                     student.setRegistration(registration);
                     list.add(student);
@@ -495,10 +494,10 @@ public class StudentDaoImpl implements IStudent {
                     student.setIsGraduated(rs.getBoolean(StudentTable.ISGRADUATED));
                     student.setDateGraduated(rs.getDate(StudentTable.DATEGRADUATED));
                     student.setIsActive(rs.getBoolean("aStudentStatus"));
-                    
+
                     student.setAdmission(admission);
                     student.setRegistration(registration);
-                    
+
                     list.add(student);
                 }
             }
@@ -595,10 +594,10 @@ public class StudentDaoImpl implements IStudent {
         String SQL = "{CALL getStudentsBySchoolYear(?)}";
         List<Student> list = new ArrayList<>();
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
-            cs.setInt(1, aSchoolYear.getSchoolYearId() );
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
+                CallableStatement cs = con.prepareCall(SQL);) {
+            cs.setInt(1, aSchoolYear.getSchoolYearId());
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     Admission admission = new Admission();
                     Registration registration = new Registration();
                     Student student = new Student();
@@ -657,7 +656,7 @@ public class StudentDaoImpl implements IStudent {
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
         }
         return list;
     }
@@ -667,9 +666,9 @@ public class StudentDaoImpl implements IStudent {
         String SQL = "{CALL getAllStudents()}";
         List<Student> list = new ArrayList<>();
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
+                CallableStatement cs = con.prepareCall(SQL);) {
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     Admission admission = new Admission();
                     Registration registration = new Registration();
                     Student student = new Student();
@@ -729,7 +728,7 @@ public class StudentDaoImpl implements IStudent {
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
         }
         return list;
     }
@@ -740,17 +739,17 @@ public class StudentDaoImpl implements IStudent {
         String SQL = "{CALL isEnrolledInSchoolYear(?,?)}";
         int rowCount = 0;
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
+                CallableStatement cs = con.prepareCall(SQL);) {
             cs.setInt(1, aStudentId);
             cs.setInt(2, aSchoolYearId);
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     rowCount++;
                 }
                 isEnrolled = rowCount > 0;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
         }
         return isEnrolled;
     }
@@ -760,15 +759,15 @@ public class StudentDaoImpl implements IStudent {
         Integer aPresentGradeLevel = null;
         String SQL = "{CALL getPresentGradeLevelByStudentId(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
-            cs.setInt(1,aStudentId);
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
+                CallableStatement cs = con.prepareCall(SQL);) {
+            cs.setInt(1, aStudentId);
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     aPresentGradeLevel = rs.getInt("aPresentGradeLevel");
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
         }
         return aPresentGradeLevel;
     }
@@ -778,15 +777,15 @@ public class StudentDaoImpl implements IStudent {
         Integer aRecommendedGradeLevel = null;
         String SQL = "{CALL getRecommendedGradeLevel(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
+                CallableStatement cs = con.prepareCall(SQL);) {
             cs.setInt(1, aStudentId);
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     aRecommendedGradeLevel = rs.getInt("aRecommendedGradeLevel");
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
         }
         return aRecommendedGradeLevel;
     }
@@ -796,15 +795,15 @@ public class StudentDaoImpl implements IStudent {
         Integer aRegistrationId = null;
         String SQL = "{CALL getRegistrationIdByStudentId(?)}";
         try (Connection con = DBUtil.getConnection(DBType.MYSQL);
-                CallableStatement cs = con.prepareCall(SQL);){
-            cs.setInt(1,aStudentId);
-            try(ResultSet rs = cs.executeQuery();){
-                while(rs.next()){
+                CallableStatement cs = con.prepareCall(SQL);) {
+            cs.setInt(1, aStudentId);
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     aRegistrationId = rs.getInt("aRegistrationId");
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getErrorCode() + "\n" + e.getMessage());
         }
         return aRegistrationId;
     }
@@ -826,5 +825,54 @@ public class StudentDaoImpl implements IStudent {
         }
         return admissionGradeLevel;
     }
+
+    @Override
+    public List<Student> getAllRegisteredStudentsByGradeId(GradeLevel aGradeLevel) {
+        String sql = "call getAllRegisteredStudentsByGradeId(?)";
+        List<Student> list = new ArrayList();
+
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(sql)) {
+            cs.setInt(1, aGradeLevel.getId());
+
+            try (ResultSet rs = cs.executeQuery()) {
+                while (rs.next()) {
+                    Student student = new Student();
+
+                    student.setStudentId(rs.getInt(1));
+                    student.setFirstName(rs.getString(2));
+                    student.setMiddleName(rs.getString(3));
+                    student.setLastName(rs.getString(4));
+                    student.gradeLevel.setLevel(rs.getInt(5));
+                    list.add(student);
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error at getAllRegisteredStudentsByGradeId" + ex);
+        }
+
+        return list;
+    }
+    
+    
+    @Override
+    public Integer getRegistrationIdByStudentId(Integer aStudentId) {
+        Integer aRegistrationId = null;
+        String SQL = "{CALL getRegistrationIdByStudentId(?)}";
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(SQL);){
+            cs.setInt(1,aStudentId);
+            try(ResultSet rs = cs.executeQuery();){
+                while(rs.next()){
+                    aRegistrationId = rs.getInt("aRegistrationId");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getErrorCode()+"\n"+e.getMessage());
+        }
+        return aRegistrationId;
+    }
+    
+    
     
 }//end of class

@@ -4,7 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import component_model_loader.JTableGUIUtil;
+import component_utility.JTableGUIUtil;
 import daoimpl.SchoolYearDaoImpl;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;

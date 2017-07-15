@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import daoimpl.ScheduleDaoImpl;
 import daoimpl.SchoolYearDaoImpl;
 import daoimpl.SectionDaoImpl_OLD;
-import component_model_loader.JSpinnerGUIUtil;
+import component_utility.JSpinnerGUIUtil;
 import component_renderers.JComboBoxRenderer_GradeLevel;
 
 

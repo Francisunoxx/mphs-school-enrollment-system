@@ -20,7 +20,7 @@ import daoimpl.SchoolYearDaoImpl;
 import daoimpl.StudentDaoImpl;
 import component_model_loader.DiscountML;
 import component_model_loader.FeeML;
-import component_model_loader.ImageGUIUtil;
+import component_utility.ImageGUIUtil;
 import utility.InputUtil;
 import component_model_loader.SchoolFeesML;
 import java.awt.AlphaComposite;

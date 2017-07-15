@@ -819,31 +819,37 @@
                                         <Component class="javax.swing.JTable" name="curriculumSubjectsJtbl">
                                           <Properties>
                                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                              <Table columnCount="4" rowCount="0">
+                                              <Table columnCount="5" rowCount="0">
                                                 <Column editable="false" title="Code" type="java.lang.Object"/>
                                                 <Column editable="false" title="Subject Name" type="java.lang.Object"/>
+                                                <Column editable="true" title="Subject Hours" type="java.lang.Object"/>
                                                 <Column editable="false" title="Description" type="java.lang.Object"/>
                                                 <Column editable="false" title="Year Level" type="java.lang.Object"/>
                                               </Table>
                                             </Property>
                                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                               <TableColumnModel selectionModel="0">
-                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                                   <Title/>
                                                   <Editor/>
                                                   <Renderer/>
                                                 </Column>
-                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                                   <Title/>
                                                   <Editor/>
                                                   <Renderer/>
                                                 </Column>
-                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                                   <Title/>
                                                   <Editor/>
                                                   <Renderer/>
                                                 </Column>
-                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                                  <Title/>
+                                                  <Editor/>
+                                                  <Renderer/>
+                                                </Column>
+                                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                                                   <Title/>
                                                   <Editor/>
                                                   <Renderer/>
@@ -859,7 +865,7 @@
                                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="curriculumSubjectsJtblMouseClicked"/>
                                           </Events>
                                           <AuxValues>
-                                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                                           </AuxValues>
                                         </Component>
                                       </SubComponents>

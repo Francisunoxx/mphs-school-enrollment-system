@@ -6,15 +6,22 @@ import java.util.List;
 
 public class Section {
     private int sectionId;
+    private int sectionCategoryId;
     private String sectionName;
     private List<Session> sessionList; //AM or PM or BOTH AM and PM
     private List<Student> students;
-    private Boolean isActive;
-    private Date dateCreated;
-    private SchoolYear schoolYear;
-    private GradeLevel gradeLevel;
+    private int isActive;
+    private String dateCreated;
+//    private SchoolYear schoolYear;
+//    private GradeLevel gradeLevel;
     private Faculty adviser;
-
+    private int gradeFrom;
+    private int gradeTo;
+    private String category;
+    
+    public SchoolYear schoolYear = new SchoolYear();
+    public GradeLevel gradeLevel = new GradeLevel();
+    public Session session = new Session();
     public Faculty getAdviser() {
         return adviser;
     }
@@ -47,11 +54,11 @@ public class Section {
         this.schoolYear = schoolYear;
     }
     
-    public Date getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
     
@@ -79,13 +86,52 @@ public class Section {
         this.students = students;
     }
 
-    public Boolean getIsActive() {
+    public int getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
+    public void setIsActive(int isActive) {
         this.isActive = isActive;
     }
     
+    public void setGradeFrom(int gradeFrom)
+    {
+        this.gradeFrom = gradeFrom;
+    }
     
+    public int getGradeFrom()
+    {
+        return gradeFrom;
+    }
+    
+    public void setGradeTo(int gradeTo)
+    {
+        this.gradeTo = gradeTo;
+    }
+    
+    public int getGradeTo()
+    {
+        return gradeTo;
+    }
+    
+    public void setCategory(String category)
+    {
+        this.category = category;
+    }
+    
+    public String getCategory()
+    {
+        return category;
+    }
+    
+    
+    public void setSectionCategoryId(int sectionCategoryId)
+    {
+        this.sectionCategoryId = sectionCategoryId;
+    }
+    
+    public int getSectionCategoryId()
+    {
+        return sectionCategoryId;
+    }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.GradeLevel;
 import dao.IGradeLevel;
+import model.Student;
 
 /**
  *
@@ -34,8 +35,6 @@ public class GradeLevelDaoImpl implements IGradeLevel{
         return gradeLevelId;
     }
 
-    
-    
     @Override
     public List<GradeLevel> getAllGradeLevelsInfo() {
         List<GradeLevel> list = new ArrayList();
@@ -184,26 +183,51 @@ public class GradeLevelDaoImpl implements IGradeLevel{
     }
 
     @Override
-    public List<GradeLevel> getAllRegisteredSubjectGradeLevel() 
-    {
+    public List<GradeLevel> getAllRegisteredSubjectGradeLevel() {
         List<GradeLevel> list = new ArrayList();
         String sql = "{call getAllRegisteredSubjectGradeLevel()}";
-        try(Connection con = DBUtil.getConnection(DBType.MYSQL);
-            CallableStatement cs = con.prepareCall(sql);)
-        {
-            try(ResultSet rs = cs.executeQuery();)
-            {
-                while(rs.next())
-                {
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(sql);) {
+            try (ResultSet rs = cs.executeQuery();) {
+                while (rs.next()) {
                     GradeLevel gradeLevel = new GradeLevel();
                     gradeLevel.setLevel(rs.getInt("grade_level"));
                     list.add(gradeLevel);
                 }
             }
+        } catch (SQLException ex) {
+            System.err.println("Error " + ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Student> getStudentNameByGradeLevelId(GradeLevel aGradeLevel) {
+        String sql = "{call getStudentNameByGradeLevelId(?)}";
+        List <Student> list = new ArrayList();
+        
+        try(Connection con = DBUtil.getConnection(DBType.MYSQL);
+            CallableStatement cs = con.prepareCall(sql);)
+        {
+            cs.setInt(1, aGradeLevel.getId());
+            
+            try(ResultSet rs = cs.executeQuery())
+            {
+                while(rs.next())
+                {
+                    Student student = new Student();
+                    
+                    student.setFirstName(rs.getString("firstname"));
+                    student.setMiddleName(rs.getString("middlename"));
+                    student.setLastName(rs.getString("lastname"));
+                    
+                    list.add(student);
+                }
+            }
         }
         catch(SQLException ex)
         {
-            System.err.println("Error "+ex);
+            System.err.println("Error at getStudentNameByGradeLevelId "+ex);
         }
         
         return list;

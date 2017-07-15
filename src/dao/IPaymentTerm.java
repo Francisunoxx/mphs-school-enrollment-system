@@ -7,6 +7,8 @@ package dao;
 
 import java.util.List;
 import model.PaymentTerm;
+import model.PaymentTermPenalty;
+import model.SchoolYear;
 
 /**
  *
@@ -19,5 +21,9 @@ public interface IPaymentTerm {
     PaymentTerm getById(int aPaymentTermId);
     int getId(String aPaymentTerm);
     boolean add(PaymentTerm aPaymentTerm);
-    boolean addPaymentDeadline(PaymentTerm aPaymentTerm);
+    boolean addPaymentDeadline(List<PaymentTerm> paymentTerms);
+    boolean addPaymentTermPenalty(List<PaymentTerm> paymentTerms);
+   
+    List<SchoolYear> getSchoolYearsWithPenalty();
+    List<PaymentTermPenalty> getPenaltyInformationBySchoolYearId(int schoolYearId);
 }

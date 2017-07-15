@@ -1,7 +1,6 @@
  
 package view.subject;
 
-import view.subject.UpdateSubject;
 import component_model_loader.GradeLevelML;
 import component_model_loader.SubjectML;
 import daoimpl.GradeLevelDaoImpl;
@@ -223,7 +222,7 @@ public class SubjectManagementContainer extends javax.swing.JPanel {
         jlblSubjectDescription.setText("Subject Description:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 0, 10);
         jpnlSubjectDetails.add(jlblSubjectDescription, gridBagConstraints);
@@ -234,7 +233,7 @@ public class SubjectManagementContainer extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 0, 10);

@@ -22,7 +22,7 @@ import model.Payment;
 import model.TuitionFee;
 import org.joda.time.LocalDate;
 import service.PaymentProcessor;
-import view.receipt.ReceiptForm;
+import view.receipt.Receipt;
 
 public class PaySelectedForm extends javax.swing.JDialog {
 
@@ -298,7 +298,7 @@ public class PaySelectedForm extends javax.swing.JDialog {
                         officialReceipt.setPayment(payment);
                         officialReceipt.setStudent(student);
 
-                        ReceiptForm receiptForm = new ReceiptForm(officialReceipt);
+                        Receipt receiptForm = new Receipt(officialReceipt);
                         receiptForm.setVisible(true);
                         receiptForm.pack();
                         receiptForm.setLocationRelativeTo(null);

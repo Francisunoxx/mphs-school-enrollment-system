@@ -6,7 +6,7 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import component_model_loader.JTableGUIUtil;
+import component_utility.JTableGUIUtil;
 import component_model_loader.CurriculumML;
 import component_model_loader.GradeLevelML;
 import component_model_loader.SchoolYearML;
@@ -47,6 +47,8 @@ public class CreateCurriculumForm extends javax.swing.JPanel {
         jcmbSchoolYearYearFrom.setSelectedIndex(-1);
         jcmbSchoolYearYearTo.setModel(syu.getAllSchoolYearEnd());
         jcmbSchoolYearYearTo.setSelectedIndex(-1);
+        
+        
     }
 
     @SuppressWarnings("unchecked")

@@ -29,9 +29,13 @@ public class CurriculumML {
     SubjectDaoImpl sdi = new SubjectDaoImpl();
     
     private Object[] columnNames() {
-        return new Object[]{"Code", "Subject Name", "Description", "Year Level"};
+        return new Object[]{"Code", "Subject Name", "Subject Hours", "Description", "Year Level"};
     }
     
+    private Object[] column()
+    {
+        return new Object[]{"Code", "Subject Name", "Description", "Year Level"};
+    }
     
     private Object[] headerForUpdate()
     {
@@ -137,7 +141,7 @@ public class CurriculumML {
             }
         }
 
-        DefaultTableModel dtm = new DefaultTableModel(obj, columnNames()) {
+        DefaultTableModel dtm = new DefaultTableModel(obj, column()) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 //Note that the data/cell address is constant,
@@ -307,19 +311,14 @@ public class CurriculumML {
     }
     
     
-    public DefaultComboBoxModel getCurriculumSchoolYearStart(GradeLevel aGradeLevel)
-    {
+    public DefaultComboBoxModel getCurriculumSchoolYearStart(GradeLevel aGradeLevel) {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
-        
         Object[] object = cdi.getCurriculumYearStartEndByGradeLevel(aGradeLevel).toArray();
-        
-        for(Object o : object)
-        {
-            SchoolYear schoolYear = (SchoolYear)o;
-            
+        for (Object o : object) {
+            SchoolYear schoolYear = (SchoolYear) o;
+
             model.addElement(schoolYear.getYearFrom());
         }
-        
         return model;
     }
     
@@ -361,12 +360,14 @@ public class CurriculumML {
         Object[] object = cdi.getAllSubjectsOfCurriculumByName(aCurriculum).toArray();
         Object[] columnCode = new Object[cdi.getAllSubjectsOfCurriculumByName(aCurriculum).size()];
         Object[] columnTitle = new Object[cdi.getAllSubjectsOfCurriculumByName(aCurriculum).size()];
+        Object[] columnHours = new Object[cdi.getAllSubjectsOfCurriculumByName(aCurriculum).size()];
         Object[] columnDescription = new Object[cdi.getAllSubjectsOfCurriculumByName(aCurriculum).size()];
         Object[] columnYearLevel = new Object[cdi.getAllSubjectsOfCurriculumByName(aCurriculum).size()];
-        Object[][] data = new Object[cdi.getAllSubjectsOfCurriculumByName(aCurriculum).size()][4];
+        Object[][] data = new Object[cdi.getAllSubjectsOfCurriculumByName(aCurriculum).size()][5];
         
         int counterCode = 0;
         int counterTitle = 0;
+        int counterHours = 0;
         int counterDescription = 0;
         int counterYearLevel = 0;
         
@@ -374,6 +375,7 @@ public class CurriculumML {
         int counterColumnTwo = 0;
         int counterColumnThree = 0;
         int counterColumnFour = 0;
+        int counterColumnFive = 0;
         
         for(Object o : object)
         {
@@ -383,8 +385,9 @@ public class CurriculumML {
             //While looping counter increment also
             columnCode[counterColumnOne++] = curriculum.s.getSubjectCode();
             columnTitle[counterColumnTwo++] = curriculum.s.getSubjectTitle();
-            columnDescription[counterColumnThree++] = curriculum.s.getSubjectDescription();
-            columnYearLevel[counterColumnFour++] = curriculum.gradeLevel.getLevel();
+            columnHours[counterColumnThree++] = curriculum.s.getSubjectHours();
+            columnDescription[counterColumnFour++] = curriculum.s.getSubjectDescription();
+            columnYearLevel[counterColumnFive++] = curriculum.gradeLevel.getLevel();
         }
         
         //Looping through data[][] size
@@ -403,6 +406,10 @@ public class CurriculumML {
                 }
                 else if(column == 2)
                 {
+                    data[row][column] = columnHours[counterHours++];
+                }
+                else if(column == 3)
+                {
                     data[row][column] = columnDescription[counterDescription++];
                 }
                 else
@@ -413,12 +420,12 @@ public class CurriculumML {
         }
         
         
-        DefaultTableModel model = new DefaultTableModel(data, curriculumColumnNames()) {
+        DefaultTableModel model = new DefaultTableModel(data, columnNames()) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 //Note that the data/cell address is constant,
                 //no matter where the cell appears onscreen.
-                if (col < 4) {
+                if (col < 5) {
                     return false;
                 } else {
                     return true;

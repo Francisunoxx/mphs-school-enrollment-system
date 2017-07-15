@@ -9,7 +9,7 @@ import calendar_utility.CalendarUtil;
 import daoimpl.CredentialDaoImpl;
 import daoimpl.GradeLevelDaoImpl;
 import component_model_loader.CredentialML;
-import component_model_loader.JPanelGUIUtil;
+import component_utility.JPanelGUIUtil;
 import component_model_loader.SchoolYearML;
 import java.awt.Component;
 import java.util.ArrayList;

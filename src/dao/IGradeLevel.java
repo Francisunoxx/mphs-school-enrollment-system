@@ -7,6 +7,7 @@ package dao;
 
 import java.util.List;
 import model.GradeLevel;
+import model.Student;
 
 /**
  *
@@ -26,4 +27,6 @@ public interface IGradeLevel {
     boolean addGradeLevel(GradeLevel aGradeLevel);
     boolean isGradeLevelActive(GradeLevel aGradeLevel);
     boolean deactivateGradeLevel(GradeLevel aGradeLevel);
+    
+    List<Student> getStudentNameByGradeLevelId(GradeLevel aGradeLevel);
 }

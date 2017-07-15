@@ -39,8 +39,8 @@ public class JTableRenderer_SchoolYear extends DefaultTableCellRenderer{
             int tColCount = table.getColumnCount();
             for(int i=0; i<tColCount; i++){
                 ((JLabel)cellComponent).setFont(new Font("Helvetica",Font.BOLD,12));
-                cellComponent.setBackground(Color.BLACK);
-                ((JLabel)cellComponent).setForeground(Color.YELLOW);
+//                cellComponent.setBackground(Color.BLACK);
+//                ((JLabel)cellComponent).setForeground(Color.YELLOW);
             }
         }
         

@@ -10,7 +10,7 @@ import daoimpl.FeeDaoImpl;
 import daoimpl.GradeLevelDaoImpl;
 import component_model_loader.DiscountML;
 import component_model_loader.FeeML;
-import component_model_loader.JPanelGUIUtil;
+import component_utility.JPanelGUIUtil;
 import daoimpl.SchoolYearDaoImpl;
 import java.awt.Color;
 import java.awt.Component;

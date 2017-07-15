@@ -9,6 +9,8 @@ public class Subject {
     String subjectCode;
     String subjectDescription;
     String addedBy;
+    double subjectHours;
+    double totalHours;
     Date dateAdded;
     Date dateCreated;
     boolean isActive;
@@ -87,5 +89,23 @@ public class Subject {
         this.isActive = isActive;
     }
     
+    public void setSubjectHours(double subjectHours)
+    {
+        this.subjectHours = subjectHours;
+    }
     
+    public double getSubjectHours()
+    {
+        return subjectHours;
+    }
+    
+    private void setTotalHours(double totalHours)
+    {
+        this.totalHours = totalHours;
+    }
+    
+    public double getTotalHours()
+    {
+        return totalHours;
+    }
 }

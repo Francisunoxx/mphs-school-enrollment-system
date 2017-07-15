@@ -3,7 +3,7 @@ package view.login;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import component_model_loader.ImageGUIUtil;
+import component_utility.ImageGUIUtil;
 import utility.PasswordUtil;
 import daoimpl.LoginDaoImpl;
 import database_utility.DBUtil;

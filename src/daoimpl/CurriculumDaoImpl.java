@@ -20,6 +20,7 @@ import model.GradeLevel;
 import model.SchoolYear;
 import model.Subject;
 import dao.ICurriculum;
+import model.Section;
 
 /**
  *
@@ -229,7 +230,7 @@ public class CurriculumDaoImpl implements ICurriculum {
     public boolean createCurriculumSubjects(Curriculum aCurriculum, Subject aSubject) 
     {
         boolean isSuccesful;
-        String sql = "{call createCurriculumSubjects(?,?)}";
+        String sql = "{call createCurriculumSubjects(?,?,?)}";
         
         try(Connection con = DBUtil.getConnection(DBType.MYSQL);
             CallableStatement cs = con.prepareCall(sql);)
@@ -237,6 +238,7 @@ public class CurriculumDaoImpl implements ICurriculum {
 
             cs.setInt(1, aCurriculum.getCurriculumId());
             cs.setInt(2, aSubject.getSubjectId());
+            cs.setDouble(3, aSubject.getSubjectHours());
             cs.executeUpdate();
             
             isSuccesful = true;
@@ -253,65 +255,48 @@ public class CurriculumDaoImpl implements ICurriculum {
 
 
     @Override
-    public List<SchoolYear> getCurriculumYearStartEndByGradeLevel(GradeLevel aGradeLevel) 
-    {
+    public List<SchoolYear> getCurriculumYearStartEndByGradeLevel(GradeLevel aGradeLevel) {
         String sql = "{call getCurriculumYearStartEndByGradeLevel(?)}";
-        List <SchoolYear> list = new ArrayList<>();
-        
-        try(Connection con = DBUtil.getConnection(DBType.MYSQL);
-            CallableStatement cs = con.prepareCall(sql);)
-        {
+        List<SchoolYear> list = new ArrayList<>();
+
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(sql);) {
             cs.setInt(1, aGradeLevel.getLevel());
-            
-            try(ResultSet rs = cs.executeQuery())
-            {
-                while(rs.next())
-                {
+            try (ResultSet rs = cs.executeQuery()) {
+                while (rs.next()) {
                     SchoolYear schoolYear = new SchoolYear();
-                    
                     schoolYear.setYearFrom(rs.getInt(1));
                     schoolYear.setYearTo(rs.getInt(2));
-                    
                     list.add(schoolYear);
                 }
             }
+        } catch (SQLException ex) {
+            System.err.println("Error at getCurriculumYearStartEndByGradeLevel " + ex);
         }
-        catch(SQLException ex)
-        {
-            System.err.println("Error at getCurriculumYearStartEndByGradeLevel "+ex);
-        }
-        
         return list;
     }
 
     @Override
-    public List<Curriculum> getAllCurriculumByStartYear(SchoolYear aSchoolYear) 
-    {
+    public List<Curriculum> getAllCurriculumByStartYear(SchoolYear aSchoolYear) {
         String sql = "call getAllCurriculumByStartYear(?)";
-        List <Curriculum> list = new ArrayList<>();
-        
-        try(Connection con = DBUtil.getConnection(DBType.MYSQL);
-            CallableStatement cs = con.prepareCall(sql);)
-        {
+        List<Curriculum> list = new ArrayList<>();
+
+        try (Connection con = DBUtil.getConnection(DBType.MYSQL);
+                CallableStatement cs = con.prepareCall(sql);) {
             cs.setInt(1, aSchoolYear.getYearFrom());
-            try(ResultSet rs = cs.executeQuery())
-            {
-                while(rs.next())
-                {
+            try (ResultSet rs = cs.executeQuery()) {
+                while (rs.next()) {
                     Curriculum curriculum = new Curriculum();
-                    
+
                     curriculum.setCurriculumTitle(rs.getString(1));
-                    
+
                     list.add(curriculum);
                 }
             }
+        } catch (SQLException ex) {
+            System.err.println("Error at getAllCurriculumByStartYear " + ex);
         }
-        catch(SQLException ex)
-        {
-            System.err.println("Error at getAllCurriculumByStartYear "+ex);
-        }
-        
-        
+
         return list;
     }
 
@@ -335,7 +320,8 @@ public class CurriculumDaoImpl implements ICurriculum {
                     curriculum.s.setSubjectCode(rs.getString(1));
                     curriculum.s.setSubjectTitle(rs.getString(2));
                     curriculum.s.setSubjectDescription(rs.getString(3));
-                    curriculum.gradeLevel.setLevel(rs.getInt(4));
+                    curriculum.s.setSubjectHours(rs.getDouble(4));
+                    curriculum.gradeLevel.setLevel(rs.getInt(5));
                 
                     list.add(curriculum);
                 }
@@ -595,5 +581,10 @@ public class CurriculumDaoImpl implements ICurriculum {
         
         return list;
     }
+
+    
+    
+    
+    
 
 }

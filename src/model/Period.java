@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  * <p>
  * <h2>Period</h2>
@@ -34,6 +36,15 @@ public class Period {
     private int periodId;
     private String code;
     private String description;
+    private Date paymentDeadline;
+
+    public Date getPaymentDeadline() {
+        return paymentDeadline;
+    }
+
+    public void setPaymentDeadline(Date paymentDeadline) {
+        this.paymentDeadline = paymentDeadline;
+    }
 
     public int getPeriodId() {
         return periodId;

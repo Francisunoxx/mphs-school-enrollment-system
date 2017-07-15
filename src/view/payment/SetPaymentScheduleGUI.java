@@ -9,7 +9,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import daoimpl.PaymentDaoImpl_OLD;
 import daoimpl.SchoolYearDaoImpl;
-import component_model_loader.JSpinnerGUIUtil;
+import component_utility.JSpinnerGUIUtil;
 import javax.swing.DefaultComboBoxModel;
 
 /**

@@ -8,7 +8,7 @@ import java.awt.Color;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import component_model_loader.JPanelGUIUtil;
+import component_utility.JPanelGUIUtil;
 import daoimpl.PaymentTermDaoImpl;
 import daoimpl.RegistrationDaoImpl;
 import daoimpl.SchoolYearDaoImpl;

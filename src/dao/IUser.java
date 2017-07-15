@@ -5,10 +5,12 @@
  */
 package dao;
 
+import model.User;
+
 /**
  *
  * @author Acer
  */
 public interface IUser {
-    
+    User getById(int userId);
 }

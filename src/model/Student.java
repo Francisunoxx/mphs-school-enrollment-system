@@ -22,6 +22,45 @@ public class Student {
     private Date dateGraduated;
     private TuitionFee tuition;
 
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    public GradeLevel gradeLevel;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public GradeLevel getGradeLevel() {
+        return gradeLevel;
+    }
+
+    public void setGradeLevel(GradeLevel gradeLevel) {
+        this.gradeLevel = gradeLevel;
+    }
+    
+    
+    
     public TuitionFee getTuition() {
         return tuition;
     }

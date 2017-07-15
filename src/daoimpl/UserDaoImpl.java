@@ -1,5 +1,6 @@
 package daoimpl;
 
+import dao.IUser;
 import database_utility.DBType;
 import database_utility.DBUtil;
 import java.awt.Image;
@@ -15,8 +16,15 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import model.User;
 
-public class UserDaoImpl {
+public class UserDaoImpl implements IUser{
+
+    @Override
+    public User getById(int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     public String getUserRole(String aUsername) {
         String SQL = "SELECT Role FROM user WHERE USERNAME = ?";

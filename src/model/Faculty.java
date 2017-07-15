@@ -5,6 +5,7 @@ public class Faculty {
     
     
     private int facultyID;
+  
     private String firstName;
     private String lastName;
     private String middleName;
@@ -20,6 +21,7 @@ public class Faculty {
     private String dateCreated;
     private boolean isActive;
 
+    
     public boolean isIsActive() {
         return isActive;
     }
@@ -136,6 +138,5 @@ public class Faculty {
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
-      
-    
+   
 }

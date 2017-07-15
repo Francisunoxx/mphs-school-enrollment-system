@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import daoimpl.SchoolYearDaoImpl;
-import component_model_loader.JTableGUIUtil;
+import component_utility.JTableGUIUtil;
 import javax.swing.DefaultComboBoxModel;
 
 /**

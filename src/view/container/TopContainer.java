@@ -11,15 +11,15 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import daoimpl.LoginDaoImpl;
-import component_model_loader.ImageGUIUtil;
+import component_utility.ImageGUIUtil;
 import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import threads.SchoolYearLoaderThread;
+import view.grades.GradesRecord;
 
 public class TopContainer extends javax.swing.JFrame{
 
@@ -981,7 +981,10 @@ public class TopContainer extends javax.swing.JFrame{
 
     private void jpnlGradesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnlGradesButtonMouseClicked
         if (evt.getClickCount() >= 1){
-            
+            GradesRecord gr = new GradesRecord();
+            jtpTopTabbedPane.add("Grades",gr);
+            jtpTopTabbedPane.setSelectedComponent(gr);
+            setGRADES_INSTANCE(1);
         }
     }//GEN-LAST:event_jpnlGradesButtonMouseClicked
 
@@ -998,12 +1001,12 @@ public class TopContainer extends javax.swing.JFrame{
     }//GEN-LAST:event_jpnlPaymentButtonMouseClicked
 
     private void jpnlManagementButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnlManagementButtonMouseClicked
-//        CardLayoutUtil.flipCardTo(jpnlTopCardContainer, new ManagementPanel());
+//        CardLayoutUtil.flipCardTo(jpnlTopCardContainer, new SettingsPanel());
 
         if (evt.getClickCount() >= 1) {
             if (MANAGEMENT_INSTANCE <= 0) {
-                ManagementPanel managementPanel = new ManagementPanel();
-                jtpTopTabbedPane.add("Management", managementPanel);
+                SettingsPanel managementPanel = new SettingsPanel();
+                jtpTopTabbedPane.add("Settings", managementPanel);
                 jtpTopTabbedPane.setSelectedComponent(managementPanel);
                 setMANAGEMENT_INSTANCE(1);
             }

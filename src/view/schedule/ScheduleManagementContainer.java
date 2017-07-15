@@ -7,7 +7,7 @@ package view.schedule;
 
 import daoimpl.ScheduleDaoImpl;
 import component_model_loader.GradeLevelML;
-import component_model_loader.JSpinnerGUIUtil;
+import component_utility.JSpinnerGUIUtil;
 import component_model_loader.SchoolYearML;
 import component_model_loader.SectionML;
 import java.awt.Color;
@@ -271,7 +271,6 @@ public class ScheduleManagementContainer extends javax.swing.JPanel {
         jPanel7.add(jlblSection, gridBagConstraints);
 
         jcmbSection.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jcmbSection.setModel(new component_model_loader.SectionML().getSectionForJComboBox());
         jcmbSection.setMinimumSize(new java.awt.Dimension(100, 20));
         jcmbSection.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

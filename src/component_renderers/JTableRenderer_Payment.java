@@ -5,7 +5,7 @@
  */
 package component_renderers;
 
-import component_model_loader.JTableGUIUtil;
+import component_utility.JTableGUIUtil;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
